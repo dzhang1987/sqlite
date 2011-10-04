@@ -1,0 +1,34 @@
+#
+#   combo.files - Files needed for the combo SQLite installation
+#
+#   Copyright (c) Embedthis Software LLC, 2003-2011. All Rights Reserved.
+#
+
+S=${BLD_TOP}/src
+
+#
+#   Output directories. Note: these are in the staging directory.
+#
+DIR="${BLD_OUT_DIR}/staging/${BLD_PRODUCT}-${BLD_VERSION}"
+SRC="${DIR}/src/deps/sqlite"
+
+#
+#	Build files
+#
+mkdir -p ${SRC}
+cp ${BLD_TOP}/package/Makefile.combo "${SRC}/Makefile"
+
+#
+#	Files
+#
+cp ${BLD_INC_DIR}/sqlite3.h ${SRC}/sqlite3.h
+cp ${S}/sqlite3.c ${SRC}/sqlite3.c
+cp ${S}/sqlite.c ${SRC}/sqlite.c
+
+#
+#   Local variables:
+#   tab-width: 4
+#   c-basic-offset: 4
+#   End:
+#   vim: sw=4 ts=4 noexpandtab
+#

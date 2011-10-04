@@ -1,0 +1,100 @@
+###############################################################################
+#
+#   configure.sqlite -- Build configuration script for SQLite
+#
+#   Copyright (c) Michael O'Brien, 1994-2011. All Rights Reserved.
+#   Copyright (c) Embedthis Software LLC, 2003-2011. All Rights Reserved.
+#
+#   This script is included by configure and is never run stand-alone.
+#
+###############################################################################
+
+applyDependencies()
+{
+    :
+}
+
+
+manageFeatures()
+{
+    if [ "$BLD_FEATURE_ROMFS" = 1 -a "$BLD_CROSS" = 0 ] ; then
+        echo "ROM-based storage is only supported if doing cross-compilation"
+        echo "Disabling --enable-rom"
+        BLD_FEATURE_ROMFS=0
+    fi
+}
+
+
+createFeatureConfig()
+{
+    NAME=$1
+
+    cat >>$NAME <<!EOF_FEATURE_CONFIG1
+#
+#   SQLite Feature Selection
+#
+BLD_SQLITE_PRODUCT=1
+
+!EOF_FEATURE_CONFIG1
+}
+
+
+emitExtraComponents()
+{
+    local kind
+
+    kind=$1
+}
+
+
+help()
+{
+    cat <<!EOF_HELP
+
+Additional SQLite Features:
+  none
+
+Optional Components: matrixssl, openssl
+
+  --with-NAME=[DIR]        Add support for the NAME. The build/components/NAME
+                           file will describe compile and linker switches. DIR 
+                           is the base directory to find the module.
+  --without-NAME           Do not include support for NAME.
+
+Examples:
+  ./configure --with-openssl=/usr/src/openssl
+
+!EOF_HELP
+}
+
+
+parseArg()
+{
+    local ARG SW lower
+
+    ARG="${1#*=}"
+    [ "$ARG" = "$1" ] && ARG=
+
+    SW=`echo ${1#--} | tr '[A-Z]' '[a-z]'`
+    lower=`echo ${ARG#--} | tr '[A-Z]' '[a-z]'`
+    case ${SW} in
+    disable-all)
+        BLD_DISABLE_ALL=1
+        BLD_FEATURE_ASSERT=0
+        BLD_FEATURE_LEGACY_API=0
+        BLD_FEATURE_MATRIXSSL=0
+        BLD_FEATURE_OPENSSL=0
+        BLD_FEATURE_SSL=0
+        ;;
+    enable-all)
+        BLD_FEATURE_ASSERT=1
+        BLD_FEATURE_MATRIXSSL=0
+        BLD_FEATURE_OPENSSL=1
+        BLD_FEATURE_SSL=1
+        ;;
+    *)  
+        return 1
+        ;;
+    esac
+    return 0
+}

@@ -1,0 +1,14 @@
+#
+#   Ranlib
+#
+defineComponent() {
+    local file path
+
+    eval file=\$BLD_${KIND}_RANLIB
+    path=`probe --name ranlib $file`
+    if [ "$path" = "" ] ; then
+        warnComponent $file
+        return
+	fi
+    configureComponent --path "$path" ranlib
+}
