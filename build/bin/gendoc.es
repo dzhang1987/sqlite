@@ -208,6 +208,7 @@ module embedthis.doc {
         str = str.replace(/<linebreak\/>/g, "<br/>")
         str = str.replace(/bold>/g, "b>")
         str = str.trim().trim(".").trim().trim(".")
+        str = str.replace(/--/g, "&mdash;")
         return str
     }
 
