@@ -14,6 +14,7 @@
 #
 
 DEPS		= tools 
+PRE_DIRS    = build src doc package
 
 include		build/make/Makefile.top
 include		build/make/Makefile.http
