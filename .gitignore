@@ -50,3 +50,4 @@ src/test/appweb/trace.txt
 *.o
 out
 .makedep
+local.bit
