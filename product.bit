@@ -13,7 +13,7 @@ Bit.load({
         company: 'Embedthis',
 		version: '1.0.0',
 		buildNumber: 'B0',
-        sync: ['tools'],
+        sync: [],
     },
 
     usage: {
