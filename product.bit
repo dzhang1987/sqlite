@@ -1,0 +1,60 @@
+/*
+    product.bit -- Product Bit File for the SQLite library
+ */
+
+Bit.load({
+    blend: [
+        ".bit/embedthis.bit",
+    ],
+    settings: {
+        /* Default settings overridden by build.bit */
+		product: 'sqlite',
+		title: 'SQLite Library',
+        company: 'Embedthis',
+		version: '1.0.0',
+		buildNumber: 'B0',
+        sync: ['tools'],
+    },
+
+    usage: {
+        debug: 'Enable a debug build',
+        assert: 'Enable program assertions',
+    },
+
+    profiles: {
+        debug: { settings: { 
+            debug: true, 
+            assert: true,
+        }, },
+        release: { settings: { 
+            debug: false, 
+            assert: false,
+        } },
+    },
+
+    '+required': [ ]
+    '+optional': [ ],
+
+    defaults: {
+        '+includes': [ 'src' ]
+        '+defines': [ '-DBLD_FEATURE_SQLITE=1' ]
+    },
+
+    targets: {
+        libsqlite3: {
+            type: 'lib',
+            sources: [ 'src/*.c' ],
+        },
+        package: {
+            depends: ['build'],
+            action: "
+                let d = bit.dir.pkg.join('${settings.product}-${settings.version}')
+                safeRemove(bit.dir.pkg)
+                install('.bit/sqlite.bit', d.join('src/deps/sqlite/sqlite.bit'))
+                install('.bit/Makefile', d.join('src/deps/sqlite/Makefile'))
+                install(['src/sqlite3.h', 'src/sqlite3.c', 'src/sqlite.c'], d.join('src/deps/sqlite'))
+                package(['combo', 'flat'])
+            ",
+        },
+	},
+})

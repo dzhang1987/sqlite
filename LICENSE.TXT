@@ -110,4 +110,7 @@ Third Party Components
 1) Build Tools. Some of the tools used to build the Licensed Software are licensed under a GPL license. They are not part of the binary product nor are they normally deployed with the software after it is built into binary form.
 2) MatrixSSL. The MatrixSSL interface contains some licensed code from PeerSec. MatrixSSL is an optional component.
 
+1) SQLite. Portions of this library come from the SQLite product. These are covered by the SQLite
+license. The SQLite library is an optional component of the Licensed Software.
+
 Contributors have provided other portions of the software that are covered by the Embedthis Contributor license that grants Embedthis sufficient rights to execute this license Agreement.
