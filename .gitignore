@@ -50,8 +50,6 @@ src/test/appweb/trace.txt
 *.o
 out
 .makedep
-local.bit
-*-debug
-*-release
-macosx-x86_64.bit
-*-*.bit
+/*-*.bit
+/*-*-debug/
+/*-*-release/
