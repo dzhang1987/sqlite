@@ -36,13 +36,13 @@ Bit.load({
     '+optional': [ ],
 
     defaults: {
-        '+includes': [ 'src' ]
         '+defines': [ '-DBLD_FEATURE_SQLITE=1' ]
     },
 
     targets: {
         libsqlite3: {
             type: 'lib',
+            headers: [ 'src/*.h' ],
             sources: [ 'src/*.c' ],
         },
         package: {
