@@ -51,7 +51,6 @@ Bit.load({
                 let d = bit.dir.pkg.join('${settings.product}-${settings.version}')
                 safeRemove(bit.dir.pkg)
                 install('package/sqlite.bit', d.join('src/deps/sqlite/sqlite.bit'), {hidden: true})
-                install('package/Makefile', d.join('src/deps/sqlite/Makefile'), {hidden: true})
                 install(['src/sqlite3.h', 'src/sqlite3.c', 'src/sqlite.c'], d.join('src/deps/sqlite'))
                 package(bit.dir.pkg, ['combo', 'flat'])
             ",
