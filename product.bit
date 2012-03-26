@@ -53,7 +53,7 @@ Bit.load({
                 install('package/sqlite.bit', d.join('src/deps/sqlite/sqlite.bit'), {hidden: true})
                 install('package/Makefile', d.join('src/deps/sqlite/Makefile'), {hidden: true})
                 install(['src/sqlite3.h', 'src/sqlite3.c', 'src/sqlite.c'], d.join('src/deps/sqlite'))
-                package(['combo', 'flat'])
+                package(bit.dir.pkg, ['combo', 'flat'])
             ",
         },
 	},
