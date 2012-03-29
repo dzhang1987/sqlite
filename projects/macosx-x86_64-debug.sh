@@ -18,9 +18,9 @@ LIBS="-lpthread -lm"
 rm -rf macosx-x86_64-debug/inc/sqlite3.h
 cp -r src/sqlite3.h macosx-x86_64-debug/inc/sqlite3.h
 
-${CC} -c -o ${PLATFORM}/obj/sqlite.o -arch x86_64 ${CFLAGS} ${DFLAGS} -I${PLATFORM}/inc src/sqlite.c
+${CC} -c -o ${PLATFORM}/obj/sqlite.o -arch x86_64 -fPIC -g ${DFLAGS} -I${PLATFORM}/inc src/sqlite.c
 
-${CC} -c -o ${PLATFORM}/obj/sqlite3.o -arch x86_64 ${CFLAGS} ${DFLAGS} -I${PLATFORM}/inc src/sqlite3.c
+${CC} -c -o ${PLATFORM}/obj/sqlite3.o -arch x86_64 -fPIC -g ${DFLAGS} -I${PLATFORM}/inc src/sqlite3.c
 
 ${CC} -dynamiclib -o ${PLATFORM}/lib/libsqlite3.dylib -arch x86_64 ${LDFLAGS} ${LIBPATHS} -install_name @rpath/libsqlite3.dylib ${PLATFORM}/obj/sqlite.o ${PLATFORM}/obj/sqlite3.o ${LIBS}
 

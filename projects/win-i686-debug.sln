@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libsqlite3", "win-i686-debug\libsqlite3.vcxproj", "{69060C54-E11F-4E31-BB2F-A1D629298380}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libsqlite3", "win-i686-debug\libsqlite3.vcxproj", "{3132B3A2-A197-4DAF-84F4-AEA784364044}"
 EndProject
 
 Global
@@ -8,8 +8,8 @@ Global
 		Debug|Win32 = Debug|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-{69060C54-E11F-4E31-BB2F-A1D629298380}.Debug|Win32.ActiveCfg = Debug|Win32
-{69060C54-E11F-4E31-BB2F-A1D629298380}.Debug|Win32.Build.0 = Debug|Win32
+{3132B3A2-A197-4DAF-84F4-AEA784364044}.Debug|Win32.ActiveCfg = Debug|Win32
+{3132B3A2-A197-4DAF-84F4-AEA784364044}.Debug|Win32.Build.0 = Debug|Win32
 EndGlobalSection
 
   GlobalSection(SolutionProperties) = preSolution

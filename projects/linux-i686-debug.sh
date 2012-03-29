@@ -18,9 +18,9 @@ LIBS="-lpthread -lm -ldl"
 rm -rf linux-i686-debug/inc/sqlite3.h
 cp -r src/sqlite3.h linux-i686-debug/inc/sqlite3.h
 
-${CC} -c -o ${PLATFORM}/obj/sqlite.o ${CFLAGS} ${DFLAGS} -I${PLATFORM}/inc src/sqlite.c
+${CC} -c -o ${PLATFORM}/obj/sqlite.o -fPIC -g -Wno-unused-result -mtune=i686 ${DFLAGS} -I${PLATFORM}/inc src/sqlite.c
 
-${CC} -c -o ${PLATFORM}/obj/sqlite3.o ${CFLAGS} ${DFLAGS} -I${PLATFORM}/inc src/sqlite3.c
+${CC} -c -o ${PLATFORM}/obj/sqlite3.o -fPIC -g -Wno-unused-result -mtune=i686 ${DFLAGS} -I${PLATFORM}/inc src/sqlite3.c
 
 ${CC} -shared -o ${PLATFORM}/lib/libsqlite3.so ${LDFLAGS} ${LIBPATHS} ${PLATFORM}/obj/sqlite.o ${PLATFORM}/obj/sqlite3.o ${LIBS}
 

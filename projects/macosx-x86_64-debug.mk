@@ -37,13 +37,13 @@ $(PLATFORM)/obj/sqlite.o: \
         src/sqlite.c \
         $(PLATFORM)/inc/buildConfig.h \
         $(PLATFORM)/inc/sqlite3.h
-	$(CC) -c -o $(PLATFORM)/obj/sqlite.o -arch x86_64 $(CFLAGS) $(DFLAGS) -I$(PLATFORM)/inc src/sqlite.c
+	$(CC) -c -o $(PLATFORM)/obj/sqlite.o -arch x86_64 -fPIC -g $(DFLAGS) -I$(PLATFORM)/inc src/sqlite.c
 
 $(PLATFORM)/obj/sqlite3.o: \
         src/sqlite3.c \
         $(PLATFORM)/inc/buildConfig.h \
         $(PLATFORM)/inc/sqlite3.h
-	$(CC) -c -o $(PLATFORM)/obj/sqlite3.o -arch x86_64 $(CFLAGS) $(DFLAGS) -I$(PLATFORM)/inc src/sqlite3.c
+	$(CC) -c -o $(PLATFORM)/obj/sqlite3.o -arch x86_64 -fPIC -g $(DFLAGS) -I$(PLATFORM)/inc src/sqlite3.c
 
 $(PLATFORM)/lib/libsqlite3.dylib:  \
         $(PLATFORM)/inc/sqlite3.h \

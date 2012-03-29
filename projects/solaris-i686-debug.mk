@@ -36,12 +36,12 @@ $(PLATFORM)/inc/sqlite3.h:
 $(PLATFORM)/obj/sqlite.o: \
         src/sqlite.c \
         $(PLATFORM)/inc/buildConfig.h
-	$(CC) -c -o $(PLATFORM)/obj/sqlite.o -Wall -fPIC $(LDFLAGS) -mcpu=i686 $(DFLAGS) -I$(PLATFORM)/inc src/sqlite.c
+	$(CC) -c -o $(PLATFORM)/obj/sqlite.o -fPIC $(LDFLAGS) -mcpu=i686 $(DFLAGS) -I$(PLATFORM)/inc src/sqlite.c
 
 $(PLATFORM)/obj/sqlite3.o: \
         src/sqlite3.c \
         $(PLATFORM)/inc/buildConfig.h
-	$(CC) -c -o $(PLATFORM)/obj/sqlite3.o -Wall -fPIC $(LDFLAGS) -mcpu=i686 $(DFLAGS) -I$(PLATFORM)/inc src/sqlite3.c
+	$(CC) -c -o $(PLATFORM)/obj/sqlite3.o -fPIC $(LDFLAGS) -mcpu=i686 $(DFLAGS) -I$(PLATFORM)/inc src/sqlite3.c
 
 $(PLATFORM)/lib/libsqlite3.so:  \
         $(PLATFORM)/inc/sqlite3.h \
