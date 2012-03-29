@@ -4,11 +4,12 @@
 
 PLATFORM       := macosx-x86_64-debug
 CC             := cc
-LD             := /usr/bin/ld
+LD             := ld
 CFLAGS         := -fPIC -Wall -g
 DFLAGS         := -DPIC -DBLD_FEATURE_SQLITE=1 -DCPU=X86_64
 IFLAGS         := -I$(PLATFORM)/inc
-LDFLAGS        := -Wl,-rpath,@executable_path/../lib -Wl,-rpath,@executable_path/ -Wl,-rpath,@loader_path/ -L$(PLATFORM)/lib -g -ldl
+LDFLAGS        := '-Wl,-rpath,@executable_path/../lib' '-Wl,-rpath,@executable_path/' '-Wl,-rpath,@loader_path/' '-g' '-ldl'
+LIBPATHS       := -L$(PLATFORM)/lib
 LIBS           := -lpthread -lm
 
 all: prep \
@@ -48,5 +49,5 @@ $(PLATFORM)/lib/libsqlite3.dylib:  \
         $(PLATFORM)/inc/sqlite3.h \
         $(PLATFORM)/obj/sqlite.o \
         $(PLATFORM)/obj/sqlite3.o
-	$(CC) -dynamiclib -o $(PLATFORM)/lib/libsqlite3.dylib -arch x86_64 $(LDFLAGS) -install_name @rpath/libsqlite3.dylib $(PLATFORM)/obj/sqlite.o $(PLATFORM)/obj/sqlite3.o $(LIBS)
+	$(CC) -dynamiclib -o $(PLATFORM)/lib/libsqlite3.dylib -arch x86_64 $(LDFLAGS) $(LIBPATHS) -install_name @rpath/libsqlite3.dylib $(PLATFORM)/obj/sqlite.o $(PLATFORM)/obj/sqlite3.o $(LIBS)
 

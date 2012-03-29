@@ -4,12 +4,13 @@
 
 PLATFORM="linux-i686-debug"
 CC="cc"
-LD="/usr/bin/ld"
+LD="ld"
 CFLAGS="-Wall -fPIC -g -Wno-unused-result -mtune=i686"
 DFLAGS="-D_REENTRANT -DCPU=i686 -DBLD_FEATURE_SQLITE=1 -DPIC"
 IFLAGS="-Ilinux-i686-debug/inc"
-LDFLAGS="-Wl,--enable-new-dtags '-Wl,-rpath,$$ORIGIN"/' '-Wl,-rpath,$$ORIGIN"/../lib' -L${PLATFORM}/lib -g -ldl
-LIBS="-lpthread -lm"
+LDFLAGS="-Wl,--enable-new-dtags -Wl,-rpath,\$ORIGIN/ -Wl,-rpath,\$ORIGIN/../lib -g"
+LIBPATHS="-L${PLATFORM}/lib"
+LIBS="-lpthread -lm -ldl"
 
 [ ! -x ${PLATFORM}/inc ] && mkdir -p ${PLATFORM}/inc ${PLATFORM}/obj ${PLATFORM}/lib ${PLATFORM}/bin
 [ ! -f ${PLATFORM}/inc/buildConfig.h ] && cp projects/buildConfig.${PLATFORM} ${PLATFORM}/inc/buildConfig.h
@@ -21,5 +22,5 @@ ${CC} -c -o ${PLATFORM}/obj/sqlite.o ${CFLAGS} ${DFLAGS} -I${PLATFORM}/inc src/s
 
 ${CC} -c -o ${PLATFORM}/obj/sqlite3.o ${CFLAGS} ${DFLAGS} -I${PLATFORM}/inc src/sqlite3.c
 
-${CC} -shared -o ${PLATFORM}/lib/libsqlite3.so ${LDFLAGS} ${PLATFORM}/obj/sqlite.o ${PLATFORM}/obj/sqlite3.o ${LIBS}
+${CC} -shared -o ${PLATFORM}/lib/libsqlite3.so ${LDFLAGS} ${LIBPATHS} ${PLATFORM}/obj/sqlite.o ${PLATFORM}/obj/sqlite3.o ${LIBS}
 

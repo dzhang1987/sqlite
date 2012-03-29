@@ -4,11 +4,12 @@
 
 PLATFORM="solaris-i686-debug"
 CC="cc"
-LD="/usr/bin/ld"
+LD="ld"
 CFLAGS="-Wall -fPIC -g -mcpu=i686"
 DFLAGS="-D_REENTRANT -DCPU=i686 -DBLD_FEATURE_SQLITE=1 -DPIC"
 IFLAGS="-Isolaris-i686-debug/inc"
-LDFLAGS="-L${PLATFORM}/lib -g
+LDFLAGS="-g"
+LIBPATHS="-L${PLATFORM}/lib"
 LIBS="-llxnet -lrt -lsocket -lpthread -lm"
 
 [ ! -x ${PLATFORM}/inc ] && mkdir -p ${PLATFORM}/inc ${PLATFORM}/obj ${PLATFORM}/lib ${PLATFORM}/bin
@@ -17,9 +18,9 @@ LIBS="-llxnet -lrt -lsocket -lpthread -lm"
 rm -rf solaris-i686-debug/inc/sqlite3.h
 cp -r src/sqlite3.h solaris-i686-debug/inc/sqlite3.h
 
-${CC} -c -o ${PLATFORM}/obj/sqlite.o ${CFLAGS} ${DFLAGS} -I${PLATFORM}/inc src/sqlite.c
+${CC} -c -o ${PLATFORM}/obj/sqlite.o -Wall -fPIC ${LDFLAGS} -mcpu=i686 ${DFLAGS} -I${PLATFORM}/inc src/sqlite.c
 
-${CC} -c -o ${PLATFORM}/obj/sqlite3.o ${CFLAGS} ${DFLAGS} -I${PLATFORM}/inc src/sqlite3.c
+${CC} -c -o ${PLATFORM}/obj/sqlite3.o -Wall -fPIC ${LDFLAGS} -mcpu=i686 ${DFLAGS} -I${PLATFORM}/inc src/sqlite3.c
 
-${CC} -shared -o ${PLATFORM}/lib/libsqlite3.so ${LDFLAGS} ${PLATFORM}/obj/sqlite.o ${PLATFORM}/obj/sqlite3.o ${LIBS}
+${CC} -shared -o ${PLATFORM}/lib/libsqlite3.so ${LDFLAGS} ${LIBPATHS} ${PLATFORM}/obj/sqlite.o ${PLATFORM}/obj/sqlite3.o ${LIBS}
 
