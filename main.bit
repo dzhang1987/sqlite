@@ -1,9 +1,10 @@
 /*
-    product.bit -- Product Bit File for the SQLite library
+    main.bit -- Main Bit File for the SQLite library
  */
 
 Bit.load({
     blend: [
+        '${PLATFORM}.bit',
         "${BITS}/embedthis.bit",
     ],
     settings: {
@@ -31,9 +32,6 @@ Bit.load({
             assert: false,
         } },
     },
-
-    '+required': [ ]
-    '+optional': [ ],
 
     defaults: {
         '+defines': [ '-DBLD_FEATURE_SQLITE=1' ]
