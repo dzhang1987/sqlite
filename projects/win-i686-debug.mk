@@ -12,54 +12,54 @@ export PATH    := $(SDK)/Bin:$(VS)/VC/Bin:$(VS)/Common7/IDE:$(VS)/Common7/Tools:
 export INCLUDE := $(INCLUDE);$(SDK)/INCLUDE:$(VS)/VC/INCLUDE
 export LIB     := $(LIB);$(SDK)/lib:$(VS)/VC/lib
 
-PLATFORM       := win-i686-debug
-CC             := cl.exe
-LD             := link.exe
-CFLAGS         := -nologo -GR- -W3 -Zi -Od -MDd
-DFLAGS         := -D_REENTRANT -D_MT -DBLD_FEATURE_SQLITE=1
-IFLAGS         := -I$(PLATFORM)/inc
-LDFLAGS        := '-nologo' '-nodefaultlib' '-incremental:no' '-debug' '-machine:x86'
-LIBPATHS       := -libpath:$(PLATFORM)/bin
-LIBS           := ws2_32.lib advapi32.lib user32.lib kernel32.lib oldnames.lib msvcrt.lib shell32.lib
+CONFIG   := win-i686-debug
+CC       := cl.exe
+LD       := link.exe
+CFLAGS   := -nologo -GR- -W3 -Zi -Od -MDd -Zi -Od -MDd
+DFLAGS   := -D_REENTRANT -D_MT -DBLD_FEATURE_SQLITE=1
+IFLAGS   := -I$(CONFIG)/inc -I$(CONFIG)/inc
+LDFLAGS  := '-nologo' '-nodefaultlib' '-incremental:no' '-machine:x86' '-machine:x86'
+LIBPATHS := -libpath:$(CONFIG)/bin -libpath:$(CONFIG)/bin
+LIBS     := ws2_32.lib advapi32.lib user32.lib kernel32.lib oldnames.lib msvcrt.lib shell32.lib
 
 all: prep \
-        $(PLATFORM)/bin/libsqlite3.dll
+        $(CONFIG)/bin/libsqlite3.dll
 
 .PHONY: prep
 
 prep:
-	@[ ! -x $(PLATFORM)/inc ] && mkdir -p $(PLATFORM)/inc $(PLATFORM)/obj $(PLATFORM)/lib $(PLATFORM)/bin ; true
-	@[ ! -f $(PLATFORM)/inc/buildConfig.h ] && cp projects/buildConfig.$(PLATFORM) $(PLATFORM)/inc/buildConfig.h ; true
-	@if ! diff $(PLATFORM)/inc/buildConfig.h projects/buildConfig.$(PLATFORM) >/dev/null ; then\
-		echo cp projects/buildConfig.$(PLATFORM) $(PLATFORM)/inc/buildConfig.h  ; \
-		cp projects/buildConfig.$(PLATFORM) $(PLATFORM)/inc/buildConfig.h  ; \
+	@[ ! -x $(CONFIG)/inc ] && mkdir -p $(CONFIG)/inc $(CONFIG)/obj $(CONFIG)/lib $(CONFIG)/bin ; true
+	@[ ! -f $(CONFIG)/inc/buildConfig.h ] && cp projects/buildConfig.$(CONFIG) $(CONFIG)/inc/buildConfig.h ; true
+	@if ! diff $(CONFIG)/inc/buildConfig.h projects/buildConfig.$(CONFIG) >/dev/null ; then\
+		echo cp projects/buildConfig.$(CONFIG) $(CONFIG)/inc/buildConfig.h  ; \
+		cp projects/buildConfig.$(CONFIG) $(CONFIG)/inc/buildConfig.h  ; \
 	fi; true
 
 clean:
-	rm -rf $(PLATFORM)/bin/libsqlite3.dll
-	rm -rf $(PLATFORM)/obj/sqlite.obj
-	rm -rf $(PLATFORM)/obj/sqlite3.obj
+	rm -rf $(CONFIG)/bin/libsqlite3.dll
+	rm -rf $(CONFIG)/obj/sqlite.obj
+	rm -rf $(CONFIG)/obj/sqlite3.obj
 
 clobber: clean
-	rm -fr ./$(PLATFORM)
+	rm -fr ./$(CONFIG)
 
-$(PLATFORM)/inc/sqlite3.h: 
+$(CONFIG)/inc/sqlite3.h: 
 	rm -fr win-i686-debug/inc/sqlite3.h
 	cp -r src/sqlite3.h win-i686-debug/inc/sqlite3.h
 
-$(PLATFORM)/obj/sqlite.obj: \
+$(CONFIG)/obj/sqlite.obj: \
         src/sqlite.c \
-        $(PLATFORM)/inc/buildConfig.h
-	"$(CC)" -c -Fo$(PLATFORM)/obj/sqlite.obj -Fd$(PLATFORM)/obj $(CFLAGS) $(DFLAGS) -I$(PLATFORM)/inc src/sqlite.c
+        $(CONFIG)/inc/buildConfig.h
+	"$(CC)" -c -Fo$(CONFIG)/obj/sqlite.obj -Fd$(CONFIG)/obj $(CFLAGS) $(DFLAGS) -I$(CONFIG)/inc -I$(CONFIG)/inc src/sqlite.c
 
-$(PLATFORM)/obj/sqlite3.obj: \
+$(CONFIG)/obj/sqlite3.obj: \
         src/sqlite3.c \
-        $(PLATFORM)/inc/buildConfig.h
-	"$(CC)" -c -Fo$(PLATFORM)/obj/sqlite3.obj -Fd$(PLATFORM)/obj $(CFLAGS) $(DFLAGS) -I$(PLATFORM)/inc src/sqlite3.c
+        $(CONFIG)/inc/buildConfig.h
+	"$(CC)" -c -Fo$(CONFIG)/obj/sqlite3.obj -Fd$(CONFIG)/obj $(CFLAGS) $(DFLAGS) -I$(CONFIG)/inc -I$(CONFIG)/inc src/sqlite3.c
 
-$(PLATFORM)/bin/libsqlite3.dll:  \
-        $(PLATFORM)/inc/sqlite3.h \
-        $(PLATFORM)/obj/sqlite.obj \
-        $(PLATFORM)/obj/sqlite3.obj
-	"$(LD)" -dll -out:$(PLATFORM)/bin/libsqlite3.dll -entry:_DllMainCRTStartup@12 -def:$(PLATFORM)/bin/libsqlite3.def $(LDFLAGS) $(LIBPATHS) $(PLATFORM)/obj/sqlite.obj $(PLATFORM)/obj/sqlite3.obj $(LIBS)
+$(CONFIG)/bin/libsqlite3.dll:  \
+        $(CONFIG)/inc/sqlite3.h \
+        $(CONFIG)/obj/sqlite.obj \
+        $(CONFIG)/obj/sqlite3.obj
+	"$(LD)" -dll -out:$(CONFIG)/bin/libsqlite3.dll -entry:_DllMainCRTStartup@12 -def:$(CONFIG)/bin/libsqlite3.def $(LDFLAGS) $(LIBPATHS) $(CONFIG)/obj/sqlite.obj $(CONFIG)/obj/sqlite3.obj $(LIBS)
 
