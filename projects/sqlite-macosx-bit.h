@@ -17,13 +17,13 @@
 #define BLD_PATCH_VERSION 0
 #define BLD_VNUM 100000000
 #define BLD_CONFIG_CMD "bit -without all configure -gen sh,make,xcode"
-#define BLD_LIB_NAME "lib"
+#define BLD_LIB_NAME "bin"
 #define BLD_CFG_PREFIX "/etc/sqlite"
 #define BLD_BIN_PREFIX "/usr/lib/sqlite/1.0.0/bin"
 #define BLD_DOC_PREFIX "/usr/lib/sqlite/doc"
 #define BLD_INC_PREFIX "/usr/lib/sqlite/1.0.0/inc"
 #define BLD_JEM_PREFIX "/usr/lib/sqlite/jems"
-#define BLD_LIB_PREFIX "/usr/lib/sqlite/1.0.0/lib"
+#define BLD_LIB_PREFIX "/usr/lib/sqlite/1.0.0/bin"
 #define BLD_LOG_PREFIX "/var/log/sqlite"
 #define BLD_MAN_PREFIX "/usr/lib/sqlite/man"
 #define BLD_PRD_PREFIX "/usr/lib/sqlite"

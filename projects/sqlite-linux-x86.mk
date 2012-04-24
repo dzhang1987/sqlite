@@ -1,20 +1,21 @@
 #
-#   solaris-i686-debug.mk -- Build It Makefile to build SQLite Library for solaris on i686
+#   linux-x86-debug.mk -- Build It Makefile to build SQLite Library for linux on x86
 #
 
-OS       := solaris
-CONFIG   := $(OS)-i686-debug
+ARCH     := x86
+OS       := linux
+CONFIG   := $(OS)-$(ARCH)-debug
 CC       := gcc
 LD       := ld
-CFLAGS   := -Wall -fPIC -g -mcpu=i686
+CFLAGS   := -Wall -fPIC -g -Wno-unused-result -mtune=generic
 DFLAGS   := -D_REENTRANT -DBLD_FEATURE_SQLITE=1 -DPIC -DBLD_DEBUG
 IFLAGS   := -I$(CONFIG)/inc
-LDFLAGS  := '-g'
-LIBPATHS := -L$(CONFIG)/lib
-LIBS     := -llxnet -lrt -lsocket -lpthread -lm
+LDFLAGS  := '-Wl,--enable-new-dtags' '-Wl,-rpath,$$ORIGIN/' '-Wl,-rpath,$$ORIGIN/../bin' '-rdynamic' '-g'
+LIBPATHS := -L$(CONFIG)/bin
+LIBS     := -lpthread -lm -ldl
 
 all: prep \
-        $(CONFIG)/lib/libsqlite3.so
+        $(CONFIG)/bin/libsqlite3.so
 
 .PHONY: prep
 
@@ -27,7 +28,7 @@ prep:
 	fi; true
 
 clean:
-	rm -rf $(CONFIG)/lib/libsqlite3.so
+	rm -rf $(CONFIG)/bin/libsqlite3.so
 	rm -rf $(CONFIG)/obj/sqlite.o
 	rm -rf $(CONFIG)/obj/sqlite3.o
 
@@ -41,16 +42,16 @@ $(CONFIG)/inc/sqlite3.h:
 $(CONFIG)/obj/sqlite.o: \
         src/sqlite.c \
         $(CONFIG)/inc/bit.h
-	$(CC) -c -o $(CONFIG)/obj/sqlite.o -fPIC $(LDFLAGS) -mcpu=i686 -I$(CONFIG)/inc src/sqlite.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite.o -fPIC -g -Wno-unused-result -mtune=generic $(DFLAGS) -I$(CONFIG)/inc src/sqlite.c
 
 $(CONFIG)/obj/sqlite3.o: \
         src/sqlite3.c \
         $(CONFIG)/inc/bit.h
-	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fPIC $(LDFLAGS) -mcpu=i686 -I$(CONFIG)/inc src/sqlite3.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fPIC -g -Wno-unused-result -mtune=generic $(DFLAGS) -I$(CONFIG)/inc src/sqlite3.c
 
-$(CONFIG)/lib/libsqlite3.so:  \
+$(CONFIG)/bin/libsqlite3.so:  \
         $(CONFIG)/inc/sqlite3.h \
         $(CONFIG)/obj/sqlite.o \
         $(CONFIG)/obj/sqlite3.o
-	$(CC) -shared -o $(CONFIG)/lib/libsqlite3.so $(LIBPATHS) $(CONFIG)/obj/sqlite.o $(CONFIG)/obj/sqlite3.o $(LIBS)
+	$(CC) -shared -o $(CONFIG)/bin/libsqlite3.so $(LDFLAGS) $(LIBPATHS) $(CONFIG)/obj/sqlite.o $(CONFIG)/obj/sqlite3.o $(LIBS)
 

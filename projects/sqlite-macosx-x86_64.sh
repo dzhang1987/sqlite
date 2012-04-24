@@ -10,7 +10,7 @@ CFLAGS="-Wall -g -Wno-unused-result -Wshorten-64-to-32"
 DFLAGS="-DBLD_FEATURE_SQLITE=1 -DBLD_DEBUG"
 IFLAGS="-I${CONFIG}/inc"
 LDFLAGS="-Wl,-rpath,@executable_path/../lib -Wl,-rpath,@executable_path/ -Wl,-rpath,@loader_path/ -g"
-LIBPATHS="-L${CONFIG}/lib"
+LIBPATHS="-L${CONFIG}/bin"
 LIBS="-lpthread -lm -ldl"
 
 [ ! -x ${CONFIG}/inc ] && mkdir -p ${CONFIG}/inc ${CONFIG}/obj ${CONFIG}/lib ${CONFIG}/bin
@@ -27,5 +27,5 @@ ${CC} -c -o ${CONFIG}/obj/sqlite.o -arch x86_64 -g -Wno-unused-result ${DFLAGS} 
 
 ${CC} -c -o ${CONFIG}/obj/sqlite3.o -arch x86_64 -g -Wno-unused-result ${DFLAGS} -I${CONFIG}/inc src/sqlite3.c
 
-${CC} -dynamiclib -o ${CONFIG}/lib/libsqlite3.dylib -arch x86_64 ${LDFLAGS} ${LIBPATHS} -install_name @rpath/libsqlite3.dylib ${CONFIG}/obj/sqlite.o ${CONFIG}/obj/sqlite3.o ${LIBS}
+${CC} -dynamiclib -o ${CONFIG}/bin/libsqlite3.dylib -arch x86_64 ${LDFLAGS} -compatibility_version 1.0.0 -current_version 1.0.0 ${LIBPATHS} -install_name @rpath/libsqlite3.dylib ${CONFIG}/obj/sqlite.o ${CONFIG}/obj/sqlite3.o ${LIBS}
 

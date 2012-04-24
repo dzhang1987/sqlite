@@ -1,5 +1,5 @@
 #
-#   win-i686-debug.nmake -- Build It Makefile to build SQLite Library for win on i686
+#   win-x86-debug.nmake -- Build It Makefile to build SQLite Library for win on x86
 #
 
 !IFDEF VSINSTALLDIR
@@ -18,12 +18,13 @@ PATH      = $(SDK)\Bin:$(VS)\VC\Bin:$(VS)\Common7\IDE:$(VS)\Common7\Tools:$(VS)\
 INCLUDE   = $(INCLUDE);$(SDK)\INCLUDE:$(VS)\VC\INCLUDE
 LIB       = $(LIB);$(SDK)\lib:$(VS)\VC\lib
 
+ARCH     = x86
 OS       = win
-CONFIG   = $(OS)-i686-debug
+CONFIG   = $(OS)-$(ARCH)-debug
 CC       = cl
 LD       = link
 CFLAGS   = -nologo -GR- -W3 -Zi -Od -MDd
-DFLAGS   = -D_REENTRANT -D_MT -DBLD_FEATURE_SQLITE=1
+DFLAGS   = -D_REENTRANT -D_MT -DBLD_FEATURE_SQLITE=1 -DBLD_DEBUG
 IFLAGS   = -I$(CONFIG)\inc
 LDFLAGS  = -nologo -nodefaultlib -incremental:no -debug -machine:x86
 LIBPATHS = -libpath:$(CONFIG)\bin
@@ -39,7 +40,7 @@ prep:
 	@if not exist $(CONFIG)\obj md $(CONFIG)\obj
 	@if not exist $(CONFIG)\bin md $(CONFIG)\bin
 	@if not exist $(CONFIG)\inc\bit.h copy projects\sqlite-$(OS)-bit.h $(CONFIG)\inc\bit.h
-	@if not exist $(CONFIG)\bin\libmpr.def xcopy /Y /S projects\$(CONFIG)\*.def $(CONFIG)\bin
+	@if not exist $(CONFIG)\bin\libmpr.def xcopy /Y /S projects\sqlite-win-$(ARCH)\*.def $(CONFIG)\bin
 
 clean:
 	-if exist $(CONFIG)\bin\libsqlite3.dll del /Q $(CONFIG)\bin\libsqlite3.dll
@@ -47,22 +48,22 @@ clean:
 	-if exist $(CONFIG)\obj\sqlite3.obj del /Q $(CONFIG)\obj\sqlite3.obj
 
 $(CONFIG)\inc\sqlite3.h: 
-	-if exist win-i686-debug\inc\sqlite3.h del /Q win-i686-debug\inc\sqlite3.h
-	copy /Y src\sqlite3.h win-i686-debug\inc\sqlite3.h
+	-if exist win-x86-debug\inc\sqlite3.h del /Q win-x86-debug\inc\sqlite3.h
+	copy /Y src\sqlite3.h win-x86-debug\inc\sqlite3.h
 
 $(CONFIG)\obj\sqlite.obj: \
         src\sqlite.c \
         $(CONFIG)\inc\bit.h
-	"$(CC)" -c -Fo$(CONFIG)\obj\sqlite.obj -Fd$(CONFIG)\obj\sqlite.pdb $(CFLAGS) -I$(CONFIG)\inc src\sqlite.c
+	"$(CC)" -c -Fo$(CONFIG)\obj\sqlite.obj -Fd$(CONFIG)\obj\sqlite.pdb $(CFLAGS) $(DFLAGS) -I$(CONFIG)\inc src\sqlite.c
 
 $(CONFIG)\obj\sqlite3.obj: \
         src\sqlite3.c \
         $(CONFIG)\inc\bit.h
-	"$(CC)" -c -Fo$(CONFIG)\obj\sqlite3.obj -Fd$(CONFIG)\obj\sqlite3.pdb $(CFLAGS) -I$(CONFIG)\inc src\sqlite3.c
+	"$(CC)" -c -Fo$(CONFIG)\obj\sqlite3.obj -Fd$(CONFIG)\obj\sqlite3.pdb $(CFLAGS) $(DFLAGS) -I$(CONFIG)\inc src\sqlite3.c
 
 $(CONFIG)\bin\libsqlite3.dll:  \
         $(CONFIG)\inc\sqlite3.h \
         $(CONFIG)\obj\sqlite.obj \
         $(CONFIG)\obj\sqlite3.obj
-	"$(LD)" -dll -out:$(CONFIG)\bin\libsqlite3.dll -entry:_DllMainCRTStartup@12 -def:$(CONFIG)\bin\libsqlite3.def $(LIBPATHS) $(CONFIG)\obj\sqlite.obj $(CONFIG)\obj\sqlite3.obj $(LIBS)
+	"$(LD)" -dll -out:$(CONFIG)\bin\libsqlite3.dll -entry:_DllMainCRTStartup@12 -def:$(CONFIG)\bin\libsqlite3.def $(LDFLAGS) $(LIBPATHS) $(CONFIG)\obj\sqlite.obj $(CONFIG)\obj\sqlite3.obj $(LIBS)
 

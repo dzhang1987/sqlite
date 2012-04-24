@@ -1,16 +1,16 @@
 #
-#   solaris-i686-debug.sh -- Build It Shell Script to build SQLite Library
+#   solaris-x86-debug.sh -- Build It Shell Script to build SQLite Library
 #
 
 OS="solaris"
-CONFIG="${OS}-i686-debug"
+CONFIG="${OS}-x86-debug"
 CC="gcc"
 LD="ld"
-CFLAGS="-Wall -fPIC -g -mcpu=i686"
+CFLAGS="-Wall -fPIC -g -mcpu=generic"
 DFLAGS="-D_REENTRANT -DBLD_FEATURE_SQLITE=1 -DPIC -DBLD_DEBUG"
 IFLAGS="-I${CONFIG}/inc"
 LDFLAGS="-g"
-LIBPATHS="-L${CONFIG}/lib"
+LIBPATHS="-L${CONFIG}/bin"
 LIBS="-llxnet -lrt -lsocket -lpthread -lm"
 
 [ ! -x ${CONFIG}/inc ] && mkdir -p ${CONFIG}/inc ${CONFIG}/obj ${CONFIG}/lib ${CONFIG}/bin
@@ -23,9 +23,9 @@ fi
 rm -rf ${CONFIG}/inc/sqlite3.h
 cp -r src/sqlite3.h ${CONFIG}/inc/sqlite3.h
 
-${CC} -c -o ${CONFIG}/obj/sqlite.o -fPIC ${LDFLAGS} -mcpu=i686 -I${CONFIG}/inc src/sqlite.c
+${CC} -c -o ${CONFIG}/obj/sqlite.o -fPIC ${LDFLAGS} -mcpu=generic ${DFLAGS} -I${CONFIG}/inc src/sqlite.c
 
-${CC} -c -o ${CONFIG}/obj/sqlite3.o -fPIC ${LDFLAGS} -mcpu=i686 -I${CONFIG}/inc src/sqlite3.c
+${CC} -c -o ${CONFIG}/obj/sqlite3.o -fPIC ${LDFLAGS} -mcpu=generic ${DFLAGS} -I${CONFIG}/inc src/sqlite3.c
 
-${CC} -shared -o ${CONFIG}/lib/libsqlite3.so ${LIBPATHS} ${CONFIG}/obj/sqlite.o ${CONFIG}/obj/sqlite3.o ${LIBS}
+${CC} -shared -o ${CONFIG}/bin/libsqlite3.so ${LDFLAGS} ${LIBPATHS} ${CONFIG}/obj/sqlite.o ${CONFIG}/obj/sqlite3.o ${LIBS}
 
