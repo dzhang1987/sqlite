@@ -16,7 +16,7 @@
 #define BLD_MINOR_VERSION 0
 #define BLD_PATCH_VERSION 0
 #define BLD_VNUM 100000000
-#define BLD_CONFIG_CMD "bit -emulate linux-x86 -without all configure -gen sh,make"
+#define BLD_CONFIG_CMD "bit -emulate linux-x86 -d -without all configure -gen sh,make"
 #define BLD_LIB_NAME "bin"
 #define BLD_CFG_PREFIX "/etc/sqlite"
 #define BLD_BIN_PREFIX "/usr/lib/sqlite/1.0.0/bin"

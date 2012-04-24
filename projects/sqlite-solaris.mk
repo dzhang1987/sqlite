@@ -1,18 +1,19 @@
 #
-#   linux-x86-debug.mk -- Build It Makefile to build SQLite Library for linux on x86
+#   solaris-x86-debug.mk -- Build It Makefile to build SQLite Library for solaris on x86
 #
 
 ARCH     := x86
-OS       := linux
-CONFIG   := $(OS)-$(ARCH)-debug
+OS       := solaris
+PROFILE  := debug
+CONFIG   := $(OS)-$(ARCH)-$(PROFILE)
 CC       := gcc
 LD       := ld
-CFLAGS   := -Wall -fPIC -g -Wno-unused-result -mtune=generic
+CFLAGS   := -Wall -fPIC -g -mcpu=generic
 DFLAGS   := -D_REENTRANT -DBLD_FEATURE_SQLITE=1 -DPIC -DBLD_DEBUG
 IFLAGS   := -I$(CONFIG)/inc
-LDFLAGS  := '-Wl,--enable-new-dtags' '-Wl,-rpath,$$ORIGIN/' '-Wl,-rpath,$$ORIGIN/../bin' '-rdynamic' '-g'
+LDFLAGS  := '-g'
 LIBPATHS := -L$(CONFIG)/bin
-LIBS     := -lpthread -lm -ldl
+LIBS     := -llxnet -lrt -lsocket -lpthread -lm
 
 all: prep \
         $(CONFIG)/bin/libsqlite3.so
@@ -42,12 +43,12 @@ $(CONFIG)/inc/sqlite3.h:
 $(CONFIG)/obj/sqlite.o: \
         src/sqlite.c \
         $(CONFIG)/inc/bit.h
-	$(CC) -c -o $(CONFIG)/obj/sqlite.o -fPIC -g -Wno-unused-result -mtune=generic $(DFLAGS) -I$(CONFIG)/inc src/sqlite.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite.o -fPIC $(LDFLAGS) -mcpu=generic $(DFLAGS) -I$(CONFIG)/inc src/sqlite.c
 
 $(CONFIG)/obj/sqlite3.o: \
         src/sqlite3.c \
         $(CONFIG)/inc/bit.h
-	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fPIC -g -Wno-unused-result -mtune=generic $(DFLAGS) -I$(CONFIG)/inc src/sqlite3.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fPIC $(LDFLAGS) -mcpu=generic $(DFLAGS) -I$(CONFIG)/inc src/sqlite3.c
 
 $(CONFIG)/bin/libsqlite3.so:  \
         $(CONFIG)/inc/sqlite3.h \

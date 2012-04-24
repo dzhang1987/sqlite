@@ -1,8 +1,8 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "prep", "sqlite-win-x86\prep.vcxproj", "{D9E765E8-903A-41BC-A6DF-4985F71409D3}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "prep", "sqlite-win\prep.vcxproj", "{D9E765E8-903A-41BC-A6DF-4985F71409D3}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libsqlite3", "sqlite-win-x86\libsqlite3.vcxproj", "{2291A0BB-0526-4F1D-B7E8-30D26962B3BF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libsqlite3", "sqlite-win\libsqlite3.vcxproj", "{2291A0BB-0526-4F1D-B7E8-30D26962B3BF}"
 	ProjectSection(ProjectDependencies) = postProject
 		{D9E765E8-903A-41BC-A6DF-4985F71409D3} = {D9E765E8-903A-41BC-A6DF-4985F71409D3}
 	EndProjectSection
