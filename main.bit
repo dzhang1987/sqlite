@@ -22,17 +22,6 @@ Bit.load({
         assert: 'Enable program assertions',
     },
 
-    profiles: {
-        debug: { settings: { 
-            debug: true, 
-            assert: true,
-        }, },
-        release: { settings: { 
-            debug: false, 
-            assert: false,
-        } },
-    },
-
     defaults: {
         '+defines': [ '-DBLD_FEATURE_SQLITE=1' ]
     },
