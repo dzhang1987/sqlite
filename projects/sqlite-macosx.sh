@@ -1,8 +1,9 @@
 #
-#   macosx-x86_64-debug.sh -- Build It Shell Script to build SQLite Library
+#   sqlite-macosx.sh -- Build It Shell Script to build SQLite Library
 #
 
 ARCH="x86_64"
+ARCH="$(shell uname -m | sed 's/i.86/x86/')"
 OS="macosx"
 PROFILE="debug"
 CONFIG="${OS}-${ARCH}-${PROFILE}"

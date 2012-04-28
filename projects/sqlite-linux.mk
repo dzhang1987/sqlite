@@ -1,8 +1,8 @@
 #
-#   linux-x86-debug.mk -- Build It Makefile to build SQLite Library for linux on x86
+#   sqlite-linux.mk -- Build It Makefile to build SQLite Library for linux
 #
 
-ARCH     := x86
+ARCH     := $(shell uname -m | sed 's/i.86/x86/')
 OS       := linux
 PROFILE  := debug
 CONFIG   := $(OS)-$(ARCH)-$(PROFILE)

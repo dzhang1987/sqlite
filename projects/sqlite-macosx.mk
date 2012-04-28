@@ -1,8 +1,8 @@
 #
-#   macosx-x86_64-debug.mk -- Build It Makefile to build SQLite Library for macosx on x86_64
+#   sqlite-macosx.mk -- Build It Makefile to build SQLite Library for macosx
 #
 
-ARCH     := x86_64
+ARCH     := $(shell uname -m | sed 's/i.86/x86/')
 OS       := macosx
 PROFILE  := debug
 CONFIG   := $(OS)-$(ARCH)-$(PROFILE)

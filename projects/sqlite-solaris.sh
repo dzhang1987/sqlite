@@ -1,8 +1,9 @@
 #
-#   solaris-x86-debug.sh -- Build It Shell Script to build SQLite Library
+#   sqlite-solaris.sh -- Build It Shell Script to build SQLite Library
 #
 
 ARCH="x86"
+ARCH="$(shell uname -m | sed 's/i.86/x86/')"
 OS="solaris"
 PROFILE="debug"
 CONFIG="${OS}-${ARCH}-${PROFILE}"

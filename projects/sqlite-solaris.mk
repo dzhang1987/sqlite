@@ -1,8 +1,8 @@
 #
-#   solaris-x86-debug.mk -- Build It Makefile to build SQLite Library for solaris on x86
+#   sqlite-solaris.mk -- Build It Makefile to build SQLite Library for solaris
 #
 
-ARCH     := x86
+ARCH     := $(shell uname -m | sed 's/i.86/x86/')
 OS       := solaris
 PROFILE  := debug
 CONFIG   := $(OS)-$(ARCH)-$(PROFILE)
