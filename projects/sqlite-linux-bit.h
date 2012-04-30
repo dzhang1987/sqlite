@@ -51,6 +51,4 @@
 #define BLD_CC_WARN_UNUSED 1
 #define BLD_FEATURE_ALL 0
 #define BLD_FEATURE_CC 1
-#define BLD_CC "gcc"
 #define BLD_FEATURE_LINK 1
-#define BLD_LINK "ld"
