@@ -143,6 +143,9 @@
 [ ! -f ${INC_DIR}/bit.h ] && cp sqlite-macosx-bit.h ${INC_DIR}/bit.h
 if ! diff ${INC_DIR}/bit.h sqlite-macosx-bit.h >/dev/null ; then
 cp sqlite-macosx-bit.h ${INC_DIR}/bit.h
+fi
+if [ ../src/sqlite3.h -nt ${CFG_DIR}/inc/sqlite3.h ] ; then
+cp ../src/sqlite3.h ${CFG_DIR}/inc/sqlite3.h
 fi";
 		};
 /* End PBXShellScriptBuildPhase section */
