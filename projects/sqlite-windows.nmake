@@ -38,7 +38,7 @@ prep:
 	@if not exist $(CONFIG)\obj md $(CONFIG)\obj
 	@if not exist $(CONFIG)\bin md $(CONFIG)\bin
 	@if not exist $(CONFIG)\inc\bit.h copy projects\sqlite-$(OS)-bit.h $(CONFIG)\inc\bit.h
-	@if not exist $(CONFIG)\bin\libmpr.def xcopy /Y /S projects\sqlite-win\*.def $(CONFIG)\bin
+	@if not exist $(CONFIG)\bin\libmpr.def xcopy /Y /S projects\sqlite-windows\*.def $(CONFIG)\bin
 
 clean:
 	-if exist $(CONFIG)\bin\libsqlite3.dll del /Q $(CONFIG)\bin\libsqlite3.dll
