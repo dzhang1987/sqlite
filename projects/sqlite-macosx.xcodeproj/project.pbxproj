@@ -253,8 +253,8 @@ fi";
 				);
 
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"BLD_FEATURE_SQLITE=1",
-					"BLD_DEBUG",
+					"BIT_FEATURE_SQLITE=1",
+					"BIT_DEBUG",
 						"$(inherited)"
 				);
 				LIBRARY_SEARCH_PATHS = (
@@ -326,8 +326,8 @@ fi";
 				);
 
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"BLD_FEATURE_SQLITE=1",
-					"BLD_DEBUG",
+					"BIT_FEATURE_SQLITE=1",
+					"BIT_DEBUG",
 						"$(inherited)"
 				);
 				LIBRARY_SEARCH_PATHS = (

@@ -2,14 +2,14 @@
 #   sqlite-linux.mk -- Build It Makefile to build SQLite Library for linux
 #
 
-ARCH     := $(shell uname -m | sed 's/i.86/x86/')
+ARCH     := $(shell uname -m | sed 's/i.86/x86/;s/x86_64/x64/')
 OS       := linux
 PROFILE  := debug
 CONFIG   := $(OS)-$(ARCH)-$(PROFILE)
 CC       := gcc
 LD       := ld
 CFLAGS   := -fPIC -g -mtune=generic -w
-DFLAGS   := -D_REENTRANT -DBLD_FEATURE_SQLITE=1 -DPIC -DBLD_DEBUG
+DFLAGS   := -D_REENTRANT -DBIT_FEATURE_SQLITE=1 -DPIC -DBIT_DEBUG
 IFLAGS   := -I$(CONFIG)/inc
 LDFLAGS  := '-Wl,--enable-new-dtags' '-Wl,-rpath,$$ORIGIN/' '-Wl,-rpath,$$ORIGIN/../bin' '-rdynamic' '-g'
 LIBPATHS := -L$(CONFIG)/bin

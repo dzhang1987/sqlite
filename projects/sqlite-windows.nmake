@@ -1,5 +1,5 @@
 #
-#   sqlite-win.nmake -- Build It Makefile to build SQLite Library for win
+#   sqlite-windows.nmake -- Build It Makefile to build SQLite Library for windows
 #
 
 PA        = $(PROCESSOR_ARCHITECTURE)
@@ -11,7 +11,7 @@ ARCH  = x86
 ENTRY    = _DllMainCRTStartup@12
 !ENDIF
 
-OS       = win
+OS       = windows
 PROFILE  = debug
 CONFIG   = $(OS)-$(ARCH)-$(PROFILE)
 CC       = cl

@@ -1,5 +1,5 @@
 #
-#   sqlite-win.sh -- Build It Shell Script to build SQLite Library
+#   sqlite-windows.sh -- Build It Shell Script to build SQLite Library
 #
 
 export PATH="$(SDK)/Bin:$(VS)/VC/Bin:$(VS)/Common7/IDE:$(VS)/Common7/Tools:$(VS)/SDK/v3.5/bin:$(VS)/VC/VCPackages;$(PATH)"
@@ -8,7 +8,7 @@ export LIB="$(LIB);$(SDK)/lib:$(VS)/VC/lib"
 
 ARCH="x86"
 ARCH="$(shell uname -m | sed 's/i.86/x86/;s/x86_64/x64/')"
-OS="win"
+OS="windows"
 PROFILE="debug"
 CONFIG="${OS}-${ARCH}-${PROFILE}"
 CC="cl.exe"

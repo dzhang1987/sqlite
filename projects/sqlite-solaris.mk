@@ -2,14 +2,14 @@
 #   sqlite-solaris.mk -- Build It Makefile to build SQLite Library for solaris
 #
 
-ARCH     := $(shell uname -m | sed 's/i.86/x86/')
+ARCH     := $(shell uname -m | sed 's/i.86/x86/;s/x86_64/x64/')
 OS       := solaris
 PROFILE  := debug
 CONFIG   := $(OS)-$(ARCH)-$(PROFILE)
 CC       := gcc
 LD       := ld
 CFLAGS   := -fPIC -g -mcpu=generic -w
-DFLAGS   := -D_REENTRANT -DBLD_FEATURE_SQLITE=1 -DPIC -DBLD_DEBUG
+DFLAGS   := -D_REENTRANT -DBIT_FEATURE_SQLITE=1 -DPIC -DBIT_DEBUG
 IFLAGS   := -I$(CONFIG)/inc
 LDFLAGS  := '-g'
 LIBPATHS := -L$(CONFIG)/bin
