@@ -6,14 +6,14 @@ ARCH     := $(shell uname -m | sed 's/i.86/x86/;s/x86_64/x64/')
 OS       := solaris
 PROFILE  := debug
 CONFIG   := $(OS)-$(ARCH)-$(PROFILE)
-CC       := gcc
-LD       := ld
-CFLAGS   := -fPIC -g -mcpu=generic -w
+CC       := /usr/bin/gcc
+LD       := /usr/bin/ld
+CFLAGS   := -fPIC -g -mtune=generic -w
 DFLAGS   := -D_REENTRANT -DBIT_FEATURE_SQLITE=1 -DPIC -DBIT_DEBUG
 IFLAGS   := -I$(CONFIG)/inc
 LDFLAGS  := '-g'
 LIBPATHS := -L$(CONFIG)/bin
-LIBS     := -llxnet -lrt -lsocket -lpthread -lm
+LIBS     := -llxnet -lrt -lsocket -lpthread -lm -ldl
 
 all: prep \
         $(CONFIG)/bin/libsqlite3.so
@@ -43,12 +43,12 @@ $(CONFIG)/inc/sqlite3.h:
 $(CONFIG)/obj/sqlite.o: \
         src/sqlite.c \
         $(CONFIG)/inc/bit.h
-	$(CC) -c -o $(CONFIG)/obj/sqlite.o -fPIC $(LDFLAGS) -mcpu=generic $(DFLAGS) -I$(CONFIG)/inc src/sqlite.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite.o -fPIC $(LDFLAGS) -mtune=generic $(DFLAGS) -I$(CONFIG)/inc src/sqlite.c
 
 $(CONFIG)/obj/sqlite3.o: \
         src/sqlite3.c \
         $(CONFIG)/inc/bit.h
-	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fPIC $(LDFLAGS) -mcpu=generic $(DFLAGS) -I$(CONFIG)/inc src/sqlite3.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fPIC $(LDFLAGS) -mtune=generic $(DFLAGS) -I$(CONFIG)/inc src/sqlite3.c
 
 $(CONFIG)/bin/libsqlite3.so:  \
         $(CONFIG)/inc/sqlite3.h \

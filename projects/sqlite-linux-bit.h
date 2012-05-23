@@ -16,7 +16,7 @@
 #define BIT_MINOR_VERSION 0
 #define BIT_PATCH_VERSION 0
 #define BIT_VNUM 100000000
-#define BIT_CONFIG_CMD "bit -emulate linux-x86 -q -d -without all configure -gen sh,make"
+#define BIT_CONFIG_CMD "bit -d -q -platform linux-x86 -without all -configure . -gen sh,make"
 #define BIT_LIB_NAME "bin"
 #define BIT_PROFILE "debug"
 #define BIT_CFG_PREFIX "/etc/sqlite"
@@ -34,9 +34,9 @@
 #define BIT_SHOBJ ".so"
 #define BIT_LIB ".a"
 #define BIT_OBJ ".o"
-#define BIT_CC_DOUBLE_BRACES 0
+#define BIT_CC_DOUBLE_BRACES 1
 #define BIT_CC_DYN_LOAD 1
-#define BIT_CC_EDITLINE 0
+#define BIT_CC_EDITLINE 1
 #define BIT_CC_MMU 1
 #define BIT_CC_MTUNE 1
 #define BIT_CC_PAM 1
@@ -44,8 +44,8 @@
 #define BIT_CC_SYNC 1
 #define BIT_CC_SYNC_CAS 1
 #define BIT_CC_UNNAMED_UNIONS 1
-#define BIT_CC_WARN_64TO32 0
-#define BIT_CC_WARN_UNUSED 1
+#define BIT_CC_WARN_64TO32 1
+#define BIT_CC_WARN_UNUSED 0
 #define BIT_FEATURE_ALL 0
 #define BIT_FEATURE_CC 1
 #define BIT_FEATURE_LINK 1
