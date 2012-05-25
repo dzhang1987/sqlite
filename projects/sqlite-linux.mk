@@ -43,12 +43,12 @@ $(CONFIG)/inc/sqlite3.h:
 $(CONFIG)/obj/sqlite.o: \
         src/sqlite.c \
         $(CONFIG)/inc/bit.h
-	$(CC) -c -o $(CONFIG)/obj/sqlite.o -fPIC -g -mtune=generic $(DFLAGS) -I$(CONFIG)/inc src/sqlite.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite.o -fPIC -g -Wno-unused-result -mtune=generic $(DFLAGS) -I$(CONFIG)/inc src/sqlite.c
 
 $(CONFIG)/obj/sqlite3.o: \
         src/sqlite3.c \
         $(CONFIG)/inc/bit.h
-	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fPIC -g -mtune=generic $(DFLAGS) -I$(CONFIG)/inc src/sqlite3.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fPIC -g -Wno-unused-result -mtune=generic $(DFLAGS) -I$(CONFIG)/inc src/sqlite3.c
 
 $(CONFIG)/bin/libsqlite3.so:  \
         $(CONFIG)/inc/sqlite3.h \
