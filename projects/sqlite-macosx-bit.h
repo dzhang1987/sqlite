@@ -16,7 +16,7 @@
 #define BIT_MINOR_VERSION 0
 #define BIT_PATCH_VERSION 0
 #define BIT_VNUM 100000000
-#define BIT_CONFIG_CMD "bit -d -q -platform macosx-x64 -without all -profile xcode -configure . -gen sh,make"
+#define BIT_CONFIG_CMD "bit -d -q -platform macosx-x64 -without all -profile xcode -configure . -gen xcode"
 #define BIT_PROFILE "xcode"
 #define BIT_CFG_PREFIX "/etc/sqlite"
 #define BIT_BIN_PREFIX "/usr/lib/sqlite/1.0.0/bin"

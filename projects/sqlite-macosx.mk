@@ -4,14 +4,14 @@
 
 ARCH     := $(shell uname -m | sed 's/i.86/x86/;s/x86_64/x64/')
 OS       := macosx
-PROFILE  := xcode
+PROFILE  := debug
 CONFIG   := $(OS)-$(ARCH)-$(PROFILE)
 CC       := /usr/bin/clang
 LD       := /usr/bin/ld
-CFLAGS   := -Wno-deprecated-declarations -O3 -w
-DFLAGS   := -DBIT_FEATURE_SQLITE=1
+CFLAGS   := -Wno-deprecated-declarations -g -w
+DFLAGS   := -DBIT_FEATURE_SQLITE=1 -DBIT_DEBUG
 IFLAGS   := -I$(CONFIG)/inc
-LDFLAGS  := '-Wl,-rpath,@executable_path/' '-Wl,-rpath,@loader_path/'
+LDFLAGS  := '-Wl,-rpath,@executable_path/' '-Wl,-rpath,@loader_path/' '-g'
 LIBPATHS := -L$(CONFIG)/bin
 LIBS     := -lpthread -lm -ldl
 
@@ -42,13 +42,15 @@ $(CONFIG)/inc/sqlite3.h:
 
 $(CONFIG)/obj/sqlite.o: \
         src/sqlite.c \
-        $(CONFIG)/inc/bit.h
-	$(CC) -c -o $(CONFIG)/obj/sqlite.o -arch x86_64 -Wno-deprecated-declarations -O3 -Wno-unused-result $(DFLAGS) -I$(CONFIG)/inc src/sqlite.c
+        $(CONFIG)/inc/bit.h \
+        $(CONFIG)/inc/sqlite3.h
+	$(CC) -c -o $(CONFIG)/obj/sqlite.o -arch x86_64 -Wno-deprecated-declarations -g -Wno-unused-result $(DFLAGS) -I$(CONFIG)/inc src/sqlite.c
 
 $(CONFIG)/obj/sqlite3.o: \
         src/sqlite3.c \
-        $(CONFIG)/inc/bit.h
-	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -arch x86_64 -Wno-deprecated-declarations -O3 -Wno-unused-result $(DFLAGS) -I$(CONFIG)/inc src/sqlite3.c
+        $(CONFIG)/inc/bit.h \
+        $(CONFIG)/inc/sqlite3.h
+	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -arch x86_64 -Wno-deprecated-declarations -g -Wno-unused-result $(DFLAGS) -I$(CONFIG)/inc src/sqlite3.c
 
 $(CONFIG)/bin/libsqlite3.dylib:  \
         $(CONFIG)/inc/sqlite3.h \
