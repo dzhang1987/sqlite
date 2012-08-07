@@ -6,18 +6,30 @@
     time configuration is performed.
  */
 
-#define BIT_PRODUCT "sqlite"
-#define BIT_NAME "SQLite Library"
+/* Settings */
+#define BIT_BUILD_NUMBER "B0"
 #define BIT_COMPANY "Embedthis"
-#define BIT_SQLITE_PRODUCT 1
+#define BIT_DEPTH 1
+#define BIT_HAS_DOUBLE_BRACES 0
+#define BIT_HAS_DYN_LOAD 1
+#define BIT_HAS_LIB_EDIT 0
+#define BIT_HAS_MMU 1
+#define BIT_HAS_MTUNE 1
+#define BIT_HAS_PAM 0
+#define BIT_HAS_STACK_PROTECTOR 1
+#define BIT_HAS_SYNC 1
+#define BIT_HAS_SYNC_CAS 1
+#define BIT_HAS_UNNAMED_UNIONS 1
+#define BIT_OPTIONAL ""
+#define BIT_PRODUCT "sqlite"
+#define BIT_REQUIRED "compiler,link"
+#define BIT_SYNC ""
+#define BIT_TITLE "SQLite Library"
 #define BIT_VERSION "1.0.0"
-#define BIT_NUMBER "B0"
-#define BIT_MAJOR_VERSION 1
-#define BIT_MINOR_VERSION 0
-#define BIT_PATCH_VERSION 0
-#define BIT_VNUM 100000000
-#define BIT_CONFIG_CMD "bit -d -q -platform linux-x86 -without all -configure . -gen sh,make"
-#define BIT_PROFILE "debug"
+#define BIT_WARN64TO32 0
+#define BIT_WARN_UNUSED 1
+
+/* Prefixes */
 #define BIT_CFG_PREFIX "/etc/sqlite"
 #define BIT_BIN_PREFIX "/usr/lib/sqlite/1.0.0/bin"
 #define BIT_INC_PREFIX "/usr/lib/sqlite/1.0.0/inc"
@@ -27,23 +39,26 @@
 #define BIT_SRC_PREFIX "/usr/src/sqlite-1.0.0"
 #define BIT_VER_PREFIX "/usr/lib/sqlite/1.0.0"
 #define BIT_WEB_PREFIX "/var/www/sqlite-default"
+
+/* Suffixes */
 #define BIT_EXE ""
 #define BIT_SHLIB ".so"
 #define BIT_SHOBJ ".so"
 #define BIT_LIB ".a"
 #define BIT_OBJ ".o"
-#define BIT_CC_DOUBLE_BRACES 0
-#define BIT_CC_DYN_LOAD 1
-#define BIT_CC_EDITLINE 0
-#define BIT_CC_MMU 1
-#define BIT_CC_MTUNE 1
-#define BIT_CC_PAM 0
-#define BIT_CC_STACK_PROTECTOR 1
-#define BIT_CC_SYNC 1
-#define BIT_CC_SYNC_CAS 1
-#define BIT_CC_UNNAMED_UNIONS 1
-#define BIT_CC_WARN_64TO32 0
-#define BIT_CC_WARN_UNUSED 1
-#define BIT_FEATURE_ALL 0
-#define BIT_FEATURE_CC 1
-#define BIT_FEATURE_LINK 1
+
+/* Profile */
+#define BIT_SQLITE_PRODUCT 1
+#define BIT_PROFILE "debug"
+#define BIT_CONFIG_CMD "bit -d -q -platform linux-x86 -without all -configure . -gen sh,make"
+
+/* Miscellaneous */
+#define BIT_MAJOR_VERSION 1
+#define BIT_MINOR_VERSION 0
+#define BIT_PATCH_VERSION 0
+#define BIT_VNUM 100000000
+
+/* Packs */
+#define BIT_PACK_ALL 0
+#define BIT_PACK_CC 1
+#define BIT_PACK_LINK 1

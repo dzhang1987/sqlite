@@ -249,10 +249,10 @@ fi";
 					"../macosx-x64-xcode/inc",
 					"$(inherited)"
 				);
-
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"BIT_FEATURE_SQLITE=1",
-						"$(inherited)"
+					"BIT_DEBUG",
+					"$(inherited)"
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"../macosx-x64-xcode/bin",
@@ -320,10 +320,9 @@ fi";
 					"../macosx-x64-xcode/inc",
 					"$(inherited)"
 				);
-
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"BIT_FEATURE_SQLITE=1",
-						"$(inherited)"
+					"$(inherited)"
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"../macosx-x64-xcode/bin",
@@ -346,7 +345,10 @@ fi";
 			buildSettings = {
 				PRODUCT_NAME = libsqlite3;
 
-
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"BIT_DEBUG",
+					"$(inherited)"
+				);
 			};
 			name = Debug;
 		};
@@ -364,7 +366,10 @@ fi";
 			buildSettings = {
 				PRODUCT_NAME = All;
 
-
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"BIT_DEBUG",
+					"$(inherited)"
+				);
 			};
 			name = Debug;
 		};
@@ -382,7 +387,10 @@ fi";
 			buildSettings = {
 				PRODUCT_NAME = Prep;
 
-
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"BIT_DEBUG",
+					"$(inherited)"
+				);
 			};
 			name = Debug;
 		};
