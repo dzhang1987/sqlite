@@ -12,7 +12,7 @@ Bit.load({
 		title: 'SQLite Library',
         company: 'Embedthis',
 		version: '1.0.0',
-		buildNumber: 'B0',
+		buildNumber: '0',
         sync: [],
     },
 
