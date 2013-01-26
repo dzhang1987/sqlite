@@ -9,15 +9,38 @@ Licensing
 This software is dual-licensed under a GPLv2 license and commercial licenses are offered by Embedthis Software.
 See LICENSE.md for details.
 
-### To build:
-To build, you will need to install Ejscript and Built It (bit). See:
-    https://github.com/embedthis/ejs-2
-    https://github.com/embedthis/bit
+### Prerequisites: 
+    Bit (http://embedthis.com/downloads/bit/download.ejs) for Bit to configure and build.
+    Ejscript (http://ejscript.org/downloads/ejs/download.ejs) for utest to test.
 
-<pre>
-    configure
+### To Build:
+
+    ./configure
     bit
-</pre>
+
+    Alternatively to build without Bit:
+
+    make 
+
+Images are built into */bin. The build configuration is saved in */inc/bit.h.
+
+### To Test:
+
+    bit test 
+
+### To Run:
+
+    bit run
+
+This will run appweb in the src/server directory using the src/server/appweb.conf configuration file.
+
+### To Install: 
+
+    bit install
+
+### To Create Packages:
+
+    bit package
 
 ### Copyright
 
