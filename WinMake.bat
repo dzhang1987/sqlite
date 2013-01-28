@@ -1,1 +1,1 @@
-projects\windows x86 -f projects/sqlite-windows-debug.nmake all
+projects\windows x86 -f projects/sqlite-windows-default.nmake all
