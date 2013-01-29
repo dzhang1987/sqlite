@@ -12,23 +12,27 @@ CC              ?= /usr/bin/gcc
 LD              ?= /usr/bin/ld
 CONFIG          ?= $(OS)-$(ARCH)-$(PROFILE)
 
-CFLAGS          += -fPIC -O2 -w
-DFLAGS          += -D_REENTRANT -DBIT_FEATURE_SQLITE=1 -DPIC$(patsubst %,-D%,$(filter BIT_%,$(MAKEFLAGS)))
+CFLAGS          += -fPIC  -w
+DFLAGS          += -D_REENTRANT -DBIT_FEATURE_SQLITE=1 -DPIC $(patsubst %,-D%,$(filter BIT_%,$(MAKEFLAGS)))
 IFLAGS          += -I$(CONFIG)/inc
-LDFLAGS         += 
+LDFLAGS         += '-g'
 LIBPATHS        += -L$(CONFIG)/bin
 LIBS            += -llxnet -lrt -lsocket -lpthread -lm -ldl
 
-DEBUG           ?= release
+DEBUG           ?= debug
 CFLAGS-debug    := -g
-CFLAGS-release  := -O2
 DFLAGS-debug    := -DBIT_DEBUG
-DFLAGS-release  := 
 LDFLAGS-debug   := -g
+DFLAGS-release  := 
+CFLAGS-release  := -O2
 LDFLAGS-release := 
-CFLAGS          += $(CFLAGS-$(PROFILE))
-DFLAGS          += $(DFLAGS-$(PROFILE))
-LDFLAGS         += $(LDFLAGS-$(PROFILE))
+CFLAGS          += $(CFLAGS-$(DEBUG))
+DFLAGS          += $(DFLAGS-$(DEBUG))
+LDFLAGS         += $(LDFLAGS-$(DEBUG))
+
+ifeq ($(wildcard $(CONFIG)/inc/.prefixes*),$(CONFIG)/inc/.prefixes)
+    include $(CONFIG)/inc/.prefixes
+endif
 
 all compile: prep \
         $(CONFIG)/bin/libsqlite3.so
@@ -63,20 +67,20 @@ $(CONFIG)/obj/sqlite.o: \
         src/sqlite.c \
         $(CONFIG)/inc/bit.h \
         $(CONFIG)/inc/sqlite3.h
-	$(LDFLAGS)$(LDFLAGS)$(CC) -c -o $(CONFIG)/obj/sqlite.o -fPIC -O2 $(DFLAGS) -I$(CONFIG)/inc src/sqlite.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite.o -fPIC $(LDFLAGS) $(DFLAGS) -I$(CONFIG)/inc src/sqlite.c
 
 $(CONFIG)/obj/sqlite3.o: \
         src/sqlite3.c \
         $(CONFIG)/inc/bit.h \
         $(CONFIG)/inc/sqlite3.h
-	$(LDFLAGS)$(LDFLAGS)$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fPIC -O2 $(DFLAGS) -I$(CONFIG)/inc src/sqlite3.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fPIC $(LDFLAGS) $(DFLAGS) -I$(CONFIG)/inc src/sqlite3.c
 
 $(CONFIG)/bin/libsqlite3.so:  \
         $(CONFIG)/inc/sqlite3.h \
         $(CONFIG)/obj/sqlite.o \
         $(CONFIG)/obj/sqlite3.o
-	$(LDFLAGS)$(LDFLAGS)$(CC) -shared -o $(CONFIG)/bin/libsqlite3.so $(LIBPATHS) $(CONFIG)/obj/sqlite.o $(CONFIG)/obj/sqlite3.o $(LIBS)
+	$(CC) -shared -o $(CONFIG)/bin/libsqlite3.so $(LDFLAGS) $(LIBPATHS) $(CONFIG)/obj/sqlite.o $(CONFIG)/obj/sqlite3.o $(LIBS)
 
 version: 
-	@echo 1.0.0-0 
+	@echo 1.0.0-0
 

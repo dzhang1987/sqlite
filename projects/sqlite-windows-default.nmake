@@ -2,16 +2,16 @@
 #   sqlite-windows-default.nmake -- Makefile to build SQLite Library for windows
 #
 
-PRODUCT         =sqlite
-VERSION         =1.0.0
-BUILD_NUMBER    =0
-PROFILE  = default
+PRODUCT         = sqlite
+VERSION         = 1.0.0
+BUILD_NUMBER    = 0
+PROFILE   = default
 PA        = $(PROCESSOR_ARCHITECTURE)
 !IF "$(PA)" == "AMD64"
 ARCH     = x64
 ENTRY    = _DllMainCRTStartup
 !ELSE
-ARCH  = x86
+ARCH     = x86
 ENTRY    = _DllMainCRTStartup@12
 !ENDIF
 
@@ -20,12 +20,16 @@ CONFIG   = $(OS)-$(ARCH)-$(PROFILE)
 CC       = cl
 LD       = link
 RC       = rc
-CFLAGS   = -nologo -GR- -W3 -O2 -MD
-DFLAGS   = -D_REENTRANT -D_MT -DBIT_FEATURE_SQLITE=1
+CFLAGS   = -nologo -GR- -W3 -Zi -Od -MDd
+DFLAGS   = -D_REENTRANT -D_MT -DBIT_FEATURE_SQLITE=1 -DBIT_DEBUG
 IFLAGS   = -I$(CONFIG)\inc
-LDFLAGS  = -nologo -nodefaultlib -incremental:no -machine:$(ARCH)
+LDFLAGS  = -nologo -nodefaultlib -incremental:no -debug -machine:$(ARCH)
 LIBPATHS = -libpath:$(CONFIG)\bin
 LIBS     = ws2_32.lib advapi32.lib user32.lib kernel32.lib oldnames.lib msvcrt.lib shell32.lib
+
+!IF EXISTS(.prefixes)
+!INCLUDE .prefixes
+!ENDIF
 
 all compile: prep \
         $(CONFIG)\bin\libsqlite3.dll
