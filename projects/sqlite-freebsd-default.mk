@@ -1,5 +1,5 @@
 #
-#   sqlite-linux-default.mk -- Makefile to build SQLite Library for linux
+#   sqlite-freebsd-default.mk -- Makefile to build SQLite Library for freebsd
 #
 
 PRODUCT         := sqlite
@@ -7,7 +7,7 @@ VERSION         := 1.0.0
 BUILD_NUMBER    := 0
 PROFILE         := default
 ARCH            := $(shell uname -m | sed 's/i.86/x86/;s/x86_64/x64/;s/arm.*/arm/;s/mips.*/mips/')
-OS              := linux
+OS              := freebsd
 CC              := /usr/bin/gcc
 LD              := /usr/bin/ld
 CONFIG          := $(OS)-$(ARCH)-$(PROFILE)
@@ -26,12 +26,12 @@ BIT_WEB_PREFIX  := $(BIT_ROOT_PREFIX)var/www/sqlite-default
 BIT_UBIN_PREFIX := $(BIT_ROOT_PREFIX)usr/local/bin
 BIT_MAN_PREFIX  := $(BIT_ROOT_PREFIX)usr/local/share/man/man1
 
-CFLAGS          += -fPIC   -w
+CFLAGS          += -fPIC  -w
 DFLAGS          += -D_REENTRANT -DBIT_FEATURE_SQLITE=1 -DPIC  $(patsubst %,-D%,$(filter BIT_%,$(MAKEFLAGS)))
 IFLAGS          += -I$(CONFIG)/inc
-LDFLAGS         += '-Wl,--enable-new-dtags' '-Wl,-rpath,$$ORIGIN/' '-Wl,-rpath,$$ORIGIN/../bin' '-rdynamic'
+LDFLAGS         += '-g'
 LIBPATHS        += -L$(CONFIG)/bin
-LIBS            += -lpthread -lm -lrt -ldl
+LIBS            += -lpthread -lm -ldl
 
 DEBUG           := debug
 CFLAGS-debug    := -g
@@ -57,11 +57,11 @@ prep:
 	@[ ! -x $(CONFIG)/bin ] && mkdir -p $(CONFIG)/bin; true
 	@[ ! -x $(CONFIG)/inc ] && mkdir -p $(CONFIG)/inc; true
 	@[ ! -x $(CONFIG)/obj ] && mkdir -p $(CONFIG)/obj; true
-	@[ ! -f $(CONFIG)/inc/bit.h ] && cp projects/sqlite-linux-default-bit.h $(CONFIG)/inc/bit.h ; true
+	@[ ! -f $(CONFIG)/inc/bit.h ] && cp projects/sqlite-freebsd-default-bit.h $(CONFIG)/inc/bit.h ; true
 	@[ ! -f $(CONFIG)/inc/bitos.h ] && cp src/bitos.h $(CONFIG)/inc/bitos.h ; true
-	@if ! diff $(CONFIG)/inc/bit.h projects/sqlite-linux-default-bit.h >/dev/null ; then\
-		echo cp projects/sqlite-linux-default-bit.h $(CONFIG)/inc/bit.h  ; \
-		cp projects/sqlite-linux-default-bit.h $(CONFIG)/inc/bit.h  ; \
+	@if ! diff $(CONFIG)/inc/bit.h projects/sqlite-freebsd-default-bit.h >/dev/null ; then\
+		echo cp projects/sqlite-freebsd-default-bit.h $(CONFIG)/inc/bit.h  ; \
+		cp projects/sqlite-freebsd-default-bit.h $(CONFIG)/inc/bit.h  ; \
 	fi; true
 clean:
 	rm -rf $(CONFIG)/bin/libsqlite3.so
@@ -79,13 +79,13 @@ $(CONFIG)/obj/sqlite.o: \
     src/sqlite.c\
     $(CONFIG)/inc/bit.h \
     $(CONFIG)/inc/sqlite3.h
-	$(CC) -c -o $(CONFIG)/obj/sqlite.o -fPIC $(DFLAGS) -I$(CONFIG)/inc src/sqlite.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite.o -fPIC $(LDFLAGS) $(DFLAGS) -I$(CONFIG)/inc src/sqlite.c
 
 $(CONFIG)/obj/sqlite3.o: \
     src/sqlite3.c\
     $(CONFIG)/inc/bit.h \
     $(CONFIG)/inc/sqlite3.h
-	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fPIC $(DFLAGS) -I$(CONFIG)/inc src/sqlite3.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fPIC $(LDFLAGS) $(DFLAGS) -I$(CONFIG)/inc src/sqlite3.c
 
 $(CONFIG)/bin/libsqlite3.so: \
     $(CONFIG)/inc/sqlite3.h \
