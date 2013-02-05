@@ -35,7 +35,7 @@ BIT_VER_PREFIX  = $(BIT_ROOT_PREFIX)Program Files\SQLite Library
 BIT_CFG_PREFIX  = $(BIT_VER_PREFIX)
 BIT_BIN_PREFIX  = $(BIT_VER_PREFIX)\bin
 BIT_INC_PREFIX  = $(BIT_VER_PREFIX)\inc
-BIT_LOG_PREFIX  = $(BIT_VER_PREFIX)\logs
+BIT_LOG_PREFIX  = $(BIT_VER_PREFIX)\log
 BIT_SPL_PREFIX  = $(BIT_VER_PREFIX)\tmp
 BIT_SRC_PREFIX  = $(BIT_VER_PREFIX)\src
 BIT_WEB_PREFIX  = $(BIT_VER_PREFIX)\web
@@ -73,13 +73,13 @@ $(CONFIG)\obj\sqlite.obj: \
     src\sqlite.c\
     $(CONFIG)\inc\bit.h \
     $(CONFIG)\inc\sqlite3.h
-	"$(CC)" -c -Fo$(CONFIG)\obj\sqlite.obj -Fd$(CONFIG)\obj\sqlite.pdb $(CFLAGS) $(DFLAGS) -I$(CONFIG)\inc src\sqlite.c
+	"$(CC)" -c -Fo$(CONFIG)\obj\sqlite.obj -Fd$(CONFIG)\obj\sqlite.pdb $(CFLAGS) $(DFLAGS) $(IFLAGS) src\sqlite.c
 
 $(CONFIG)\obj\sqlite3.obj: \
     src\sqlite3.c\
     $(CONFIG)\inc\bit.h \
     $(CONFIG)\inc\sqlite3.h
-	"$(CC)" -c -Fo$(CONFIG)\obj\sqlite3.obj -Fd$(CONFIG)\obj\sqlite3.pdb $(CFLAGS) $(DFLAGS) -I$(CONFIG)\inc src\sqlite3.c
+	"$(CC)" -c -Fo$(CONFIG)\obj\sqlite3.obj -Fd$(CONFIG)\obj\sqlite3.pdb $(CFLAGS) $(DFLAGS) $(IFLAGS) src\sqlite3.c
 
 $(CONFIG)\bin\libsqlite3.dll: \
     $(CONFIG)\inc\sqlite3.h \

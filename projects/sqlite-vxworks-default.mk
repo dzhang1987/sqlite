@@ -2,6 +2,10 @@
 #   sqlite-vxworks-default.mk -- Makefile to build SQLite Library for vxworks
 #
 
+export WIND_BASE := $(WIND_BASE)
+export WIND_HOME := $(WIND_BASE)/..
+export WIND_PLATFORM := $(WIND_PLATFORM)
+
 PRODUCT         := sqlite
 VERSION         := 1.0.0
 BUILD_NUMBER    := 0
@@ -28,7 +32,7 @@ BIT_MAN_PREFIX  := $(BIT_VER_PREFIX)
 
 CFLAGS          += -fno-builtin -fno-defer-pop -fvolatile  -w
 DFLAGS          += -D_REENTRANT -DVXWORKS -DRW_MULTI_THREAD -D_GNU_TOOL -DBIT_FEATURE_SQLITE=1  -DCPU=PENTIUM $(patsubst %,-D%,$(filter BIT_%,$(MAKEFLAGS)))
-IFLAGS          += -I$(CONFIG)/inc
+IFLAGS          += -I$(CONFIG)/inc -I$(WIND_BASE)/target/h -I$(WIND_BASE)/target/h/wrn/coreip
 LDFLAGS         += '-Wl,-r'
 LIBPATHS        += -L$(CONFIG)/bin -L$(CONFIG)/bin
 LIBS            += 
@@ -79,19 +83,19 @@ $(CONFIG)/obj/sqlite.o: \
     src/sqlite.c\
     $(CONFIG)/inc/bit.h \
     $(CONFIG)/inc/sqlite3.h
-	$(LIBS)$(CC) -c -o $(CONFIG)/obj/sqlite.o -fno-builtin -fno-defer-pop -fvolatile $(DFLAGS) -I$(CONFIG)/inc src/sqlite.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite.o -fno-builtin -fno-defer-pop -fvolatile $(DFLAGS) $(IFLAGS) src/sqlite.c
 
 $(CONFIG)/obj/sqlite3.o: \
     src/sqlite3.c\
     $(CONFIG)/inc/bit.h \
     $(CONFIG)/inc/sqlite3.h
-	$(LIBS)$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fno-builtin -fno-defer-pop -fvolatile $(DFLAGS) -I$(CONFIG)/inc src/sqlite3.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fno-builtin -fno-defer-pop -fvolatile $(DFLAGS) $(IFLAGS) src/sqlite3.c
 
 $(CONFIG)/bin/libsqlite3.out: \
     $(CONFIG)/inc/sqlite3.h \
     $(CONFIG)/obj/sqlite.o \
     $(CONFIG)/obj/sqlite3.o
-	$(LIBS)$(CC) -r -o $(CONFIG)/bin/libsqlite3.out $(LDFLAGS) $(LIBPATHS) $(CONFIG)/obj/sqlite.o $(CONFIG)/obj/sqlite3.o 
+	$(CC) -r -o $(CONFIG)/bin/libsqlite3.out $(LDFLAGS) $(LIBPATHS) $(CONFIG)/obj/sqlite.o $(CONFIG)/obj/sqlite3.o 
 
 version: 
 	@echo 1.0.0-0

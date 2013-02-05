@@ -79,13 +79,13 @@ $(CONFIG)/obj/sqlite.o: \
     src/sqlite.c\
     $(CONFIG)/inc/bit.h \
     $(CONFIG)/inc/sqlite3.h
-	$(CC) -c -o $(CONFIG)/obj/sqlite.o -fPIC $(DFLAGS) -I$(CONFIG)/inc src/sqlite.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite.o -fPIC $(DFLAGS) $(IFLAGS) src/sqlite.c
 
 $(CONFIG)/obj/sqlite3.o: \
     src/sqlite3.c\
     $(CONFIG)/inc/bit.h \
     $(CONFIG)/inc/sqlite3.h
-	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fPIC $(DFLAGS) -I$(CONFIG)/inc src/sqlite3.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fPIC $(DFLAGS) $(IFLAGS) src/sqlite3.c
 
 $(CONFIG)/bin/libsqlite3.so: \
     $(CONFIG)/inc/sqlite3.h \

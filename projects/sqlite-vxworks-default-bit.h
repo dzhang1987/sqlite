@@ -168,7 +168,7 @@
     #define BIT_PACK_LINK 1
 #endif
 #ifndef BIT_PACK_VXWORKS
-    #define BIT_PACK_VXWORKS 0
+    #define BIT_PACK_VXWORKS 1
 #endif
 #ifndef BIT_PACK_COMPILER_PATH
     #define BIT_PACK_COMPILER_PATH "ccpentium"
@@ -178,4 +178,7 @@
 #endif
 #ifndef BIT_PACK_LINK_PATH
     #define BIT_PACK_LINK_PATH "/usr/bin/ld"
+#endif
+#ifndef BIT_PACK_VXWORKS_PATH
+    #define BIT_PACK_VXWORKS_PATH "$(WIND_BASE)"
 #endif
