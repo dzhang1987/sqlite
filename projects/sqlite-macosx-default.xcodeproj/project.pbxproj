@@ -146,8 +146,8 @@
 if ! diff ${INC_DIR}/bit.h sqlite-macosx-default-bit.h >/dev/null ; then
 cp sqlite-macosx-default-bit.h ${INC_DIR}/bit.h
 fi
-if [ ../src/sqlite3.h -nt ${CFG_DIR}/inc/sqlite3.h ] ; then
-cp ../src/sqlite3.h ${CFG_DIR}/inc/sqlite3.h
+if [ ../src/sqlite3.h -nt ${OUT_DIR}/inc/sqlite3.h ] ; then
+cp ../src/sqlite3.h ${OUT_DIR}/inc/sqlite3.h
 fi";
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -221,7 +221,7 @@ fi";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 
-                CFG_DIR = "../macosx-x64-default";
+                OUT_DIR = "../macosx-x64-default";
                 BIN_DIR = "../macosx-x64-default/bin";
                 LIB_DIR = "../macosx-x64-default/bin";
                 INC_DIR = "../macosx-x64-default/inc";
@@ -292,7 +292,7 @@ fi";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 
-                CFG_DIR = "../macosx-x64-default";
+                OUT_DIR = "../macosx-x64-default";
                 BIN_DIR = "../macosx-x64-default/bin";
                 LIB_DIR = "../macosx-x64-default/bin";
                 INC_DIR = "../macosx-x64-default/inc";
