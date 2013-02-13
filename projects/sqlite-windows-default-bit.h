@@ -37,6 +37,9 @@
 #ifndef BIT_HAS_UNNAMED_UNIONS
     #define BIT_HAS_UNNAMED_UNIONS 1
 #endif
+#ifndef BIT_PREFIXES
+    #define BIT_PREFIXES "embedthis-prefixes"
+#endif
 #ifndef BIT_PRODUCT
     #define BIT_PRODUCT "sqlite"
 #endif
@@ -54,38 +57,56 @@
 #endif
 
 /* Prefixes */
-#ifndef BIT_CFG_PREFIX
-    #define BIT_CFG_PREFIX "C:/Program Files/SQLite Library"
+#ifndef BIT_ROOT_PREFIX
+    #define BIT_ROOT_PREFIX "/"
+#endif
+#ifndef BIT_BASE_PREFIX
+    #define BIT_BASE_PREFIX "/usr/local"
+#endif
+#ifndef BIT_DATA_PREFIX
+    #define BIT_DATA_PREFIX "/"
+#endif
+#ifndef BIT_STATE_PREFIX
+    #define BIT_STATE_PREFIX "/var"
+#endif
+#ifndef BIT_APP_PREFIX
+    #define BIT_APP_PREFIX "/usr/local/lib/sqlite"
+#endif
+#ifndef BIT_VAPP_PREFIX
+    #define BIT_VAPP_PREFIX "/usr/local/lib/sqlite/1.0.0"
 #endif
 #ifndef BIT_BIN_PREFIX
-    #define BIT_BIN_PREFIX "C:/Program Files/SQLite Library/bin"
+    #define BIT_BIN_PREFIX "/usr/local/bin"
 #endif
 #ifndef BIT_INC_PREFIX
-    #define BIT_INC_PREFIX "C:/Program Files/SQLite Library/inc"
+    #define BIT_INC_PREFIX "/usr/local/include"
 #endif
-#ifndef BIT_LOG_PREFIX
-    #define BIT_LOG_PREFIX "C:/Program Files/SQLite Library/log"
-#endif
-#ifndef BIT_PRD_PREFIX
-    #define BIT_PRD_PREFIX "C:/Program Files/SQLite Library"
-#endif
-#ifndef BIT_SPL_PREFIX
-    #define BIT_SPL_PREFIX "C:/Program Files/SQLite Library/tmp"
-#endif
-#ifndef BIT_SRC_PREFIX
-    #define BIT_SRC_PREFIX "C:/Program Files/SQLite Library/src"
-#endif
-#ifndef BIT_VER_PREFIX
-    #define BIT_VER_PREFIX "C:/Program Files/SQLite Library"
-#endif
-#ifndef BIT_WEB_PREFIX
-    #define BIT_WEB_PREFIX "C:/Program Files/SQLite Library/web"
-#endif
-#ifndef BIT_UBIN_PREFIX
-    #define BIT_UBIN_PREFIX "C:/Program Files/SQLite Library/bin"
+#ifndef BIT_LIB_PREFIX
+    #define BIT_LIB_PREFIX "/usr/local/lib"
 #endif
 #ifndef BIT_MAN_PREFIX
-    #define BIT_MAN_PREFIX "C:/Program Files/SQLite Library/man"
+    #define BIT_MAN_PREFIX "/usr/local/share/man"
+#endif
+#ifndef BIT_SBIN_PREFIX
+    #define BIT_SBIN_PREFIX "/usr/local/sbin"
+#endif
+#ifndef BIT_ETC_PREFIX
+    #define BIT_ETC_PREFIX "/etc/sqlite"
+#endif
+#ifndef BIT_WEB_PREFIX
+    #define BIT_WEB_PREFIX "/var/www/sqlite-default"
+#endif
+#ifndef BIT_LOG_PREFIX
+    #define BIT_LOG_PREFIX "/var/log/sqlite"
+#endif
+#ifndef BIT_SPOOL_PREFIX
+    #define BIT_SPOOL_PREFIX "/var/spool/sqlite"
+#endif
+#ifndef BIT_CACHE_PREFIX
+    #define BIT_CACHE_PREFIX "/var/cache/sqlite"
+#endif
+#ifndef BIT_SRC_PREFIX
+    #define BIT_SRC_PREFIX "/usr/local/src/sqlite-1.0.0"
 #endif
 
 /* Suffixes */
