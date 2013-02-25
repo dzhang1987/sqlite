@@ -70,3 +70,5 @@ help:
 	@echo 'bit from http://embedthis.com/downloads/bit/download.ejs and re-run'>&2
 	@echo 'configure and then build with bit.' >&2
 	@echo '' >&2
+	@echo 'Use "SHOW=1 make" to show executed commands.' >&2
+	@echo '' >&2
