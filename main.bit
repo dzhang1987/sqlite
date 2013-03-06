@@ -8,12 +8,12 @@ Bit.load({
     ],
     settings: {
         /* Default settings overridden by build.bit */
-		product: 'sqlite',
-		title: 'SQLite Library',
+        product: 'sqlite',
+        title: 'SQLite Library',
         company: 'Embedthis',
-		version: '1.0.0',
-        bit: '0.8.1',
-		buildNumber: '0',
+        version: '1.0.0',
+        bit: '0.8.4',
+        buildNumber: '0',
         prefixes: 'embedthis-prefixes',
         sync: [],
     },
@@ -37,7 +37,7 @@ Bit.load({
             ],
         },
         projects: {},
-	},
+    },
     manifest: {     
         packages: { 
             combo: {
