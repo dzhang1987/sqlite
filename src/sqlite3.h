@@ -1,4 +1,211 @@
 /*
+    sqlite3.h -- SQLite header. Modified for Embedthis Products
+ */
+
+#define EMBEDTHIS_MODIFICATION 1
+
+/********************************** Includes **********************************/
+
+/* Suppress windows posix errors */
+#undef      _CRT_SECURE_NO_WARNINGS
+#define     _CRT_SECURE_NO_WARNINGS 1
+#undef      _CRT_SECURE_NO_DEPRECATE
+#define     _CRT_SECURE_NO_DEPRECATE 1
+
+#if WINDOWS
+    /* 
+        Work-around to allow the windows 7.* SDK to be used with VS 2012 
+     */
+    #if _MSC_VER >= 1700
+        #define SAL_SUPP_H
+        #define SPECSTRING_SUPP_H
+    #endif
+#endif
+
+#include "bit.h"
+
+#if BIT_PACK_SQLITE || BIT_SQLITE_PRODUCT
+#ifndef _h_SQLITE3_
+#define _h_SQLITE3_ 1
+
+#if EMBEDTHIS_MODIFICATION
+/*********************************** Defines **********************************/
+
+#define PACKAGE             "sqlite" 
+#define VERSION             "3.7.15.1"
+#define PACKAGE_TARNAME     PACKAGE
+#define PACKAGE_VERSION     VERSION
+#define PACKAGE_STRING      "sqlite" VERSION
+#define PACKAGE_BUGREPORT   "http://embedthis.com"
+
+#ifndef SQLITE_OMIT_BUILTIN_TEST
+#define SQLITE_OMIT_BUILTIN_TEST        1
+#endif
+#ifndef SQLITE_OMIT_BUILTIN_EXPLAIN
+#define SQLITE_OMIT_BUILTIN_EXPLAIN     1
+#endif
+#ifndef SQLITE_OMIT_LOAD_EXTENSION
+#define SQLITE_OMIT_LOAD_EXTENSION      1
+#endif
+#ifndef SQLITE_ENABLE_COLUMN_METADATA
+#define SQLITE_ENABLE_COLUMN_METADATA   1
+#endif
+#ifndef SQLITE_THREADSAFE
+#define SQLITE_THREADSAFE               1
+#endif
+#ifndef SQLITE_ENABLE_FTS3
+#define SQLITE_ENABLE_FTS3              1
+#endif
+
+#if MACOSX || LINUX || SOLARIS || FREEBSD
+#define STDC_HEADERS        1
+#define HAVE_SYS_TYPES_H    1
+#define HAVE_SYS_STAT_H     1
+#define HAVE_STDLIB_H       1
+#define HAVE_STRING_H       1
+#define HAVE_MEMORY_H       1
+#define HAVE_STRINGS_H      1
+#define HAVE_INTTYPES_H     1
+#define HAVE_STDINT_H       1
+#define HAVE_UNISTD_H       1
+#define HAVE_DLFCN_H        1
+#define HAVE_USLEEP         1
+#define HAVE_LOCALTIME_R    1
+#define HAVE_GMTIME_R       1
+#define HAVE_READLINE       0 
+
+#elif VXWORKS
+#define OS_VXWORKS          1
+#define SQLITE_ENABLE_LOCKING_STYLE 1
+#define SQLITE_MUTEX_NOOP   1
+#define STDC_HEADERS        1
+#define HAVE_SYS_TYPES_H    1
+#define HAVE_SYS_STAT_H     1
+#define HAVE_STDLIB_H       1
+#define HAVE_STRING_H       1
+#define HAVE_MEMORY_H       1
+#define HAVE_STRINGS_H      1
+#define HAVE_INTTYPES_H     1
+#define HAVE_STDINT_H       1
+#define HAVE_UNISTD_H       1
+#define HAVE_DLFCN_H        1
+#define HAVE_LOCALTIME_R    1
+#define HAVE_GMTIME_R       1
+#define HAVE_READLINE       0 
+#define NO_GETOD            1
+#else
+#define HAVE_STDLIB_H       1
+#define HAVE_STRING_H       1
+#define HAVE_STRINGS_H      1
+#define HAVE_UNISTD_H       1
+#endif
+
+#if VXWORKS
+    #ifndef _VSB_CONFIG_FILE
+        #define _VSB_CONFIG_FILE "vsbConfig.h"
+    #endif
+
+    #include    <vxWorks.h>
+    #include    <envLib.h>
+    #include    <sys/types.h>
+    #include    <time.h>
+    #include    <arpa/inet.h>
+    #include    <ctype.h>
+    #include    <dirent.h>
+    #include    <fcntl.h>
+    #include    <errno.h>
+    #include    <limits.h>
+    #include    <loadLib.h>
+    #include    <netdb.h>
+    #include    <net/if.h>
+    #include    <netinet/tcp.h>
+    #include    <netinet/in.h>
+    #include    <netinet/ip.h>
+    #include    <setjmp.h>
+    #include    <signal.h>
+    #include    <stdarg.h>
+    #include    <stdio.h>
+    #include    <stdlib.h>
+    #include    <string.h>
+    #include    <sysSymTbl.h>
+    #include    <sys/fcntlcom.h>
+    #include    <sys/ioctl.h>
+    #include    <sys/stat.h>
+    #include    <sys/socket.h>
+    #include    <sys/times.h>
+    #include    <unistd.h>
+    #include    <unldLib.h>
+
+#if _WRS_VXWORKS_MAJOR >= 6
+    #include    <wait.h>
+#else
+    #ifndef SEM_FAILED
+    #define SEM_FAILED  -1
+    #endif
+#endif
+
+    #include    <float.h>
+    #define     __USE_ISOC99 1
+    #include    <math.h>
+
+    #include    <sockLib.h>
+    #include    <inetLib.h>
+    #include    <ioLib.h>
+    #include    <pipeDrv.h>
+    #include    <hostLib.h>
+    #include    <netdb.h>
+    #include    <tickLib.h>
+    #include    <taskHookLib.h>
+
+    #undef R_OK
+    #define R_OK    4
+    #undef W_OK
+    #define W_OK    2
+    #undef X_OK
+    #define X_OK    1
+    #undef F_OK
+    #define F_OK    0
+
+    /*
+        No locking on VxWorks
+     */
+    #define fcntl(A,B,C) 0
+    #define getpid mprGetpid
+    typedef int* intptr_t;
+    #define semClose __semClose
+
+#endif /* VXWORKS */
+
+#if WINDOWS
+/*
+    Force winsock2 rather than winsock
+ */
+#include    <winsock2.h>
+#endif
+
+#if WINCE
+    #define OS_WINCE 1
+#endif
+
+#if !CYGWIN
+extern int usleep(unsigned int msec);
+#endif
+
+#ifndef SQLITE_API
+    #if _WIN32
+        #define SQLITE_API extern __declspec(dllexport)
+        #define SQLITE_API_DATA __declspec(dllexport)
+    #else
+        #define SQLITE_API extern
+        #define SQLITE_API_DATA
+    #endif
+    #define SQLITE_EXTERN
+#endif
+#endif /* EMBEDTHIS_MODIFICATION */
+
+/* START OF PURE SQLITE */
+
+/*
 ** 2001 September 15
 **
 ** The author disclaims copyright to this source code.  In place of
@@ -7157,4 +7364,8 @@ struct sqlite3_rtree_geometry {
 #endif
 
 #endif  /* ifndef _SQLITE3RTREE_H_ */
+
+
+#endif /* _h_SQLITE3_ */
+#endif /* BIT_PACK_SQLITE */
 
