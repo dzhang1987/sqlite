@@ -58,3 +58,4 @@ start.bit
 *-xcode
 src/new
 *.dmp
+src/old/
