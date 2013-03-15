@@ -47,7 +47,7 @@
     #define BIT_PRODUCT "sqlite"
 #endif
 #ifndef BIT_REQUIRED
-    #define BIT_REQUIRED "winsdk,compiler,lib,link,dumpbin,rc"
+    #define BIT_REQUIRED "winsdk,compiler,lib,link,rc"
 #endif
 #ifndef BIT_SYNC
     #define BIT_SYNC ""
@@ -160,9 +160,6 @@
 #endif
 #ifndef BIT_PACK_DEFAULT
     #define BIT_PACK_DEFAULT 0
-#endif
-#ifndef BIT_PACK_DUMPBIN
-    #define BIT_PACK_DUMPBIN 0
 #endif
 #ifndef BIT_PACK_LIB
     #define BIT_PACK_LIB 1

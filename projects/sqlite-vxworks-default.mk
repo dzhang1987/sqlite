@@ -77,7 +77,6 @@ prep:
 	@[ ! -f $(CONFIG)/inc/bit.h ] && cp projects/sqlite-vxworks-default-bit.h $(CONFIG)/inc/bit.h ; true
 	@[ ! -f $(CONFIG)/inc/bitos.h ] && cp src/bitos.h $(CONFIG)/inc/bitos.h ; true
 	@if ! diff $(CONFIG)/inc/bit.h projects/sqlite-vxworks-default-bit.h >/dev/null ; then\
-		echo cp projects/sqlite-vxworks-default-bit.h $(CONFIG)/inc/bit.h  ; \
 		cp projects/sqlite-vxworks-default-bit.h $(CONFIG)/inc/bit.h  ; \
 	fi; true
 
