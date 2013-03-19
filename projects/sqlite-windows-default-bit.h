@@ -171,7 +171,7 @@
     #define BIT_PACK_LINK 1
 #endif
 #ifndef BIT_PACK_RC
-    #define BIT_PACK_RC 1
+    #define BIT_PACK_RC 0
 #endif
 #ifndef BIT_PACK_VXWORKS
     #define BIT_PACK_VXWORKS 0

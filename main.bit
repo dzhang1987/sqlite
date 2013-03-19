@@ -23,7 +23,7 @@ Bit.load({
     },
 
     defaults: {
-        '+defines': [ '-DBIT_FEATURE_SQLITE=1' ]
+        '+defines': [ 'BIT_FEATURE_SQLITE=1' ]
     },
 
     targets: {
