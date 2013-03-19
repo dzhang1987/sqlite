@@ -24,7 +24,7 @@ CC                = cl
 LD                = link
 RC                = rc
 CFLAGS            = -nologo -GR- -W3 -Zi -Od -MDd
-DFLAGS            = -D_REENTRANT -D_MT -D-DBIT_FEATURE_SQLITE=1 -DBIT_DEBUG 
+DFLAGS            = -D_REENTRANT -D_MT -DBIT_FEATURE_SQLITE=1 -DBIT_DEBUG 
 IFLAGS            = -I$(CONFIG)\inc
 LDFLAGS           = -nologo -nodefaultlib -incremental:no -debug -machine:$(ARCH)
 LIBPATHS          = -libpath:$(CONFIG)\bin

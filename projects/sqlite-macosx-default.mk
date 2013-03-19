@@ -15,7 +15,7 @@ LBIN              := $(CONFIG)/bin
 
 
 CFLAGS            += -w
-DFLAGS            += -D-DBIT_FEATURE_SQLITE=1  $(patsubst %,-D%,$(filter BIT_%,$(MAKEFLAGS))) 
+DFLAGS            += -DBIT_FEATURE_SQLITE=1  $(patsubst %,-D%,$(filter BIT_%,$(MAKEFLAGS))) 
 IFLAGS            += -I$(CONFIG)/inc
 LDFLAGS           += '-Wl,-rpath,@executable_path/' '-Wl,-rpath,@loader_path/'
 LIBPATHS          += -L$(CONFIG)/bin
