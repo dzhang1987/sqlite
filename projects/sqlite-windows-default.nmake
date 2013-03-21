@@ -48,7 +48,7 @@ BIT_CACHE_PREFIX  = $(BIT_VAPP_PREFIX)\cache
 BIT_SRC_PREFIX    = $(BIT_VAPP_PREFIX)\src
 
 
-TARGETS           = $(TARGETS) $(CONFIG)\bin\libsqlite3.dll
+TARGETS            = $(TARGETS) $(CONFIG)\bin\libsqlite3.dll
 
 !IFNDEF SHOW
 .SILENT:
@@ -130,7 +130,7 @@ DEPS_6 = $(DEPS_6) $(CONFIG)\obj\sqlite3.obj
 
 $(CONFIG)\bin\libsqlite3.dll: $(DEPS_6)
 	@echo '      [Link] libsqlite3'
-	"$(LD)" -dll -out:$(CONFIG)\bin\libsqlite3.dll -entry:$(ENTRY) $(LDFLAGS) $(LIBPATHS) $(CONFIG)\obj\sqlite.obj $(CONFIG)\obj\sqlite3.obj $(LIBS)
+	"$(LD)" -dll -out:$(CONFIG)\bin\libsqlite3.dll -entry:$(ENTRY) $(LDFLAGS) $(LIBPATHS) $(CONFIG)\obj\sqlite.obj $(CONFIG)\obj\sqlite3.obj $(LIBS) 
 
 #
 #   stop
@@ -143,7 +143,6 @@ stop: $(DEPS_7)
 DEPS_8 = $(DEPS_8) stop
 
 installBinary: $(DEPS_8)
-#  Omit build script installBinary
 
 #
 #   start
@@ -166,5 +165,4 @@ install: $(DEPS_10)
 DEPS_11 = $(DEPS_11) stop
 
 uninstall: $(DEPS_11)
-
 
