@@ -143,6 +143,7 @@ $(CONFIG)\bin\libsqlite3.dll: $(DEPS_6)
 #   stop
 #
 stop: $(DEPS_7)
+#  Omit build script stop
 
 #
 #   installBinary
@@ -155,6 +156,7 @@ installBinary: $(DEPS_8)
 #   start
 #
 start: $(DEPS_9)
+#  Omit build script start
 
 #
 #   install
