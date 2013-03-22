@@ -14,6 +14,10 @@ CONFIG             := $(OS)-$(ARCH)-$(PROFILE)
 LBIN               := $(CONFIG)/bin
 
 
+ifeq ($(BIT_PACK_LIB),1)
+    BIT_PACK_COMPILER := 1
+endif
+
 CFLAGS             += -w
 DFLAGS             += -DBIT_FEATURE_SQLITE=1  $(patsubst %,-D%,$(filter BIT_%,$(MAKEFLAGS))) 
 IFLAGS             += -I$(CONFIG)/inc
@@ -77,9 +81,9 @@ prep:
 	fi; true
 
 clean:
-	rm -f "$(CONFIG)/bin/libsqlite3.dylib"
-	rm -f "$(CONFIG)/obj/sqlite.o"
-	rm -f "$(CONFIG)/obj/sqlite3.o"
+	rm -fr "$(CONFIG)/bin/libsqlite3.dylib"
+	rm -fr "$(CONFIG)/obj/sqlite.o"
+	rm -fr "$(CONFIG)/obj/sqlite3.o"
 
 clobber: clean
 	rm -fr ./$(CONFIG)

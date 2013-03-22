@@ -18,6 +18,10 @@ CONFIG             := $(OS)-$(ARCH)-$(PROFILE)
 LBIN               := $(CONFIG)/bin
 
 
+ifeq ($(BIT_PACK_LIB),1)
+    BIT_PACK_COMPILER := 1
+endif
+
 CFLAGS             += -fno-builtin -fno-defer-pop -fvolatile -w
 DFLAGS             += -D_REENTRANT -DVXWORKS -DRW_MULTI_THREAD -D_GNU_TOOL -DBIT_FEATURE_SQLITE=1 -DCPU=PENTIUM $(patsubst %,-D%,$(filter BIT_%,$(MAKEFLAGS))) 
 IFLAGS             += -I$(CONFIG)/inc -I$(WIND_BASE)/target/h -I$(WIND_BASE)/target/h/wrn/coreip
@@ -81,9 +85,9 @@ prep:
 	fi; true
 
 clean:
-	rm -f "$(CONFIG)/bin/libsqlite3.out"
-	rm -f "$(CONFIG)/obj/sqlite.o"
-	rm -f "$(CONFIG)/obj/sqlite3.o"
+	rm -fr "$(CONFIG)/bin/libsqlite3.out"
+	rm -fr "$(CONFIG)/obj/sqlite.o"
+	rm -fr "$(CONFIG)/obj/sqlite3.o"
 
 clobber: clean
 	rm -fr ./$(CONFIG)

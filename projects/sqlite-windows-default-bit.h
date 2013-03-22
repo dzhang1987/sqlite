@@ -134,7 +134,7 @@
 
 /* Profile */
 #ifndef BIT_CONFIG_CMD
-    #define BIT_CONFIG_CMD "bit -d -q -platform windows-x86-default -configure . --without default -gen vs"
+    #define BIT_CONFIG_CMD "bit -d -q -platform windows-x86-default -configure . -gen vs"
 #endif
 #ifndef BIT_SQLITE_PRODUCT
     #define BIT_SQLITE_PRODUCT 1
@@ -160,9 +160,6 @@
 /* Packs */
 #ifndef BIT_PACK_CC
     #define BIT_PACK_CC 1
-#endif
-#ifndef BIT_PACK_DEFAULT
-    #define BIT_PACK_DEFAULT 0
 #endif
 #ifndef BIT_PACK_LIB
     #define BIT_PACK_LIB 1

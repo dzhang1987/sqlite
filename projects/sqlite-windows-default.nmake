@@ -20,6 +20,13 @@ OS                = windows
 CONFIG            = $(OS)-$(ARCH)-$(PROFILE)
 LBIN              = $(CONFIG)\bin
 
+ifeq ($(BIT_PACK_LIB),1)
+    BIT_PACK_COMPILER := 1
+endif
+ifeq ($(BIT_PACK_RC),1)
+    BIT_PACK_WINSDK := 1
+endif
+
 CC                = cl
 LD                = link
 RC                = rc
@@ -73,9 +80,9 @@ prep:
 	@if not exist $(CONFIG)\inc\bit.h copy projects\sqlite-windows-default-bit.h $(CONFIG)\inc\bit.h
 
 clean:
-	if exist "$(CONFIG)\bin\libsqlite3.dll" rd /Q "$(CONFIG)\bin\libsqlite3.dll"
-	if exist "$(CONFIG)\obj\sqlite.obj" rd /Q "$(CONFIG)\obj\sqlite.obj"
-	if exist "$(CONFIG)\obj\sqlite3.obj" rd /Q "$(CONFIG)\obj\sqlite3.obj"
+	if exist "$(CONFIG)\bin\libsqlite3.dll" rd /Q /S"$(CONFIG)\bin\libsqlite3.dll"
+	if exist "$(CONFIG)\obj\sqlite.obj" rd /Q /S"$(CONFIG)\obj\sqlite.obj"
+	if exist "$(CONFIG)\obj\sqlite3.obj" rd /Q /S"$(CONFIG)\obj\sqlite3.obj"
 
 
 
