@@ -22,11 +22,11 @@ LBIN               = $(CONFIG)\bin
 
 
 !IF "$(BIT_PACK_LIB)" == "1"
-    BIT_PACK_COMPILER = 1
+BIT_PACK_COMPILER = 1
 !ENDIF
 
 !IF "$(BIT_PACK_RC)" == "1"
-    BIT_PACK_WINSDK = 1
+BIT_PACK_WINSDK = 1
 !ENDIF
 
 
