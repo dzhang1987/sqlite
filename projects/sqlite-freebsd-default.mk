@@ -76,10 +76,18 @@ prep:
 	@[ ! -x $(CONFIG)/obj ] && mkdir -p $(CONFIG)/obj; true
 	@[ ! -f $(CONFIG)/inc/bit.h ] && cp projects/sqlite-freebsd-default-bit.h $(CONFIG)/inc/bit.h ; true
 	@[ ! -f $(CONFIG)/inc/bitos.h ] && cp src/bitos.h $(CONFIG)/inc/bitos.h ; true
+	@if ! diff $(CONFIG)/inc/bitos.h src/bitos.h >/dev/null ; then\
+		cp src/bitos.h $(CONFIG)/inc/bitos.h  ; \
+	fi; true
 	@if ! diff $(CONFIG)/inc/bit.h projects/sqlite-freebsd-default-bit.h >/dev/null ; then\
 		cp projects/sqlite-freebsd-default-bit.h $(CONFIG)/inc/bit.h  ; \
 	fi; true
-
+	@if [ -f "$(CONFIG)/.makeflags" ] ; then \
+		if [ "$(MAKEFLAGS)" != " ` cat $(CONFIG)/.makeflags`" ] ; then \
+			echo "   [Warning] Make flags have changed since the last build: "`cat $(CONFIG)/.makeflags`"" ; \
+		fi ; \
+	fi
+	@echo $(MAKEFLAGS) >$(CONFIG)/.makeflags
 clean:
 	rm -fr "$(CONFIG)/bin/libsqlite3.so"
 	rm -fr "$(CONFIG)/obj/sqlite.o"
