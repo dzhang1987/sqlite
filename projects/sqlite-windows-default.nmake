@@ -30,6 +30,12 @@ BIT_PACK_WINSDK = 1
 !ENDIF
 
 
+BIT_PACK_COMPILER_PATH    = cl
+BIT_PACK_LIB_PATH         = lib.exe
+BIT_PACK_LINK_PATH        = link
+BIT_PACK_RC_PATH          = rc
+BIT_PACK_WINSDK_PATH      = winsdk
+
 CC                 = cl
 LD                 = link
 RC                 = rc
@@ -93,7 +99,7 @@ clean:
 #   version
 #
 version: $(DEPS_1)
-	@echo NN 1.0.0-0
+	@echo 1.0.0-0
 
 #
 #   sqlite3.h
@@ -101,7 +107,7 @@ version: $(DEPS_1)
 $(CONFIG)\inc\sqlite3.h: $(DEPS_2)
 	@echo '      [Copy] $(CONFIG)/inc/sqlite3.h'
 	if not exist "$(CONFIG)\inc" md "$(CONFIG)\inc"
-	copy /Y "src\sqlite3.h" "$(CONFIG)\inc\sqlite3.h"
+	copy /Y src\sqlite3.h $(CONFIG)\inc\sqlite3.h
 
 #
 #   bit.h
@@ -151,8 +157,6 @@ stop: $(DEPS_7)
 #
 #   installBinary
 #
-DEPS_8 = $(DEPS_8) stop
-
 installBinary: $(DEPS_8)
 
 #

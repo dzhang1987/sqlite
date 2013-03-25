@@ -2,18 +2,14 @@
 #   sqlite-vxworks-default.mk -- Makefile to build SQLite Library for vxworks
 #
 
-export WIND_BASE := $(WIND_BASE)
-export WIND_HOME := $(WIND_BASE)/..
-export WIND_PLATFORM := $(WIND_PLATFORM)
-
 PRODUCT            := sqlite
 VERSION            := 1.0.0
 BUILD_NUMBER       := 0
 PROFILE            := default
 ARCH               := $(shell uname -m | sed 's/i.86/x86/;s/x86_64/x64/;s/arm.*/arm/;s/mips.*/mips/')
 OS                 := vxworks
-CC                 := ccpentium
-LD                 := /usr/bin/ld
+CC                 := cc$(subst x86,pentium,$(ARCH))
+LD                 := link
 CONFIG             := $(OS)-$(ARCH)-$(PROFILE)
 LBIN               := $(CONFIG)/bin
 
@@ -21,6 +17,15 @@ LBIN               := $(CONFIG)/bin
 ifeq ($(BIT_PACK_LIB),1)
     BIT_PACK_COMPILER := 1
 endif
+
+BIT_PACK_COMPILER_PATH    := cc$(subst x86,pentium,$(ARCH))
+BIT_PACK_LIB_PATH         := ar
+BIT_PACK_LINK_PATH        := link
+BIT_PACK_VXWORKS_PATH     := $(WIND_BASE)
+
+export WIND_BASE := $(WIND_BASE)
+export WIND_HOME := $(WIND_BASE)/..
+export WIND_PLATFORM := $(WIND_PLATFORM)
 
 CFLAGS             += -fno-builtin -fno-defer-pop -fvolatile -w
 DFLAGS             += -D_REENTRANT -DVXWORKS -DRW_MULTI_THREAD -D_GNU_TOOL -DBIT_FEATURE_SQLITE=1 -DCPU=PENTIUM $(patsubst %,-D%,$(filter BIT_%,$(MAKEFLAGS))) 
@@ -106,7 +111,7 @@ clobber: clean
 #   version
 #
 version: $(DEPS_1)
-	@echo NN 1.0.0-0
+	@echo 1.0.0-0
 
 #
 #   sqlite3.h
@@ -114,7 +119,7 @@ version: $(DEPS_1)
 $(CONFIG)/inc/sqlite3.h: $(DEPS_2)
 	@echo '      [Copy] $(CONFIG)/inc/sqlite3.h'
 	mkdir -p "$(CONFIG)/inc"
-	cp "src/sqlite3.h" "$(CONFIG)/inc/sqlite3.h"
+	cp src/sqlite3.h $(CONFIG)/inc/sqlite3.h
 
 #
 #   bit.h
@@ -163,8 +168,6 @@ stop: $(DEPS_7)
 #
 #   installBinary
 #
-DEPS_8 += stop
-
 installBinary: $(DEPS_8)
 
 #

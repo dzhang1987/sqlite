@@ -8,8 +8,8 @@ BUILD_NUMBER       := 0
 PROFILE            := default
 ARCH               := $(shell uname -m | sed 's/i.86/x86/;s/x86_64/x64/;s/arm.*/arm/;s/mips.*/mips/')
 OS                 := freebsd
-CC                 := /usr/bin/gcc
-LD                 := /usr/bin/ld
+CC                 := gcc
+LD                 := link
 CONFIG             := $(OS)-$(ARCH)-$(PROFILE)
 LBIN               := $(CONFIG)/bin
 
@@ -17,6 +17,10 @@ LBIN               := $(CONFIG)/bin
 ifeq ($(BIT_PACK_LIB),1)
     BIT_PACK_COMPILER := 1
 endif
+
+BIT_PACK_COMPILER_PATH    := gcc
+BIT_PACK_LIB_PATH         := ar
+BIT_PACK_LINK_PATH        := link
 
 CFLAGS             += -fPIC  -w
 DFLAGS             += -D_REENTRANT -DBIT_FEATURE_SQLITE=1 -DPIC  $(patsubst %,-D%,$(filter BIT_%,$(MAKEFLAGS))) 
@@ -102,7 +106,7 @@ clobber: clean
 #   version
 #
 version: $(DEPS_1)
-	@echo NN 1.0.0-0
+	@echo 1.0.0-0
 
 #
 #   sqlite3.h
@@ -110,7 +114,7 @@ version: $(DEPS_1)
 $(CONFIG)/inc/sqlite3.h: $(DEPS_2)
 	@echo '      [Copy] $(CONFIG)/inc/sqlite3.h'
 	mkdir -p "$(CONFIG)/inc"
-	cp "src/sqlite3.h" "$(CONFIG)/inc/sqlite3.h"
+	cp src/sqlite3.h $(CONFIG)/inc/sqlite3.h
 
 #
 #   bit.h
@@ -159,8 +163,6 @@ stop: $(DEPS_7)
 #
 #   installBinary
 #
-DEPS_8 += stop
-
 installBinary: $(DEPS_8)
 
 #
