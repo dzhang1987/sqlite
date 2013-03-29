@@ -89,9 +89,11 @@ prep:
 	@if not exist $(CONFIG)\inc\bit.h copy projects\sqlite-windows-static-bit.h $(CONFIG)\inc\bit.h
 
 clean:
-	if exist "$(CONFIG)\bin\libsqlite3.lib" rd /Q /S"$(CONFIG)\bin\libsqlite3.lib"
-	if exist "$(CONFIG)\obj\sqlite.obj" rd /Q /S"$(CONFIG)\obj\sqlite.obj"
-	if exist "$(CONFIG)\obj\sqlite3.obj" rd /Q /S"$(CONFIG)\obj\sqlite3.obj"
+	if exist "$(CONFIG)\bin\libsqlite3.lib" del /Q "$(CONFIG)\bin\libsqlite3.lib"
+	if exist "$(CONFIG)\obj\sqlite.obj\" rd /Q /S "$(CONFIG)\obj\sqlite.obj"
+	if exist "$(CONFIG)\obj\sqlite.obj" del /Q "$(CONFIG)\obj\sqlite.obj"
+	if exist "$(CONFIG)\obj\sqlite3.obj\" rd /Q /S "$(CONFIG)\obj\sqlite3.obj"
+	if exist "$(CONFIG)\obj\sqlite3.obj" del /Q "$(CONFIG)\obj\sqlite3.obj"
 
 
 

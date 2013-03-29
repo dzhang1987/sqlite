@@ -93,7 +93,7 @@ prep:
 	fi
 	@echo $(MAKEFLAGS) >$(CONFIG)/.makeflags
 clean:
-	rm -fr "$(CONFIG)/bin/libsqlite3.so"
+	rm -f "$(CONFIG)/bin/libsqlite3.so"
 	rm -fr "$(CONFIG)/obj/sqlite.o"
 	rm -fr "$(CONFIG)/obj/sqlite3.o"
 
