@@ -94,8 +94,8 @@ prep:
 	@echo $(MAKEFLAGS) >$(CONFIG)/.makeflags
 clean:
 	rm -f "$(CONFIG)/bin/libsqlite3.so"
-	rm -fr "$(CONFIG)/obj/sqlite.o"
-	rm -fr "$(CONFIG)/obj/sqlite3.o"
+	rm -f "$(CONFIG)/obj/sqlite.o"
+	rm -f "$(CONFIG)/obj/sqlite3.o"
 
 clobber: clean
 	rm -fr ./$(CONFIG)
@@ -130,7 +130,7 @@ DEPS_4 += $(CONFIG)/inc/sqlite3.h
 
 $(CONFIG)/obj/sqlite.o: \
     src/sqlite.c $(DEPS_4)
-	@echo '   [Compile] src/sqlite.c'
+	@echo '   [Compile] $(CONFIG)/obj/sqlite.o'
 	$(CC) -c -o $(CONFIG)/obj/sqlite.o -fPIC $(LDFLAGS) $(DFLAGS) $(IFLAGS) src/sqlite.c
 
 #
@@ -141,7 +141,7 @@ DEPS_5 += $(CONFIG)/inc/sqlite3.h
 
 $(CONFIG)/obj/sqlite3.o: \
     src/sqlite3.c $(DEPS_5)
-	@echo '   [Compile] src/sqlite3.c'
+	@echo '   [Compile] $(CONFIG)/obj/sqlite3.o'
 	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fPIC $(LDFLAGS) $(DFLAGS) $(IFLAGS) src/sqlite3.c
 
 #
@@ -152,7 +152,7 @@ DEPS_6 += $(CONFIG)/obj/sqlite.o
 DEPS_6 += $(CONFIG)/obj/sqlite3.o
 
 $(CONFIG)/bin/libsqlite3.so: $(DEPS_6)
-	@echo '      [Link] libsqlite3'
+	@echo '      [Link] $(CONFIG)/bin/libsqlite3.so'
 	$(CC) -shared -o $(CONFIG)/bin/libsqlite3.so $(LDFLAGS) $(LIBPATHS) $(CONFIG)/obj/sqlite.o $(CONFIG)/obj/sqlite3.o $(LIBS) 
 
 #

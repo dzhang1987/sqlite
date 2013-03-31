@@ -93,9 +93,7 @@ clean:
 	if exist "$(CONFIG)\bin\libsqlite3.lib" del /Q "$(CONFIG)\bin\libsqlite3.lib"
 	if exist "$(CONFIG)\bin\libsqlite3.pdb" del /Q "$(CONFIG)\bin\libsqlite3.pdb"
 	if exist "$(CONFIG)\bin\libsqlite3.exp" del /Q "$(CONFIG)\bin\libsqlite3.exp"
-	if exist "$(CONFIG)\obj\sqlite.obj\" rd /Q /S "$(CONFIG)\obj\sqlite.obj"
 	if exist "$(CONFIG)\obj\sqlite.obj" del /Q "$(CONFIG)\obj\sqlite.obj"
-	if exist "$(CONFIG)\obj\sqlite3.obj\" rd /Q /S "$(CONFIG)\obj\sqlite3.obj"
 	if exist "$(CONFIG)\obj\sqlite3.obj" del /Q "$(CONFIG)\obj\sqlite3.obj"
 
 
@@ -128,7 +126,7 @@ DEPS_4 = $(DEPS_4) $(CONFIG)\inc\sqlite3.h
 
 $(CONFIG)\obj\sqlite.obj: \
     src\sqlite.c $(DEPS_4)
-	@echo '   [Compile] src/sqlite.c'
+	@echo '   [Compile] $(CONFIG)/obj/sqlite.obj'
 	"$(CC)" -c -Fo$(CONFIG)\obj\sqlite.obj -Fd$(CONFIG)\obj\sqlite.pdb $(CFLAGS) $(DFLAGS) $(IFLAGS) src\sqlite.c
 
 #
@@ -139,7 +137,7 @@ DEPS_5 = $(DEPS_5) $(CONFIG)\inc\sqlite3.h
 
 $(CONFIG)\obj\sqlite3.obj: \
     src\sqlite3.c $(DEPS_5)
-	@echo '   [Compile] src/sqlite3.c'
+	@echo '   [Compile] $(CONFIG)/obj/sqlite3.obj'
 	"$(CC)" -c -Fo$(CONFIG)\obj\sqlite3.obj -Fd$(CONFIG)\obj\sqlite3.pdb $(CFLAGS) $(DFLAGS) $(IFLAGS) src\sqlite3.c
 
 #
@@ -150,7 +148,7 @@ DEPS_6 = $(DEPS_6) $(CONFIG)\obj\sqlite.obj
 DEPS_6 = $(DEPS_6) $(CONFIG)\obj\sqlite3.obj
 
 $(CONFIG)\bin\libsqlite3.dll: $(DEPS_6)
-	@echo '      [Link] libsqlite3'
+	@echo '      [Link] $(CONFIG)/bin/libsqlite3.dll'
 	"$(LD)" -dll -out:$(CONFIG)\bin\libsqlite3.dll -entry:$(ENTRY) $(LDFLAGS) $(LIBPATHS) $(CONFIG)\obj\sqlite.obj $(CONFIG)\obj\sqlite3.obj $(LIBS) 
 
 #
