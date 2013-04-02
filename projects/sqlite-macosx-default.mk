@@ -92,6 +92,7 @@ prep:
 		fi ; \
 	fi
 	@echo $(MAKEFLAGS) >$(CONFIG)/.makeflags
+
 clean:
 	rm -f "$(CONFIG)/bin/libsqlite3.dylib"
 	rm -f "$(CONFIG)/obj/sqlite.o"

@@ -137,7 +137,7 @@
 
 /* Profile */
 #ifndef BIT_CONFIG_CMD
-    #define BIT_CONFIG_CMD "bit -d -q -platform windows-x86-static -static -configure . -gen vs"
+    #define BIT_CONFIG_CMD "bit -d -q -platform windows-x86-static -static -configure . -gen nmake"
 #endif
 #ifndef BIT_SQLITE_PRODUCT
     #define BIT_SQLITE_PRODUCT 1
