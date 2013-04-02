@@ -144,6 +144,7 @@ $(CONFIG)\obj\sqlite3.obj: \
 #   libsqlite3
 #
 DEPS_6 = $(DEPS_6) $(CONFIG)\inc\sqlite3.h
+DEPS_6 = $(DEPS_6) $(CONFIG)\inc\bit.h
 DEPS_6 = $(DEPS_6) $(CONFIG)\obj\sqlite.obj
 DEPS_6 = $(DEPS_6) $(CONFIG)\obj\sqlite3.obj
 

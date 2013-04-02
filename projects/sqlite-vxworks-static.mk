@@ -156,6 +156,7 @@ $(CONFIG)/obj/sqlite3.o: \
 #   libsqlite3
 #
 DEPS_6 += $(CONFIG)/inc/sqlite3.h
+DEPS_6 += $(CONFIG)/inc/bit.h
 DEPS_6 += $(CONFIG)/obj/sqlite.o
 DEPS_6 += $(CONFIG)/obj/sqlite3.o
 
