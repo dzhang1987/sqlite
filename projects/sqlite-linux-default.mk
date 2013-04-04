@@ -22,7 +22,7 @@ BIT_PACK_COMPILER_PATH    := gcc
 BIT_PACK_LIB_PATH         := ar
 BIT_PACK_LINK_PATH        := link
 
-CFLAGS             += -fPIC  -w
+CFLAGS             += -fPIC -w
 DFLAGS             += -D_REENTRANT -DPIC $(patsubst %,-D%,$(filter BIT_%,$(MAKEFLAGS))) 
 IFLAGS             += -I$(CONFIG)/inc
 LDFLAGS            += '-rdynamic' '-Wl,--enable-new-dtags' '-Wl,-rpath,$$ORIGIN/'
