@@ -11,7 +11,7 @@ Bit.load({
         product: 'sqlite',
         title: 'SQLite Library',
         company: 'Embedthis',
-        version: '1.0.0',
+        version: '1.0.1',
         bit: '0.8.5',
         buildNumber: '0',
         prefixes: 'embedthis-prefixes',

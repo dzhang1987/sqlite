@@ -74,7 +74,7 @@
     #define BIT_TITLE "SQLite Library"
 #endif
 #ifndef BIT_VERSION
-    #define BIT_VERSION "1.0.0"
+    #define BIT_VERSION "1.0.1"
 #endif
 #ifndef BIT_WARN64TO32
     #define BIT_WARN64TO32 0
@@ -100,7 +100,7 @@
     #define BIT_APP_PREFIX "/usr/local/lib/sqlite"
 #endif
 #ifndef BIT_VAPP_PREFIX
-    #define BIT_VAPP_PREFIX "/usr/local/lib/sqlite/1.0.0"
+    #define BIT_VAPP_PREFIX "/usr/local/lib/sqlite/1.0.1"
 #endif
 #ifndef BIT_BIN_PREFIX
     #define BIT_BIN_PREFIX "/usr/local/bin"
@@ -133,7 +133,7 @@
     #define BIT_CACHE_PREFIX "/var/spool/sqlite/cache"
 #endif
 #ifndef BIT_SRC_PREFIX
-    #define BIT_SRC_PREFIX "sqlite-1.0.0"
+    #define BIT_SRC_PREFIX "sqlite-1.0.1"
 #endif
 
 /* Suffixes */
@@ -172,10 +172,10 @@
     #define BIT_MINOR_VERSION 0
 #endif
 #ifndef BIT_PATCH_VERSION
-    #define BIT_PATCH_VERSION 0
+    #define BIT_PATCH_VERSION 1
 #endif
 #ifndef BIT_VNUM
-    #define BIT_VNUM 100000000
+    #define BIT_VNUM 100000001
 #endif
 
 /* Packs */

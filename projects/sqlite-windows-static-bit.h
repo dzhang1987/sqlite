@@ -59,7 +59,7 @@
     #define BIT_TITLE "SQLite Library"
 #endif
 #ifndef BIT_VERSION
-    #define BIT_VERSION "1.0.0"
+    #define BIT_VERSION "1.0.1"
 #endif
 
 /* Prefixes */
@@ -154,10 +154,10 @@
     #define BIT_MINOR_VERSION 0
 #endif
 #ifndef BIT_PATCH_VERSION
-    #define BIT_PATCH_VERSION 0
+    #define BIT_PATCH_VERSION 1
 #endif
 #ifndef BIT_VNUM
-    #define BIT_VNUM 100000000
+    #define BIT_VNUM 100000001
 #endif
 
 /* Packs */

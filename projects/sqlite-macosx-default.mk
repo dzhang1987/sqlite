@@ -3,7 +3,7 @@
 #
 
 PRODUCT            := sqlite
-VERSION            := 1.0.0
+VERSION            := 1.0.1
 BUILD_NUMBER       := 0
 PROFILE            := default
 ARCH               := $(shell uname -m | sed 's/i.86/x86/;s/x86_64/x64/;s/arm.*/arm/;s/mips.*/mips/')
@@ -23,11 +23,11 @@ BIT_PACK_LIB_PATH         := ar
 BIT_PACK_LINK_PATH        := link
 
 CFLAGS             += -w
-DFLAGS             += -DBIT_FEATURE_SQLITE=1  $(patsubst %,-D%,$(filter BIT_%,$(MAKEFLAGS))) 
+DFLAGS             +=  $(patsubst %,-D%,$(filter BIT_%,$(MAKEFLAGS))) 
 IFLAGS             += -I$(CONFIG)/inc
-LDFLAGS            += '-Wl,-rpath,@executable_path/' '-Wl,-rpath,@loader_path/'
+LDFLAGS            += '-Wl,-rpath,@executable_path/' '-Wl,-rpath,@loader_path/' 
 LIBPATHS           += -L$(CONFIG)/bin
-LIBS               += -lpthread -lm -ldl
+LIBS               += -ldl -lpthread -lm
 
 DEBUG              := debug
 CFLAGS-debug       := -g
@@ -107,7 +107,7 @@ clobber: clean
 #   version
 #
 version: $(DEPS_1)
-	@echo 1.0.0-0
+	@echo 1.0.1-0
 
 #
 #   sqlite3.h
@@ -155,7 +155,7 @@ DEPS_6 += $(CONFIG)/obj/sqlite3.o
 
 $(CONFIG)/bin/libsqlite3.dylib: $(DEPS_6)
 	@echo '      [Link] $(CONFIG)/bin/libsqlite3.dylib'
-	$(CC) -dynamiclib -o $(CONFIG)/bin/libsqlite3.dylib $(LDFLAGS) $(LIBPATHS) -install_name @rpath/libsqlite3.dylib -compatibility_version 1.0.0 -current_version 1.0.0 $(CONFIG)/obj/sqlite.o $(CONFIG)/obj/sqlite3.o $(LIBS) 
+	$(CC) -dynamiclib -o $(CONFIG)/bin/libsqlite3.dylib $(LDFLAGS) $(LIBPATHS) -install_name @rpath/libsqlite3.dylib -compatibility_version 1.0.1 -current_version 1.0.1 $(CONFIG)/obj/sqlite.o $(CONFIG)/obj/sqlite3.o $(LIBS) 
 
 #
 #   stop

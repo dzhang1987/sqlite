@@ -3,7 +3,7 @@
 #
 
 PRODUCT            := sqlite
-VERSION            := 1.0.0
+VERSION            := 1.0.1
 BUILD_NUMBER       := 0
 PROFILE            := default
 ARCH               := $(shell echo $(WIND_HOST_TYPE) | sed 's/-.*//')
@@ -28,7 +28,7 @@ export WIND_HOME          := $(WIND_BASE)/..
 export PATH               := $(WIND_GNU_PATH)/$(WIND_HOST_TYPE)/bin:$(PATH)
 
 CFLAGS             += -fno-builtin -fno-defer-pop -fvolatile -w
-DFLAGS             += -D_REENTRANT -DVXWORKS -DRW_MULTI_THREAD -D_GNU_TOOL -DBIT_FEATURE_SQLITE=1 -DCPU=$(CPU) $(patsubst %,-D%,$(filter BIT_%,$(MAKEFLAGS))) 
+DFLAGS             += -DVXWORKS -DRW_MULTI_THREAD -D_GNU_TOOL -DCPU=PENTIUM $(patsubst %,-D%,$(filter BIT_%,$(MAKEFLAGS))) 
 IFLAGS             += -I$(CONFIG)/inc -I$(WIND_BASE)/target/h -I$(WIND_BASE)/target/h/wrn/coreip
 LDFLAGS            += '-Wl,-r'
 LIBPATHS           += -L$(CONFIG)/bin
@@ -115,7 +115,7 @@ clobber: clean
 #   version
 #
 version: $(DEPS_1)
-	@echo 1.0.0-0
+	@echo 1.0.1-0
 
 #
 #   sqlite3.h
@@ -140,7 +140,7 @@ DEPS_4 += $(CONFIG)/inc/sqlite3.h
 $(CONFIG)/obj/sqlite.o: \
     src/sqlite.c $(DEPS_4)
 	@echo '   [Compile] $(CONFIG)/obj/sqlite.o'
-	$(CC) -c -o $(CONFIG)/obj/sqlite.o -fno-builtin -fno-defer-pop -fvolatile $(DFLAGS) $(IFLAGS) src/sqlite.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite.o $(CFLAGS) $(DFLAGS) $(IFLAGS) src/sqlite.c
 
 #
 #   sqlite3.o
@@ -151,7 +151,7 @@ DEPS_5 += $(CONFIG)/inc/sqlite3.h
 $(CONFIG)/obj/sqlite3.o: \
     src/sqlite3.c $(DEPS_5)
 	@echo '   [Compile] $(CONFIG)/obj/sqlite3.o'
-	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fno-builtin -fno-defer-pop -fvolatile $(DFLAGS) $(IFLAGS) src/sqlite3.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite3.o $(CFLAGS) $(DFLAGS) $(IFLAGS) src/sqlite3.c
 
 #
 #   libsqlite3

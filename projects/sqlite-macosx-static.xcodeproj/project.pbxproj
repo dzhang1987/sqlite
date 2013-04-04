@@ -223,7 +223,7 @@ fi";
                 /* Common Settings */
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-                CURRENT_PROJECT_VERSION = 1.0.0;
+                CURRENT_PROJECT_VERSION = 1.0.1;
                 DYLIB_COMPATIBILITY_VERSION = "$(CURRENT_PROJECT_VERSION)";
                 DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -266,7 +266,6 @@ fi";
 					"$(inherited)"
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"BIT_FEATURE_SQLITE=1",
 					"BIT_DEBUG",
 					"BIT_DEBUG",
 					"$(inherited)"
@@ -278,9 +277,9 @@ fi";
 				OTHER_LDFLAGS = (
 					"-Wl,-rpath,@executable_path/",
 					"-Wl,-rpath,@loader_path/",
+					"-ldl",
 					"-lpthread",
 					"-lm",
-					"-ldl",
 					"$(inherited)"
 				);
 
@@ -294,7 +293,7 @@ fi";
                 /* Common Settings */
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-                CURRENT_PROJECT_VERSION = 1.0.0;
+                CURRENT_PROJECT_VERSION = 1.0.1;
                 DYLIB_COMPATIBILITY_VERSION = "$(CURRENT_PROJECT_VERSION)";
                 DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -338,7 +337,6 @@ fi";
 					"$(inherited)"
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"BIT_FEATURE_SQLITE=1",
 					"BIT_DEBUG",
 					"$(inherited)"
 				);
@@ -349,9 +347,9 @@ fi";
 				OTHER_LDFLAGS = (
 					"-Wl,-rpath,@executable_path/",
 					"-Wl,-rpath,@loader_path/",
+					"-ldl",
 					"-lpthread",
 					"-lm",
-					"-ldl",
 					"$(inherited)"
 				);
 
