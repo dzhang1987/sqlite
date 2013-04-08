@@ -22,10 +22,6 @@ Bit.load({
         assert: 'Enable program assertions',
     },
 
-    defaults: {
-        '+defines': [ 'BIT_FEATURE_SQLITE=1' ]
-    },
-
     targets: {
         libsqlite3: {
             type: 'lib',
