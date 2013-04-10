@@ -132,7 +132,7 @@ DEPS_4 += $(CONFIG)/inc/sqlite3.h
 $(CONFIG)/obj/sqlite.o: \
     src/sqlite.c $(DEPS_4)
 	@echo '   [Compile] $(CONFIG)/obj/sqlite.o'
-	$(CC) -c -o $(CONFIG)/obj/sqlite.o $(DFLAGS) $(IFLAGS) src/sqlite.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite.o $(DFLAGS) "$(IFLAGS)" src/sqlite.c
 
 #
 #   sqlite3.o
@@ -143,7 +143,7 @@ DEPS_5 += $(CONFIG)/inc/sqlite3.h
 $(CONFIG)/obj/sqlite3.o: \
     src/sqlite3.c $(DEPS_5)
 	@echo '   [Compile] $(CONFIG)/obj/sqlite3.o'
-	$(CC) -c -o $(CONFIG)/obj/sqlite3.o $(DFLAGS) $(IFLAGS) src/sqlite3.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite3.o $(DFLAGS) "$(IFLAGS)" src/sqlite3.c
 
 #
 #   libsqlite3
@@ -155,7 +155,7 @@ DEPS_6 += $(CONFIG)/obj/sqlite3.o
 
 $(CONFIG)/bin/libsqlite3.dylib: $(DEPS_6)
 	@echo '      [Link] $(CONFIG)/bin/libsqlite3.dylib'
-	$(CC) -dynamiclib -o $(CONFIG)/bin/libsqlite3.dylib $(LDFLAGS) $(LIBPATHS) -install_name @rpath/libsqlite3.dylib -compatibility_version 1.0.1 -current_version 1.0.1 $(CONFIG)/obj/sqlite.o $(CONFIG)/obj/sqlite3.o $(LIBS) 
+	$(CC) -dynamiclib -o $(CONFIG)/bin/libsqlite3.dylib $(LDFLAGS) $(LIBPATHS) -install_name @rpath/libsqlite3.dylib -compatibility_version 1.0.1 -current_version 1.0.1 "$(CONFIG)/obj/sqlite.o" "$(CONFIG)/obj/sqlite3.o" $(LIBS) 
 
 #
 #   stop

@@ -132,7 +132,7 @@ DEPS_4 += $(CONFIG)/inc/sqlite3.h
 $(CONFIG)/obj/sqlite.o: \
     src/sqlite.c $(DEPS_4)
 	@echo '   [Compile] $(CONFIG)/obj/sqlite.o'
-	$(CC) -c -o $(CONFIG)/obj/sqlite.o -fPIC $(DFLAGS) $(IFLAGS) src/sqlite.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite.o -fPIC $(DFLAGS) "$(IFLAGS)" src/sqlite.c
 
 #
 #   sqlite3.o
@@ -143,7 +143,7 @@ DEPS_5 += $(CONFIG)/inc/sqlite3.h
 $(CONFIG)/obj/sqlite3.o: \
     src/sqlite3.c $(DEPS_5)
 	@echo '   [Compile] $(CONFIG)/obj/sqlite3.o'
-	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fPIC $(DFLAGS) $(IFLAGS) src/sqlite3.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fPIC $(DFLAGS) "$(IFLAGS)" src/sqlite3.c
 
 #
 #   libsqlite3
@@ -155,7 +155,7 @@ DEPS_6 += $(CONFIG)/obj/sqlite3.o
 
 $(CONFIG)/bin/libsqlite3.a: $(DEPS_6)
 	@echo '      [Link] $(CONFIG)/bin/libsqlite3.a'
-	ar -cr $(CONFIG)/bin/libsqlite3.a $(CONFIG)/obj/sqlite.o $(CONFIG)/obj/sqlite3.o
+	ar -cr $(CONFIG)/bin/libsqlite3.a "$(CONFIG)/obj/sqlite.o" "$(CONFIG)/obj/sqlite3.o"
 
 #
 #   stop
