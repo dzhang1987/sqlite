@@ -150,7 +150,7 @@ DEPS_6 = $(DEPS_6) $(CONFIG)\obj\sqlite3.obj
 
 $(CONFIG)\bin\libsqlite3.dll: $(DEPS_6)
 	@echo '      [Link] $(CONFIG)/bin/libsqlite3.dll'
-	"$(LD)" -dll -mob -out:$(CONFIG)\bin\libsqlite3.dll -entry:$(ENTRY) $(LDFLAGS) $(LIBPATHS) "$(CONFIG)\obj\sqlite.obj" "$(CONFIG)\obj\sqlite3.obj" $(LIBS) 
+	"$(LD)" -dll -out:$(CONFIG)\bin\libsqlite3.dll -entry:$(ENTRY) $(LDFLAGS) $(LIBPATHS) "$(CONFIG)\obj\sqlite.obj" "$(CONFIG)\obj\sqlite3.obj" $(LIBS) 
 
 #
 #   stop
