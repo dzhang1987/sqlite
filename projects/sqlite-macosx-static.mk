@@ -7,6 +7,7 @@ VERSION            := 1.0.1
 BUILD_NUMBER       := 0
 PROFILE            := static
 ARCH               := $(shell uname -m | sed 's/i.86/x86/;s/x86_64/x64/;s/arm.*/arm/;s/mips.*/mips/')
+CC_ARCH            := $(shell echo $(ARCH) | sed 's/x86/i686/;s/x64/x86_64/')
 OS                 := macosx
 CC                 := clang
 LD                 := link
@@ -128,7 +129,7 @@ DEPS_4 += $(CONFIG)/inc/sqlite3.h
 $(CONFIG)/obj/sqlite.o: \
     src/sqlite.c $(DEPS_4)
 	@echo '   [Compile] $(CONFIG)/obj/sqlite.o'
-	$(CC) -c -o $(CONFIG)/obj/sqlite.o $(DFLAGS) "$(IFLAGS)" src/sqlite.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite.o -arch $(CC_ARCH) $(DFLAGS) "$(IFLAGS)" src/sqlite.c
 
 #
 #   sqlite3.o
@@ -139,7 +140,7 @@ DEPS_5 += $(CONFIG)/inc/sqlite3.h
 $(CONFIG)/obj/sqlite3.o: \
     src/sqlite3.c $(DEPS_5)
 	@echo '   [Compile] $(CONFIG)/obj/sqlite3.o'
-	$(CC) -c -o $(CONFIG)/obj/sqlite3.o $(DFLAGS) "$(IFLAGS)" src/sqlite3.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -arch $(CC_ARCH) $(DFLAGS) "$(IFLAGS)" src/sqlite3.c
 
 #
 #   libsqlite3
