@@ -60,7 +60,7 @@ BIT_CACHE_PREFIX   := $(BIT_ROOT_PREFIX)/var/spool/$(PRODUCT)/cache
 BIT_SRC_PREFIX     := $(BIT_ROOT_PREFIX)$(PRODUCT)-$(VERSION)
 
 
-TARGETS            += $(CONFIG)/bin/libsqlite3.dylib
+TARGETS            += $(CONFIG)/bin/libsql.dylib
 
 unexport CDPATH
 
@@ -91,7 +91,7 @@ prep:
 	@echo $(MAKEFLAGS) >$(CONFIG)/.makeflags
 
 clean:
-	rm -f "$(CONFIG)/bin/libsqlite3.dylib"
+	rm -f "$(CONFIG)/bin/libsql.dylib"
 	rm -f "$(CONFIG)/obj/sqlite.o"
 	rm -f "$(CONFIG)/obj/sqlite3.o"
 
@@ -143,16 +143,16 @@ $(CONFIG)/obj/sqlite3.o: \
 	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -arch $(CC_ARCH) -O2 "$(IFLAGS)" src/sqlite3.c
 
 #
-#   libsqlite3
+#   libsql
 #
 DEPS_6 += $(CONFIG)/inc/sqlite3.h
 DEPS_6 += $(CONFIG)/inc/bit.h
 DEPS_6 += $(CONFIG)/obj/sqlite.o
 DEPS_6 += $(CONFIG)/obj/sqlite3.o
 
-$(CONFIG)/bin/libsqlite3.dylib: $(DEPS_6)
-	@echo '      [Link] $(CONFIG)/bin/libsqlite3.dylib'
-	$(CC) -dynamiclib -o $(CONFIG)/bin/libsqlite3.dylib -arch $(CC_ARCH) $(LDFLAGS) $(LIBPATHS) -install_name @rpath/libsqlite3.dylib -compatibility_version 1.0.1 -current_version 1.0.1 "$(CONFIG)/obj/sqlite.o" "$(CONFIG)/obj/sqlite3.o" $(LIBS) 
+$(CONFIG)/bin/libsql.dylib: $(DEPS_6)
+	@echo '      [Link] $(CONFIG)/bin/libsql.dylib'
+	$(CC) -dynamiclib -o $(CONFIG)/bin/libsql.dylib -arch $(CC_ARCH) $(LDFLAGS) $(LIBPATHS) -install_name @rpath/libsql.dylib -compatibility_version 1.0.1 -current_version 1.0.1 "$(CONFIG)/obj/sqlite.o" "$(CONFIG)/obj/sqlite3.o" $(LIBS) 
 
 #
 #   stop

@@ -14,7 +14,7 @@
 				
 			);
 			dependencies = (
-				B55AF456B55B05C000000007 /* PBXTargetDependency libsqlite3 */,
+				B55AF456B55B05C000000007 /* PBXTargetDependency libsql */,
 			);
 			name = All;
 			productName = All;
@@ -38,7 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B55AF456B55B05C00000000F /* PBXContainerItemProxy Prep from libsqlite3 */ = {
+		B55AF456B55B05C00000000F /* PBXContainerItemProxy Prep from libsql */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B55AF456B55B05C000000001 /* Project object */;
 			proxyType = 1;
@@ -52,12 +52,12 @@
 			remoteGlobalIDString = B55AF456B55B05C000000009;
 			remoteInfo = Prep;
 		};
-		B55AF456B55B05C000000011 /* PBXContainerItemProxy libsqlite3 from All */ = {
+		B55AF456B55B05C000000011 /* PBXContainerItemProxy libsql from All */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B55AF456B55B05C000000001 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = B55AF456B55B05C000000012;
-			remoteInfo = libsqlite3;
+			remoteInfo = libsql;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -66,11 +66,11 @@
 		B55AF456B55B05C000000013 /* bit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bit.h; path = macosx-x64-default/inc/bit.h; sourceTree = "<group>"; };
 		B55AF456B55B05C000000014 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = macosx-x64-default/inc/sqlite3.h; sourceTree = "<group>"; };
 		B55AF456B55B05C00000000E /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = src/sqlite3.c; sourceTree = "<group>"; };
-		B55AF456B55B05C000000015 /* libsqlite3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsqlite3.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		B55AF456B55B05C000000015 /* libsql */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsql.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B55AF456B55B05C000000016 /* Frameworks and Libraries for libsqlite3 */ = {
+		B55AF456B55B05C000000016 /* Frameworks and Libraries for libsql */ = {
             isa = PBXFrameworksBuildPhase;
             buildActionMask = 2147483647;
             files = (
@@ -84,12 +84,12 @@
 		B55AF456B55B05C000000017 /* Top Group */ = {
             isa = PBXGroup;
             children = (
-				B55AF456B55B05C000000018 /* libsqlite3 */,
+				B55AF456B55B05C000000018 /* libsql */,
 				B55AF456B55B05C000000019 /* Products */,
 			);
             sourceTree = "<group>";
         };
-		B55AF456B55B05C000000018 /* libsqlite3 */ = {
+		B55AF456B55B05C000000018 /* libsql */ = {
             isa = PBXGroup;
             children = (
 				B55AF456B55B05C000000013 /* bit.h */,
@@ -97,14 +97,14 @@
 				B55AF456B55B05C00000000C /* sqlite.c */,
 				B55AF456B55B05C00000000E /* sqlite3.c */,
 			);
-            name = "libsqlite3";
+            name = "libsql";
             path = ..;
             sourceTree = SOURCE_ROOT;
         };
 		B55AF456B55B05C000000019 /* Products */ = {
             isa = PBXGroup;
             children = (
-				B55AF456B55B05C000000015 /* libsqlite3 */,
+				B55AF456B55B05C000000015 /* libsql */,
 			);
             name = "Products";
             path = ..;
@@ -113,9 +113,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B55AF456B55B05C000000012 /* libsqlite3 */ = {
+		B55AF456B55B05C000000012 /* libsql */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B55AF456B55B05C00000001B /* Build configuration list for PBXNativeTarget "libsqlite3" */;
+			buildConfigurationList = B55AF456B55B05C00000001B /* Build configuration list for PBXNativeTarget "libsql" */;
 			buildPhases = (
 				B55AF456B55B05C00000001A /* Sources */,
 				B55AF456B55B05C000000016 /* Frameworks */,
@@ -125,9 +125,9 @@
 			dependencies = (
 				B55AF456B55B05C00000001C /* Prep */,				
 			);
-			name = libsqlite3;
+			name = libsql;
 			productName = sqlite;
-			productReference = B55AF456B55B05C000000015 /* libsqlite3 */;
+			productReference = B55AF456B55B05C000000015 /* libsql */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -180,13 +180,13 @@ fi";
 			targets = (
 				B55AF456B55B05C000000006 /* All */,
 				B55AF456B55B05C000000009 /* Prep */,
-				B55AF456B55B05C000000012 /* libsqlite3 */,
+				B55AF456B55B05C000000012 /* libsql */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B55AF456B55B05C00000001A /* libsqlite3 Sources */ = {
+		B55AF456B55B05C00000001A /* libsql Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -198,7 +198,7 @@ fi";
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B55AF456B55B05C00000001C /* PBXTargetDependency libsqlite3 depends on Prep */ = {
+		B55AF456B55B05C00000001C /* PBXTargetDependency libsql depends on Prep */ = {
 			isa = PBXTargetDependency;
 			target = B55AF456B55B05C000000009 /* Prep */;
 			targetProxy = B55AF456B55B05C00000000F /* PBXContainerItemProxy */;
@@ -208,9 +208,9 @@ fi";
 			target = B55AF456B55B05C000000009 /* Prep */;
 			targetProxy = B55AF456B55B05C000000010 /* PBXContainerItemProxy */;
 		};
-		B55AF456B55B05C000000007 /* PBXTargetDependency All depends on libsqlite3 */ = {
+		B55AF456B55B05C000000007 /* PBXTargetDependency All depends on libsql */ = {
 			isa = PBXTargetDependency;
-			target = B55AF456B55B05C000000012 /* libsqlite3 */;
+			target = B55AF456B55B05C000000012 /* libsql */;
 			targetProxy = B55AF456B55B05C000000011 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -355,7 +355,7 @@ fi";
 		B55AF456B55B05C00000001E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = libsqlite3;
+				PRODUCT_NAME = libsql;
 
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"BIT_DEBUG",
@@ -367,7 +367,7 @@ fi";
 		B55AF456B55B05C00000001F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = libsqlite3;
+				PRODUCT_NAME = libsql;
 
 
 			};
@@ -427,7 +427,7 @@ fi";
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B55AF456B55B05C00000001B /* Build configuration list for PBXNativeTarget "libsqlite3" */ = {
+		B55AF456B55B05C00000001B /* Build configuration list for PBXNativeTarget "libsql" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B55AF456B55B05C00000001E /* Debug */,

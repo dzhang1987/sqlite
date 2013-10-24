@@ -23,7 +23,7 @@ Bit.load({
     },
 
     targets: {
-        libsqlite3: {
+        libsql: {
             type: 'lib',
             headers: [ 'src/*.h' ],
             sources: [ 'src/*.c' ],

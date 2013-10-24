@@ -64,7 +64,7 @@ BIT_VAPP_PREFIX    := $(BIT_APP_PREFIX)
 BIT_SRC_PREFIX     := $(BIT_ROOT_PREFIX)/usr/src/$(PRODUCT)-$(VERSION)
 
 
-TARGETS            += $(CONFIG)/bin/libsqlite3.a
+TARGETS            += $(CONFIG)/bin/libsql.a
 
 unexport CDPATH
 
@@ -98,7 +98,7 @@ prep:
 	@echo $(MAKEFLAGS) >$(CONFIG)/.makeflags
 
 clean:
-	rm -f "$(CONFIG)/bin/libsqlite3.a"
+	rm -f "$(CONFIG)/bin/libsql.a"
 	rm -f "$(CONFIG)/obj/sqlite.o"
 	rm -f "$(CONFIG)/obj/sqlite3.o"
 
@@ -150,16 +150,16 @@ $(CONFIG)/obj/sqlite3.o: \
 	$(CC) -c -o $(CONFIG)/obj/sqlite3.o $(CFLAGS) $(DFLAGS) "-I$(CONFIG)/inc" "-I$(WIND_BASE)/target/h" "-I$(WIND_BASE)/target/h/wrn/coreip" src/sqlite3.c
 
 #
-#   libsqlite3
+#   libsql
 #
 DEPS_6 += $(CONFIG)/inc/sqlite3.h
 DEPS_6 += $(CONFIG)/inc/bit.h
 DEPS_6 += $(CONFIG)/obj/sqlite.o
 DEPS_6 += $(CONFIG)/obj/sqlite3.o
 
-$(CONFIG)/bin/libsqlite3.a: $(DEPS_6)
-	@echo '      [Link] $(CONFIG)/bin/libsqlite3.a'
-	ar -cr $(CONFIG)/bin/libsqlite3.a "$(CONFIG)/obj/sqlite.o" "$(CONFIG)/obj/sqlite3.o"
+$(CONFIG)/bin/libsql.a: $(DEPS_6)
+	@echo '      [Link] $(CONFIG)/bin/libsql.a'
+	ar -cr $(CONFIG)/bin/libsql.a "$(CONFIG)/obj/sqlite.o" "$(CONFIG)/obj/sqlite3.o"
 
 #
 #   stop

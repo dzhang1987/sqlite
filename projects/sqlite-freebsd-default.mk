@@ -60,7 +60,7 @@ BIT_CACHE_PREFIX   := $(BIT_ROOT_PREFIX)/var/spool/$(PRODUCT)/cache
 BIT_SRC_PREFIX     := $(BIT_ROOT_PREFIX)$(PRODUCT)-$(VERSION)
 
 
-TARGETS            += $(CONFIG)/bin/libsqlite3.so
+TARGETS            += $(CONFIG)/bin/libsql.so
 
 unexport CDPATH
 
@@ -91,7 +91,7 @@ prep:
 	@echo $(MAKEFLAGS) >$(CONFIG)/.makeflags
 
 clean:
-	rm -f "$(CONFIG)/bin/libsqlite3.so"
+	rm -f "$(CONFIG)/bin/libsql.so"
 	rm -f "$(CONFIG)/obj/sqlite.o"
 	rm -f "$(CONFIG)/obj/sqlite3.o"
 
@@ -143,16 +143,16 @@ $(CONFIG)/obj/sqlite3.o: \
 	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -O2 -fPIC $(DFLAGS) "$(IFLAGS)" src/sqlite3.c
 
 #
-#   libsqlite3
+#   libsql
 #
 DEPS_6 += $(CONFIG)/inc/sqlite3.h
 DEPS_6 += $(CONFIG)/inc/bit.h
 DEPS_6 += $(CONFIG)/obj/sqlite.o
 DEPS_6 += $(CONFIG)/obj/sqlite3.o
 
-$(CONFIG)/bin/libsqlite3.so: $(DEPS_6)
-	@echo '      [Link] $(CONFIG)/bin/libsqlite3.so'
-	$(CC) -shared -o $(CONFIG)/bin/libsqlite3.so $(LIBPATHS) "$(CONFIG)/obj/sqlite.o" "$(CONFIG)/obj/sqlite3.o" $(LIBS) 
+$(CONFIG)/bin/libsql.so: $(DEPS_6)
+	@echo '      [Link] $(CONFIG)/bin/libsql.so'
+	$(CC) -shared -o $(CONFIG)/bin/libsql.so $(LIBPATHS) "$(CONFIG)/obj/sqlite.o" "$(CONFIG)/obj/sqlite3.o" $(LIBS) 
 
 #
 #   stop

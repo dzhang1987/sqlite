@@ -64,7 +64,7 @@ BIT_CACHE_PREFIX   = $(BIT_VAPP_PREFIX)\cache
 BIT_SRC_PREFIX     = $(BIT_VAPP_PREFIX)\src
 
 
-TARGETS            = $(TARGETS) $(CONFIG)\bin\libsqlite3.dll
+TARGETS            = $(TARGETS) $(CONFIG)\bin\libsql.dll
 
 !IFNDEF SHOW
 .SILENT:
@@ -89,10 +89,10 @@ prep:
 	@if not exist $(CONFIG)\inc\bit.h copy projects\sqlite-windows-default-bit.h $(CONFIG)\inc\bit.h
 
 clean:
-	if exist "$(CONFIG)\bin\libsqlite3.dll" del /Q "$(CONFIG)\bin\libsqlite3.dll"
-	if exist "$(CONFIG)\bin\libsqlite3.lib" del /Q "$(CONFIG)\bin\libsqlite3.lib"
-	if exist "$(CONFIG)\bin\libsqlite3.pdb" del /Q "$(CONFIG)\bin\libsqlite3.pdb"
-	if exist "$(CONFIG)\bin\libsqlite3.exp" del /Q "$(CONFIG)\bin\libsqlite3.exp"
+	if exist "$(CONFIG)\bin\libsql.dll" del /Q "$(CONFIG)\bin\libsql.dll"
+	if exist "$(CONFIG)\bin\libsql.lib" del /Q "$(CONFIG)\bin\libsql.lib"
+	if exist "$(CONFIG)\bin\libsql.pdb" del /Q "$(CONFIG)\bin\libsql.pdb"
+	if exist "$(CONFIG)\bin\libsql.exp" del /Q "$(CONFIG)\bin\libsql.exp"
 	if exist "$(CONFIG)\obj\sqlite.obj" del /Q "$(CONFIG)\obj\sqlite.obj"
 	if exist "$(CONFIG)\obj\sqlite3.obj" del /Q "$(CONFIG)\obj\sqlite3.obj"
 
@@ -141,16 +141,16 @@ $(CONFIG)\obj\sqlite3.obj: \
 	"$(CC)" -c -Fo$(CONFIG)\obj\sqlite3.obj -Fd$(CONFIG)\obj\sqlite3.pdb $(CFLAGS) $(DFLAGS) "$(IFLAGS)" src\sqlite3.c
 
 #
-#   libsqlite3
+#   libsql
 #
 DEPS_6 = $(DEPS_6) $(CONFIG)\inc\sqlite3.h
 DEPS_6 = $(DEPS_6) $(CONFIG)\inc\bit.h
 DEPS_6 = $(DEPS_6) $(CONFIG)\obj\sqlite.obj
 DEPS_6 = $(DEPS_6) $(CONFIG)\obj\sqlite3.obj
 
-$(CONFIG)\bin\libsqlite3.dll: $(DEPS_6)
-	@echo '      [Link] $(CONFIG)/bin/libsqlite3.dll'
-	"$(LD)" -dll -out:$(CONFIG)\bin\libsqlite3.dll -entry:$(ENTRY) $(LDFLAGS) $(LIBPATHS) "$(CONFIG)\obj\sqlite.obj" "$(CONFIG)\obj\sqlite3.obj" $(LIBS) 
+$(CONFIG)\bin\libsql.dll: $(DEPS_6)
+	@echo '      [Link] $(CONFIG)/bin/libsql.dll'
+	"$(LD)" -dll -out:$(CONFIG)\bin\libsql.dll -entry:$(ENTRY) $(LDFLAGS) $(LIBPATHS) "$(CONFIG)\obj\sqlite.obj" "$(CONFIG)\obj\sqlite3.obj" $(LIBS) 
 
 #
 #   stop

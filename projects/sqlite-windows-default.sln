@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "prep", "sqlite-windows-default\prep.vcxproj", "{A05F7F5E-BDD8-45AB-AF4A-FD3CDAD8D4E7}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libsqlite3", "sqlite-windows-default\libsqlite3.vcxproj", "{214CF65C-1F79-4455-AD99-AF4C21992B40}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libsql", "sqlite-windows-default\libsql.vcxproj", "{005A9212-80A9-4EBB-B359-92CCCCA5D6D1}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A05F7F5E-BDD8-45AB-AF4A-FD3CDAD8D4E7} = {A05F7F5E-BDD8-45AB-AF4A-FD3CDAD8D4E7}
 	EndProjectSection
@@ -24,14 +24,14 @@ Global
 {A05F7F5E-BDD8-45AB-AF4A-FD3CDAD8D4E7}.Release|Win32.Build.0 = Release|Win32
 {A05F7F5E-BDD8-45AB-AF4A-FD3CDAD8D4E7}.Release|x64.ActiveCfg = Release|x64
 {A05F7F5E-BDD8-45AB-AF4A-FD3CDAD8D4E7}.Release|x64.Build.0 = Release|x64
-{214CF65C-1F79-4455-AD99-AF4C21992B40}.Debug|Win32.ActiveCfg = Debug|Win32
-{214CF65C-1F79-4455-AD99-AF4C21992B40}.Debug|Win32.Build.0 = Debug|Win32
-{214CF65C-1F79-4455-AD99-AF4C21992B40}.Debug|x64.ActiveCfg = Debug|x64
-{214CF65C-1F79-4455-AD99-AF4C21992B40}.Debug|x64.Build.0 = Debug|x64
-{214CF65C-1F79-4455-AD99-AF4C21992B40}.Release|Win32.ActiveCfg = Release|Win32
-{214CF65C-1F79-4455-AD99-AF4C21992B40}.Release|Win32.Build.0 = Release|Win32
-{214CF65C-1F79-4455-AD99-AF4C21992B40}.Release|x64.ActiveCfg = Release|x64
-{214CF65C-1F79-4455-AD99-AF4C21992B40}.Release|x64.Build.0 = Release|x64
+{005A9212-80A9-4EBB-B359-92CCCCA5D6D1}.Debug|Win32.ActiveCfg = Debug|Win32
+{005A9212-80A9-4EBB-B359-92CCCCA5D6D1}.Debug|Win32.Build.0 = Debug|Win32
+{005A9212-80A9-4EBB-B359-92CCCCA5D6D1}.Debug|x64.ActiveCfg = Debug|x64
+{005A9212-80A9-4EBB-B359-92CCCCA5D6D1}.Debug|x64.Build.0 = Debug|x64
+{005A9212-80A9-4EBB-B359-92CCCCA5D6D1}.Release|Win32.ActiveCfg = Release|Win32
+{005A9212-80A9-4EBB-B359-92CCCCA5D6D1}.Release|Win32.Build.0 = Release|Win32
+{005A9212-80A9-4EBB-B359-92CCCCA5D6D1}.Release|x64.ActiveCfg = Release|x64
+{005A9212-80A9-4EBB-B359-92CCCCA5D6D1}.Release|x64.Build.0 = Release|x64
 EndGlobalSection
 
   GlobalSection(SolutionProperties) = preSolution
