@@ -124,7 +124,7 @@ DEPS_4 = $(DEPS_4) $(CONFIG)\inc\sqlite3.h
 $(CONFIG)\obj\sqlite.obj: \
     src\sqlite.c $(DEPS_4)
 	@echo '   [Compile] $(CONFIG)/obj/sqlite.obj'
-	"$(CC)" -c -Fo$(CONFIG)\obj\sqlite.obj -Fd$(CONFIG)\obj\sqlite.pdb $(CFLAGS) $(DFLAGS) "$(IFLAGS)" src\sqlite.c
+	"$(CC)" -c -Fo$(CONFIG)\obj\sqlite.obj -Fd$(CONFIG)\obj\sqlite.pdb $(CFLAGS) $(DFLAGS) $(IFLAGS) src\sqlite.c
 
 #
 #   sqlite3.obj
@@ -135,7 +135,7 @@ DEPS_5 = $(DEPS_5) $(CONFIG)\inc\sqlite3.h
 $(CONFIG)\obj\sqlite3.obj: \
     src\sqlite3.c $(DEPS_5)
 	@echo '   [Compile] $(CONFIG)/obj/sqlite3.obj'
-	"$(CC)" -c -Fo$(CONFIG)\obj\sqlite3.obj -Fd$(CONFIG)\obj\sqlite3.pdb $(CFLAGS) $(DFLAGS) "$(IFLAGS)" src\sqlite3.c
+	"$(CC)" -c -Fo$(CONFIG)\obj\sqlite3.obj -Fd$(CONFIG)\obj\sqlite3.pdb $(CFLAGS) $(DFLAGS) $(IFLAGS) src\sqlite3.c
 
 #
 #   libsql
