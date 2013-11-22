@@ -23,7 +23,7 @@ BIT_PACK_COMPILER_PATH    := gcc
 BIT_PACK_LIB_PATH         := ar
 BIT_PACK_LINK_PATH        := link
 
-CFLAGS             += -O2 -fPIC -w
+CFLAGS             += -fPIC -w
 DFLAGS             += -D_REENTRANT -DPIC $(patsubst %,-D%,$(filter BIT_%,$(MAKEFLAGS))) 
 IFLAGS             += "-I$(CONFIG)/inc"
 LDFLAGS            += 
@@ -129,7 +129,7 @@ DEPS_4 += $(CONFIG)/inc/sqlite3.h
 $(CONFIG)/obj/sqlite.o: \
     src/sqlite.c $(DEPS_4)
 	@echo '   [Compile] $(CONFIG)/obj/sqlite.o'
-	$(CC) -c -o $(CONFIG)/obj/sqlite.o -O2 -fPIC $(DFLAGS) $(IFLAGS) src/sqlite.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite.o -fPIC $(DFLAGS) $(IFLAGS) src/sqlite.c
 
 #
 #   sqlite3.o
@@ -140,7 +140,7 @@ DEPS_5 += $(CONFIG)/inc/sqlite3.h
 $(CONFIG)/obj/sqlite3.o: \
     src/sqlite3.c $(DEPS_5)
 	@echo '   [Compile] $(CONFIG)/obj/sqlite3.o'
-	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -O2 -fPIC $(DFLAGS) $(IFLAGS) src/sqlite3.c
+	$(CC) -c -o $(CONFIG)/obj/sqlite3.o -fPIC $(DFLAGS) $(IFLAGS) src/sqlite3.c
 
 #
 #   libsql
