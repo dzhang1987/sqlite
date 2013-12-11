@@ -1,4 +1,4 @@
-LICENSE.md - Embedthis SQLite Licenses
+Embedthis SQLite Licenses
 ===
 
 This file documents the Embedthis Software Licenses. It includes the Embedthis SQLite Open Source License and licenses for third-party components within SQLite.
