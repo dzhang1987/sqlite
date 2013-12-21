@@ -16,20 +16,8 @@
         "url": "git://github.com/embedthis/sqlite.git"
     },
     "bugs": {
-        "email": "dev@embedthis.com",
         "url": "http://github.com/embedthis/sqlite/issues"
     },
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "doc",
-        "test",
-        "releases",
-        "package",
-        "*-debug*",
-        "*-release*"
-    ],
     "licenses": [{ 
         "type": "PUBLIC", 
         "url": "https://github.com/embedthis/sqlite/blob/master/LICENSE.md",

@@ -32,29 +32,24 @@ Bit.load({
                 '-Wshorten-64-to-32',
             ],
         },
-        'bower.json': {
-            type: 'file',
-            path: 'bower.json',
-            files: [ 'package.json' ],
-        },
         projects: {},
     },
     manifest: {     
         packages: { 
-            combo: {
+            pak: {
                 inherit:    'embedthis-manifest',
                 prefixes:   [ 'src'],
-                sets:       [ 'source' ],
+                sets:       [ 'pak' ],
             },
         },
         files: [
             {   from:   'package/sqlite.bit',
-                to:     '${src}/src/deps/sqlite/sqlite.bit',                                                   
-                set:    'source',
+                to:     '${src}/sqlite.bit',                                                   
+                set:    'pak',
             },{ 
                 from:   ['src/sqlite3.h', 'src/sqlite3.c', 'src/sqlite.c'],
-                to:     '${src}/src/deps/sqlite/',
-                set:    'source',
+                to:     '${src}/',
+                set:    'pak',
             },
         ],                                                                                                 
     }, 
