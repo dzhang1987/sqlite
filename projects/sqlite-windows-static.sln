@@ -7,11 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libsql", "sqlite-windows-st
 		{A05F7F5E-BDD8-45AB-AF4A-FD3CDAD8D4E7} = {A05F7F5E-BDD8-45AB-AF4A-FD3CDAD8D4E7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bower.json", "sqlite-windows-static\bower.json.vcxproj", "{E0AD8814-BB3B-44E1-B275-0B1745A1787F}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A05F7F5E-BDD8-45AB-AF4A-FD3CDAD8D4E7} = {A05F7F5E-BDD8-45AB-AF4A-FD3CDAD8D4E7}
-	EndProjectSection
-EndProject
 
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,14 +32,6 @@ Global
 {005A9212-80A9-4EBB-B359-92CCCCA5D6D1}.Release|Win32.Build.0 = Release|Win32
 {005A9212-80A9-4EBB-B359-92CCCCA5D6D1}.Release|x64.ActiveCfg = Release|x64
 {005A9212-80A9-4EBB-B359-92CCCCA5D6D1}.Release|x64.Build.0 = Release|x64
-{E0AD8814-BB3B-44E1-B275-0B1745A1787F}.Debug|Win32.ActiveCfg = Debug|Win32
-{E0AD8814-BB3B-44E1-B275-0B1745A1787F}.Debug|Win32.Build.0 = Debug|Win32
-{E0AD8814-BB3B-44E1-B275-0B1745A1787F}.Debug|x64.ActiveCfg = Debug|x64
-{E0AD8814-BB3B-44E1-B275-0B1745A1787F}.Debug|x64.Build.0 = Debug|x64
-{E0AD8814-BB3B-44E1-B275-0B1745A1787F}.Release|Win32.ActiveCfg = Release|Win32
-{E0AD8814-BB3B-44E1-B275-0B1745A1787F}.Release|Win32.Build.0 = Release|Win32
-{E0AD8814-BB3B-44E1-B275-0B1745A1787F}.Release|x64.ActiveCfg = Release|x64
-{E0AD8814-BB3B-44E1-B275-0B1745A1787F}.Release|x64.Build.0 = Release|x64
 EndGlobalSection
 
   GlobalSection(SolutionProperties) = preSolution

@@ -7,36 +7,23 @@
     objects = {
 
 /* Begin PBXAggregateTarget section */
-		D6A1B75ED6A1C9E600000006 /* bower.json */ = {
+		D6A1B75ED6A1C9E600000006 /* All */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = D6A1B75ED6A1C9E600000005 /* Build configuration list for PBXAggregateTarget "bower.json" */;
-			buildPhases = (
-				D6A1B75ED6A1C9E600000007,
-			);
-			dependencies = (
-				D6A1B75ED6A1C9E600000008 /* PBXTargetDependency Prep */,
-			);
-			name = bower.json;
-			productName = bower.json;
-		};
-		D6A1B75ED6A1C9E60000000A /* All */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = D6A1B75ED6A1C9E600000009 /* Build configuration list for PBXAggregateTarget "All" */;
+			buildConfigurationList = D6A1B75ED6A1C9E600000005 /* Build configuration list for PBXAggregateTarget "All" */;
 			buildPhases = (
 				
 			);
 			dependencies = (
-				D6A1B75ED6A1C9E60000000B /* PBXTargetDependency libsql */,
-				D6A1B75ED6A1C9E60000000C /* PBXTargetDependency bower.json */,
+				D6A1B75ED6A1C9E600000007 /* PBXTargetDependency libsql */,
 			);
 			name = All;
 			productName = All;
 		};
-		D6A1B75ED6A1C9E60000000E /* Prep */ = {
+		D6A1B75ED6A1C9E600000009 /* Prep */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = D6A1B75ED6A1C9E60000000D /* Build configuration list for PBXAggregateTarget "Prep" */;
+			buildConfigurationList = D6A1B75ED6A1C9E600000008 /* Build configuration list for PBXAggregateTarget "Prep" */;
 			buildPhases = (
-				D6A1B75ED6A1C9E60000000F,
+				D6A1B75ED6A1C9E60000000A,
 			);
 			dependencies = (
 			);
@@ -46,58 +33,44 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		D6A1B75ED6A1C9E600000010 /* sqlite.c in Sources */ = {isa = PBXBuildFile; fileRef = D6A1B75ED6A1C9E600000011 /* sqlite.c */; };
-		D6A1B75ED6A1C9E600000012 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = D6A1B75ED6A1C9E600000013 /* sqlite3.c */; };
+		D6A1B75ED6A1C9E60000000B /* sqlite.c in Sources */ = {isa = PBXBuildFile; fileRef = D6A1B75ED6A1C9E60000000C /* sqlite.c */; };
+		D6A1B75ED6A1C9E60000000D /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = D6A1B75ED6A1C9E60000000E /* sqlite3.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D6A1B75ED6A1C9E600000014 /* PBXContainerItemProxy Prep from libsql */ = {
+		D6A1B75ED6A1C9E60000000F /* PBXContainerItemProxy Prep from libsql */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D6A1B75ED6A1C9E600000001 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D6A1B75ED6A1C9E60000000E;
+			remoteGlobalIDString = D6A1B75ED6A1C9E600000009;
 			remoteInfo = Prep;
 		};
-		D6A1B75ED6A1C9E600000015 /* PBXContainerItemProxy Prep from bower.json */ = {
+		D6A1B75ED6A1C9E600000010 /* PBXContainerItemProxy Prep from All */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D6A1B75ED6A1C9E600000001 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D6A1B75ED6A1C9E60000000E;
+			remoteGlobalIDString = D6A1B75ED6A1C9E600000009;
 			remoteInfo = Prep;
 		};
-		D6A1B75ED6A1C9E600000016 /* PBXContainerItemProxy Prep from All */ = {
+		D6A1B75ED6A1C9E600000011 /* PBXContainerItemProxy libsql from All */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D6A1B75ED6A1C9E600000001 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D6A1B75ED6A1C9E60000000E;
-			remoteInfo = Prep;
-		};
-		D6A1B75ED6A1C9E600000017 /* PBXContainerItemProxy libsql from All */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D6A1B75ED6A1C9E600000001 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D6A1B75ED6A1C9E600000018;
+			remoteGlobalIDString = D6A1B75ED6A1C9E600000012;
 			remoteInfo = libsql;
-		};
-		D6A1B75ED6A1C9E600000019 /* PBXContainerItemProxy bower.json from All */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D6A1B75ED6A1C9E600000001 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D6A1B75ED6A1C9E600000006;
-			remoteInfo = bower.json;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D6A1B75ED6A1C9E600000011 /* sqlite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite.c; path = src/sqlite.c; sourceTree = "<group>"; };
-		D6A1B75ED6A1C9E60000001A /* bit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bit.h; path = macosx-x64-static/inc/bit.h; sourceTree = "<group>"; };
-		D6A1B75ED6A1C9E60000001B /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = macosx-x64-static/inc/sqlite3.h; sourceTree = "<group>"; };
-		D6A1B75ED6A1C9E600000013 /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = src/sqlite3.c; sourceTree = "<group>"; };
-		D6A1B75ED6A1C9E60000001C /* libsql */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsql.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6A1B75ED6A1C9E60000000C /* sqlite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite.c; path = src/sqlite.c; sourceTree = "<group>"; };
+		D6A1B75ED6A1C9E600000013 /* bit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bit.h; path = macosx-x64-static/inc/bit.h; sourceTree = "<group>"; };
+		D6A1B75ED6A1C9E600000014 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = macosx-x64-static/inc/sqlite3.h; sourceTree = "<group>"; };
+		D6A1B75ED6A1C9E60000000E /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = src/sqlite3.c; sourceTree = "<group>"; };
+		D6A1B75ED6A1C9E600000015 /* libsql */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsql.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D6A1B75ED6A1C9E60000001D /* Frameworks and Libraries for libsql */ = {
+		D6A1B75ED6A1C9E600000016 /* Frameworks and Libraries for libsql */ = {
             isa = PBXFrameworksBuildPhase;
             buildActionMask = 2147483647;
             files = (
@@ -108,30 +81,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D6A1B75ED6A1C9E60000001E /* Top Group */ = {
+		D6A1B75ED6A1C9E600000017 /* Top Group */ = {
             isa = PBXGroup;
             children = (
-				D6A1B75ED6A1C9E60000001F /* libsql */,
-				D6A1B75ED6A1C9E600000020 /* Products */,
+				D6A1B75ED6A1C9E600000018 /* libsql */,
+				D6A1B75ED6A1C9E600000019 /* Products */,
 			);
             sourceTree = "<group>";
         };
-		D6A1B75ED6A1C9E60000001F /* libsql */ = {
+		D6A1B75ED6A1C9E600000018 /* libsql */ = {
             isa = PBXGroup;
             children = (
-				D6A1B75ED6A1C9E60000001A /* bit.h */,
-				D6A1B75ED6A1C9E60000001B /* sqlite3.h */,
-				D6A1B75ED6A1C9E600000011 /* sqlite.c */,
-				D6A1B75ED6A1C9E600000013 /* sqlite3.c */,
+				D6A1B75ED6A1C9E600000013 /* bit.h */,
+				D6A1B75ED6A1C9E600000014 /* sqlite3.h */,
+				D6A1B75ED6A1C9E60000000C /* sqlite.c */,
+				D6A1B75ED6A1C9E60000000E /* sqlite3.c */,
 			);
             name = "libsql";
             path = ..;
             sourceTree = SOURCE_ROOT;
         };
-		D6A1B75ED6A1C9E600000020 /* Products */ = {
+		D6A1B75ED6A1C9E600000019 /* Products */ = {
             isa = PBXGroup;
             children = (
-				D6A1B75ED6A1C9E60000001C /* libsql */,
+				D6A1B75ED6A1C9E600000015 /* libsql */,
 			);
             name = "Products";
             path = ..;
@@ -140,46 +113,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D6A1B75ED6A1C9E600000018 /* libsql */ = {
+		D6A1B75ED6A1C9E600000012 /* libsql */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D6A1B75ED6A1C9E600000022 /* Build configuration list for PBXNativeTarget "libsql" */;
+			buildConfigurationList = D6A1B75ED6A1C9E60000001B /* Build configuration list for PBXNativeTarget "libsql" */;
 			buildPhases = (
-				D6A1B75ED6A1C9E600000021 /* Sources */,
-				D6A1B75ED6A1C9E60000001D /* Frameworks */,
+				D6A1B75ED6A1C9E60000001A /* Sources */,
+				D6A1B75ED6A1C9E600000016 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D6A1B75ED6A1C9E600000023 /* Prep */,				
+				D6A1B75ED6A1C9E60000001C /* Prep */,				
 			);
 			name = libsql;
 			productName = sqlite;
-			productReference = D6A1B75ED6A1C9E60000001C /* libsql */;
+			productReference = D6A1B75ED6A1C9E600000015 /* libsql */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		D6A1B75ED6A1C9E600000007 /* ShellScript for bower.json */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-../package.json
-			);
-			outputPaths = (
-../bower.json
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "PATH=$PATH:/usr/local/bin
-cd ..
-rm -rf bower.json
-cp -r package.json bower.json
-";
-		};
-		D6A1B75ED6A1C9E60000000F /* ShellScript for Prep */ = {
+		D6A1B75ED6A1C9E60000000A /* ShellScript for Prep */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -219,56 +173,45 @@ fi";
 			knownRegions = (
 				en,
 			);
-			mainGroup = D6A1B75ED6A1C9E60000001E;
-			productRefGroup = D6A1B75ED6A1C9E600000020 /* Products */;
+			mainGroup = D6A1B75ED6A1C9E600000017;
+			productRefGroup = D6A1B75ED6A1C9E600000019 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D6A1B75ED6A1C9E60000000A /* All */,
-				D6A1B75ED6A1C9E60000000E /* Prep */,
-				D6A1B75ED6A1C9E600000018 /* libsql */,
-				D6A1B75ED6A1C9E600000006 /* bower.json */,
+				D6A1B75ED6A1C9E600000006 /* All */,
+				D6A1B75ED6A1C9E600000009 /* Prep */,
+				D6A1B75ED6A1C9E600000012 /* libsql */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		D6A1B75ED6A1C9E600000021 /* libsql Sources */ = {
+		D6A1B75ED6A1C9E60000001A /* libsql Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6A1B75ED6A1C9E600000010 /* sqlite.c in Sources */,
-				D6A1B75ED6A1C9E600000012 /* sqlite3.c in Sources */,
+				D6A1B75ED6A1C9E60000000B /* sqlite.c in Sources */,
+				D6A1B75ED6A1C9E60000000D /* sqlite3.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D6A1B75ED6A1C9E600000023 /* PBXTargetDependency libsql depends on Prep */ = {
+		D6A1B75ED6A1C9E60000001C /* PBXTargetDependency libsql depends on Prep */ = {
 			isa = PBXTargetDependency;
-			target = D6A1B75ED6A1C9E60000000E /* Prep */;
-			targetProxy = D6A1B75ED6A1C9E600000014 /* PBXContainerItemProxy */;
+			target = D6A1B75ED6A1C9E600000009 /* Prep */;
+			targetProxy = D6A1B75ED6A1C9E60000000F /* PBXContainerItemProxy */;
 		};
-		D6A1B75ED6A1C9E600000008 /* PBXTargetDependency bower.json depends on Prep */ = {
+		D6A1B75ED6A1C9E60000001D /* PBXTargetDependency All depends on Prep */ = {
 			isa = PBXTargetDependency;
-			target = D6A1B75ED6A1C9E60000000E /* Prep */;
-			targetProxy = D6A1B75ED6A1C9E600000015 /* PBXContainerItemProxy */;
+			target = D6A1B75ED6A1C9E600000009 /* Prep */;
+			targetProxy = D6A1B75ED6A1C9E600000010 /* PBXContainerItemProxy */;
 		};
-		D6A1B75ED6A1C9E600000024 /* PBXTargetDependency All depends on Prep */ = {
+		D6A1B75ED6A1C9E600000007 /* PBXTargetDependency All depends on libsql */ = {
 			isa = PBXTargetDependency;
-			target = D6A1B75ED6A1C9E60000000E /* Prep */;
-			targetProxy = D6A1B75ED6A1C9E600000016 /* PBXContainerItemProxy */;
-		};
-		D6A1B75ED6A1C9E60000000B /* PBXTargetDependency All depends on libsql */ = {
-			isa = PBXTargetDependency;
-			target = D6A1B75ED6A1C9E600000018 /* libsql */;
-			targetProxy = D6A1B75ED6A1C9E600000017 /* PBXContainerItemProxy */;
-		};
-		D6A1B75ED6A1C9E60000000C /* PBXTargetDependency All depends on bower.json */ = {
-			isa = PBXTargetDependency;
-			target = D6A1B75ED6A1C9E600000006 /* bower.json */;
-			targetProxy = D6A1B75ED6A1C9E600000019 /* PBXContainerItemProxy */;
+			target = D6A1B75ED6A1C9E600000012 /* libsql */;
+			targetProxy = D6A1B75ED6A1C9E600000011 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -409,7 +352,7 @@ fi";
 			};
 			name = Release;
 		};
-		D6A1B75ED6A1C9E600000025 /* Debug */ = {
+		D6A1B75ED6A1C9E60000001E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = libsql;
@@ -426,7 +369,7 @@ fi";
 			};
 			name = Debug;
 		};
-		D6A1B75ED6A1C9E600000026 /* Release */ = {
+		D6A1B75ED6A1C9E60000001F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = libsql;
@@ -439,35 +382,7 @@ fi";
 			};
 			name = Release;
 		};
-		D6A1B75ED6A1C9E600000027 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = bower.json;
-
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"BIT_DEBUG",
-					"$(inherited)"
-				);
-				OTHER_LDFLAGS = ();
-
-				MACH_O_TYPE = mh_execute;
-
-			};
-			name = Debug;
-		};
-		D6A1B75ED6A1C9E600000028 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = bower.json;
-
-				OTHER_LDFLAGS = ();
-
-				MACH_O_TYPE = mh_execute;
-
-			};
-			name = Release;
-		};
-		D6A1B75ED6A1C9E600000029 /* Debug */ = {
+		D6A1B75ED6A1C9E600000020 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = All;
@@ -479,7 +394,7 @@ fi";
 			};
 			name = Debug;
 		};
-		D6A1B75ED6A1C9E60000002A /* Release */ = {
+		D6A1B75ED6A1C9E600000021 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = All;
@@ -488,7 +403,7 @@ fi";
 			};
 			name = Release;
 		};
-		D6A1B75ED6A1C9E60000002B /* Debug */ = {
+		D6A1B75ED6A1C9E600000022 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = Prep;
@@ -500,7 +415,7 @@ fi";
 			};
 			name = Debug;
 		};
-		D6A1B75ED6A1C9E60000002C /* Release */ = {
+		D6A1B75ED6A1C9E600000023 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = Prep;
@@ -521,38 +436,29 @@ fi";
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D6A1B75ED6A1C9E600000022 /* Build configuration list for PBXNativeTarget "libsql" */ = {
+		D6A1B75ED6A1C9E60000001B /* Build configuration list for PBXNativeTarget "libsql" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D6A1B75ED6A1C9E600000025 /* Debug */,
-				D6A1B75ED6A1C9E600000026 /* Release */,
+				D6A1B75ED6A1C9E60000001E /* Debug */,
+				D6A1B75ED6A1C9E60000001F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D6A1B75ED6A1C9E600000005 /* Build configuration list for PBXNativeTarget "bower.json" */ = {
+		D6A1B75ED6A1C9E600000005 /* Build configuration list for PBXNativeTarget "All" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D6A1B75ED6A1C9E600000027 /* Debug */,
-				D6A1B75ED6A1C9E600000028 /* Release */,
+				D6A1B75ED6A1C9E600000020 /* Debug */,
+				D6A1B75ED6A1C9E600000021 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D6A1B75ED6A1C9E600000009 /* Build configuration list for PBXNativeTarget "All" */ = {
+		D6A1B75ED6A1C9E600000008 /* Build configuration list for PBXNativeTarget "Prep" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D6A1B75ED6A1C9E600000029 /* Debug */,
-				D6A1B75ED6A1C9E60000002A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D6A1B75ED6A1C9E60000000D /* Build configuration list for PBXNativeTarget "Prep" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D6A1B75ED6A1C9E60000002B /* Debug */,
-				D6A1B75ED6A1C9E60000002C /* Release */,
+				D6A1B75ED6A1C9E600000022 /* Debug */,
+				D6A1B75ED6A1C9E600000023 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

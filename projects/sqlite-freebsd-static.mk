@@ -61,7 +61,6 @@ BIT_SRC_PREFIX     := $(BIT_ROOT_PREFIX)$(PRODUCT)-$(VERSION)
 
 
 TARGETS            += $(CONFIG)/bin/libsql.a
-TARGETS            += bower.json
 
 unexport CDPATH
 
@@ -93,7 +92,6 @@ prep:
 
 clean:
 	rm -f "$(CONFIG)/bin/libsql.a"
-	rm -f "bower.json"
 	rm -f "$(CONFIG)/obj/sqlite.o"
 	rm -f "$(CONFIG)/obj/sqlite3.o"
 
@@ -157,43 +155,33 @@ $(CONFIG)/bin/libsql.a: $(DEPS_6)
 	ar -cr $(CONFIG)/bin/libsql.a "$(CONFIG)/obj/sqlite.o" "$(CONFIG)/obj/sqlite3.o"
 
 #
-#   bower.json
-#
-DEPS_7 += package.json
-
-bower.json: $(DEPS_7)
-	@echo '      [Copy] bower.json'
-	mkdir -p "."
-	cp package.json bower.json
-
-#
 #   stop
 #
-stop: $(DEPS_8)
+stop: $(DEPS_7)
 
 #
 #   installBinary
 #
-installBinary: $(DEPS_9)
+installBinary: $(DEPS_8)
 
 #
 #   start
 #
-start: $(DEPS_10)
+start: $(DEPS_9)
 
 #
 #   install
 #
-DEPS_11 += stop
-DEPS_11 += installBinary
-DEPS_11 += start
+DEPS_10 += stop
+DEPS_10 += installBinary
+DEPS_10 += start
 
-install: $(DEPS_11)
+install: $(DEPS_10)
 
 #
 #   uninstall
 #
-DEPS_12 += stop
+DEPS_11 += stop
 
-uninstall: $(DEPS_12)
+uninstall: $(DEPS_11)
 
