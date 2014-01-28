@@ -94,6 +94,9 @@
 #ifndef BIT_WARN_UNUSED
     #define BIT_WARN_UNUSED 1
 #endif
+#ifndef BIT_WHO
+    #define BIT_WHO "embedthis"
+#endif
 
 /* Prefixes */
 #ifndef BIT_ROOT_PREFIX
