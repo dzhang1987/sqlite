@@ -164,7 +164,7 @@ fi";
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0430;
-				ORGANIZATIONNAME = "Embedthis";
+				ORGANIZATIONNAME = "embedthis";
 			};
 			buildConfigurationList = B55AF456B55B05C000000002 /* Build configuration list for PBXProject "sqlite" */;
 			compatibilityVersion = "Xcode 3.2";
