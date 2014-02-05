@@ -3,7 +3,7 @@
 #
 
 PRODUCT            := sqlite
-VERSION            := 1.0.1
+VERSION            := 1.0.2
 PROFILE            := static
 ARCH               := $(shell echo $(WIND_HOST_TYPE) | sed 's/-.*//')
 CPU                := $(subst X86,PENTIUM,$(shell echo $(ARCH) | tr a-z A-Z))
@@ -110,7 +110,7 @@ clobber: clean
 #   version
 #
 version: $(DEPS_1)
-	echo 1.0.1
+	echo 1.0.2
 
 #
 #   sqlite3.h

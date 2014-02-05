@@ -3,7 +3,7 @@
 #
 
 PRODUCT            := sqlite
-VERSION            := 1.0.1
+VERSION            := 1.0.2
 PROFILE            := default
 ARCH               := $(shell uname -m | sed 's/i.86/x86/;s/x86_64/x64/;s/arm.*/arm/;s/mips.*/mips/')
 CC_ARCH            := $(shell echo $(ARCH) | sed 's/x86/i686/;s/x64/x86_64/')
@@ -103,7 +103,7 @@ clobber: clean
 #   version
 #
 version: $(DEPS_1)
-	echo 1.0.1
+	echo 1.0.2
 
 #
 #   sqlite3.h
@@ -151,7 +151,7 @@ DEPS_6 += $(CONFIG)/obj/sqlite3.o
 
 $(CONFIG)/bin/libsql.dylib: $(DEPS_6)
 	@echo '      [Link] $(CONFIG)/bin/libsql.dylib'
-	$(CC) -dynamiclib -o $(CONFIG)/bin/libsql.dylib -arch $(CC_ARCH) $(LDFLAGS) $(LIBPATHS) -install_name @rpath/libsql.dylib -compatibility_version 1.0.1 -current_version 1.0.1 "$(CONFIG)/obj/sqlite.o" "$(CONFIG)/obj/sqlite3.o" $(LIBS) 
+	$(CC) -dynamiclib -o $(CONFIG)/bin/libsql.dylib -arch $(CC_ARCH) $(LDFLAGS) $(LIBPATHS) -install_name @rpath/libsql.dylib -compatibility_version 1.0.2 -current_version 1.0.2 "$(CONFIG)/obj/sqlite.o" "$(CONFIG)/obj/sqlite3.o" $(LIBS) 
 
 #
 #   stop

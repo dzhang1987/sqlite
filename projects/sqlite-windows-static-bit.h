@@ -20,7 +20,7 @@
     #define BIT_COMPANY "embedthis"
 #endif
 #ifndef BIT_COMPATIBLE
-    #define BIT_COMPATIBLE "1.0.1"
+    #define BIT_COMPATIBLE "1.0.2"
 #endif
 #ifndef BIT_DEBUG
     #define BIT_DEBUG 1
@@ -89,7 +89,7 @@
     #define BIT_TITLE "SQLite Library"
 #endif
 #ifndef BIT_VERSION
-    #define BIT_VERSION "1.0.1"
+    #define BIT_VERSION "1.0.2"
 #endif
 
 /* Prefixes */
@@ -187,10 +187,10 @@
     #define BIT_MINOR_VERSION 0
 #endif
 #ifndef BIT_PATCH_VERSION
-    #define BIT_PATCH_VERSION 1
+    #define BIT_PATCH_VERSION 2
 #endif
 #ifndef BIT_VNUM
-    #define BIT_VNUM 100000001
+    #define BIT_VNUM 100000002
 #endif
 
 /* Packs */

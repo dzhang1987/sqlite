@@ -3,7 +3,7 @@
 #
 
 PRODUCT            = sqlite
-VERSION            = 1.0.1
+VERSION            = 1.0.2
 PROFILE            = default
 PA                 = $(PROCESSOR_ARCHITECTURE)
 
@@ -101,7 +101,7 @@ clean:
 #   version
 #
 version: $(DEPS_1)
-	echo 1.0.1
+	echo 1.0.2
 
 #
 #   sqlite3.h
