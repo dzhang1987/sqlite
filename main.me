@@ -1,0 +1,49 @@
+/*
+    main.me -- Main MakeMe File for the SQLite library
+ */
+
+Me.load({
+    blend: [
+        "src/paks/*/*.me",
+    ],
+    settings: {
+        makeme: '0.8.0',
+        prefixes: 'package-prefixes',
+    },
+
+    usage: {
+        assert: 'Enable program assertions',
+    },
+
+    targets: {
+        libsql: {
+            type: 'lib',
+            headers: [ 'src/*.h' ],
+            sources: [ 'src/*.c' ],
+            '-compiler': [
+                '-Wall',
+                '-Wshorten-64-to-32',
+                '-Wunreachable-code',
+            ],
+        },
+    },
+    manifest: {     
+        packages: { 
+            pak: {
+                inherit:    'package-manifest',
+                prefixes:   [ 'src'],
+                sets:       [ 'pak' ],
+            },
+        },
+        files: [
+            {   from:   'package/sqlite.me',
+                to:     '${src}/sqlite.me',                                                   
+                set:    'pak',
+            },{ 
+                from:   ['src/sqlite3.h', 'src/sqlite3.c', 'src/sqlite.c'],
+                to:     '${src}/',
+                set:    'pak',
+            },
+        ],                                                                                                 
+    }, 
+})

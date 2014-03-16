@@ -2,68 +2,66 @@
 #   sqlite-vxworks-default.mk -- Makefile to build SQLite Library for vxworks
 #
 
-PRODUCT            := sqlite
-VERSION            := 1.0.2
-PROFILE            := default
-ARCH               := $(shell echo $(WIND_HOST_TYPE) | sed 's/-.*//')
-CPU                := $(subst X86,PENTIUM,$(shell echo $(ARCH) | tr a-z A-Z))
-OS                 := vxworks
-CC                 := cc$(subst x86,pentium,$(ARCH))
-LD                 := link
-CONFIG             := $(OS)-$(ARCH)-$(PROFILE)
-LBIN               := $(CONFIG)/bin
+NAME                  := sqlite
+VERSION               := 1.0.2
+PROFILE               ?= default
+ARCH                  ?= $(shell echo $(WIND_HOST_TYPE) | sed 's/-.*//')
+CPU                   ?= $(subst X86,PENTIUM,$(shell echo $(ARCH) | tr a-z A-Z))
+OS                    ?= vxworks
+CC                    ?= cc$(subst x86,pentium,$(ARCH))
+LD                    ?= link
+CONFIG                ?= $(OS)-$(ARCH)-$(PROFILE)
+LBIN                  ?= $(CONFIG)/bin
+PATH                  := $(LBIN):$(PATH)
 
 
-ifeq ($(BIT_PACK_LIB),1)
-    BIT_PACK_COMPILER := 1
-endif
+ME_EXT_COMPILER_PATH  ?= cc$(subst x86,pentium,$(ARCH))
+ME_EXT_LIB_PATH       ?= ar
+ME_EXT_LINK_PATH      ?= link
+ME_EXT_VXWORKS_PATH   ?= $(WIND_BASE)
+ME_EXT_WINSDK_PATH    ?= winsdk
 
-BIT_PACK_COMPILER_PATH    := cc$(subst x86,pentium,$(ARCH))
-BIT_PACK_LIB_PATH         := ar
-BIT_PACK_LINK_PATH        := link
-BIT_PACK_VXWORKS_PATH     := $(WIND_BASE)
+export WIND_HOME      ?= $(WIND_BASE)/..
+export PATH           := $(WIND_GNU_PATH)/$(WIND_HOST_TYPE)/bin:$(PATH)
 
-export WIND_HOME          := $(WIND_BASE)/..
-export PATH               := $(WIND_GNU_PATH)/$(WIND_HOST_TYPE)/bin:$(PATH)
+CFLAGS                += -fno-builtin -fno-defer-pop -fvolatile -w
+DFLAGS                += -DVXWORKS -DRW_MULTI_THREAD -D_GNU_TOOL -DCPU=PENTIUM $(patsubst %,-D%,$(filter ME_%,$(MAKEFLAGS))) 
+IFLAGS                += "-I$(CONFIG)/inc -I$(WIND_BASE)/target/h -I$(WIND_BASE)/target/h/wrn/coreip"
+LDFLAGS               += '-Wl,-r'
+LIBPATHS              += -L$(CONFIG)/bin
+LIBS                  += -lgcc
 
-CFLAGS             += -fno-builtin -fno-defer-pop -fvolatile -w
-DFLAGS             += -DVXWORKS -DRW_MULTI_THREAD -D_GNU_TOOL -DCPU=PENTIUM $(patsubst %,-D%,$(filter BIT_%,$(MAKEFLAGS))) 
-IFLAGS             += "-I$(CONFIG)/inc -I$(WIND_BASE)/target/h -I$(WIND_BASE)/target/h/wrn/coreip"
-LDFLAGS            += '-Wl,-r'
-LIBPATHS           += -L$(CONFIG)/bin
-LIBS               += -lgcc
+DEBUG                 ?= debug
+CFLAGS-debug          ?= -g
+DFLAGS-debug          ?= -DME_DEBUG
+LDFLAGS-debug         ?= -g
+DFLAGS-release        ?= 
+CFLAGS-release        ?= -O2
+LDFLAGS-release       ?= 
+CFLAGS                += $(CFLAGS-$(DEBUG))
+DFLAGS                += $(DFLAGS-$(DEBUG))
+LDFLAGS               += $(LDFLAGS-$(DEBUG))
 
-DEBUG              := debug
-CFLAGS-debug       := -g
-DFLAGS-debug       := -DBIT_DEBUG
-LDFLAGS-debug      := -g
-DFLAGS-release     := 
-CFLAGS-release     := -O2
-LDFLAGS-release    := 
-CFLAGS             += $(CFLAGS-$(DEBUG))
-DFLAGS             += $(DFLAGS-$(DEBUG))
-LDFLAGS            += $(LDFLAGS-$(DEBUG))
-
-BIT_ROOT_PREFIX    := deploy
-BIT_BASE_PREFIX    := $(BIT_ROOT_PREFIX)
-BIT_DATA_PREFIX    := $(BIT_VAPP_PREFIX)
-BIT_STATE_PREFIX   := $(BIT_VAPP_PREFIX)
-BIT_BIN_PREFIX     := $(BIT_VAPP_PREFIX)
-BIT_INC_PREFIX     := $(BIT_VAPP_PREFIX)/inc
-BIT_LIB_PREFIX     := $(BIT_VAPP_PREFIX)
-BIT_MAN_PREFIX     := $(BIT_VAPP_PREFIX)
-BIT_SBIN_PREFIX    := $(BIT_VAPP_PREFIX)
-BIT_ETC_PREFIX     := $(BIT_VAPP_PREFIX)
-BIT_WEB_PREFIX     := $(BIT_VAPP_PREFIX)/web
-BIT_LOG_PREFIX     := $(BIT_VAPP_PREFIX)
-BIT_SPOOL_PREFIX   := $(BIT_VAPP_PREFIX)
-BIT_CACHE_PREFIX   := $(BIT_VAPP_PREFIX)
-BIT_APP_PREFIX     := $(BIT_BASE_PREFIX)
-BIT_VAPP_PREFIX    := $(BIT_APP_PREFIX)
-BIT_SRC_PREFIX     := $(BIT_ROOT_PREFIX)/usr/src/$(PRODUCT)-$(VERSION)
+ME_ROOT_PREFIX        ?= deploy
+ME_BASE_PREFIX        ?= $(ME_ROOT_PREFIX)
+ME_DATA_PREFIX        ?= $(ME_VAPP_PREFIX)
+ME_STATE_PREFIX       ?= $(ME_VAPP_PREFIX)
+ME_BIN_PREFIX         ?= $(ME_VAPP_PREFIX)
+ME_INC_PREFIX         ?= $(ME_VAPP_PREFIX)/inc
+ME_LIB_PREFIX         ?= $(ME_VAPP_PREFIX)
+ME_MAN_PREFIX         ?= $(ME_VAPP_PREFIX)
+ME_SBIN_PREFIX        ?= $(ME_VAPP_PREFIX)
+ME_ETC_PREFIX         ?= $(ME_VAPP_PREFIX)
+ME_WEB_PREFIX         ?= $(ME_VAPP_PREFIX)/web
+ME_LOG_PREFIX         ?= $(ME_VAPP_PREFIX)
+ME_SPOOL_PREFIX       ?= $(ME_VAPP_PREFIX)
+ME_CACHE_PREFIX       ?= $(ME_VAPP_PREFIX)
+ME_APP_PREFIX         ?= $(ME_BASE_PREFIX)
+ME_VAPP_PREFIX        ?= $(ME_APP_PREFIX)
+ME_SRC_PREFIX         ?= $(ME_ROOT_PREFIX)/usr/src/$(NAME)-$(VERSION)
 
 
-TARGETS            += $(CONFIG)/bin/libsql.out
+TARGETS               += $(CONFIG)/bin/libsql.out
 
 unexport CDPATH
 
@@ -78,16 +76,16 @@ all build compile: prep $(TARGETS)
 prep:
 	@echo "      [Info] Use "make SHOW=1" to trace executed commands."
 	@if [ "$(CONFIG)" = "" ] ; then echo WARNING: CONFIG not set ; exit 255 ; fi
-	@if [ "$(BIT_APP_PREFIX)" = "" ] ; then echo WARNING: BIT_APP_PREFIX not set ; exit 255 ; fi
+	@if [ "$(ME_APP_PREFIX)" = "" ] ; then echo WARNING: ME_APP_PREFIX not set ; exit 255 ; fi
 	@if [ "$(WIND_BASE)" = "" ] ; then echo WARNING: WIND_BASE not set. Run wrenv.sh. ; exit 255 ; fi
 	@if [ "$(WIND_HOST_TYPE)" = "" ] ; then echo WARNING: WIND_HOST_TYPE not set. Run wrenv.sh. ; exit 255 ; fi
 	@if [ "$(WIND_GNU_PATH)" = "" ] ; then echo WARNING: WIND_GNU_PATH not set. Run wrenv.sh. ; exit 255 ; fi
 	@[ ! -x $(CONFIG)/bin ] && mkdir -p $(CONFIG)/bin; true
 	@[ ! -x $(CONFIG)/inc ] && mkdir -p $(CONFIG)/inc; true
 	@[ ! -x $(CONFIG)/obj ] && mkdir -p $(CONFIG)/obj; true
-	@[ ! -f $(CONFIG)/inc/bit.h ] && cp projects/sqlite-vxworks-default-bit.h $(CONFIG)/inc/bit.h ; true
-	@if ! diff $(CONFIG)/inc/bit.h projects/sqlite-vxworks-default-bit.h >/dev/null ; then\
-		cp projects/sqlite-vxworks-default-bit.h $(CONFIG)/inc/bit.h  ; \
+	@[ ! -f $(CONFIG)/inc/me.h ] && cp projects/sqlite-vxworks-default-me.h $(CONFIG)/inc/me.h ; true
+	@if ! diff $(CONFIG)/inc/me.h projects/sqlite-vxworks-default-me.h >/dev/null ; then\
+		cp projects/sqlite-vxworks-default-me.h $(CONFIG)/inc/me.h  ; \
 	fi; true
 	@if [ -f "$(CONFIG)/.makeflags" ] ; then \
 		if [ "$(MAKEFLAGS)" != " ` cat $(CONFIG)/.makeflags`" ] ; then \
@@ -121,44 +119,44 @@ $(CONFIG)/inc/sqlite3.h: $(DEPS_2)
 	cp src/sqlite3.h $(CONFIG)/inc/sqlite3.h
 
 #
-#   bit.h
+#   me.h
 #
-$(CONFIG)/inc/bit.h: $(DEPS_3)
-	@echo '      [Copy] $(CONFIG)/inc/bit.h'
+$(CONFIG)/inc/me.h: $(DEPS_3)
+	@echo '      [Copy] $(CONFIG)/inc/me.h'
 
 #
 #   sqlite.o
 #
-DEPS_4 += $(CONFIG)/inc/bit.h
+DEPS_4 += $(CONFIG)/inc/me.h
 DEPS_4 += $(CONFIG)/inc/sqlite3.h
 
 $(CONFIG)/obj/sqlite.o: \
     src/sqlite.c $(DEPS_4)
 	@echo '   [Compile] $(CONFIG)/obj/sqlite.o'
-	$(CC) -c -o $(CONFIG)/obj/sqlite.o $(CFLAGS) $(DFLAGS) "-I$(CONFIG)/inc" "-I$(WIND_BASE)/target/h" "-I$(WIND_BASE)/target/h/wrn/coreip" src/sqlite.c
+	 -c -o $(CONFIG)/obj/sqlite.o $(CFLAGS) $(DFLAGS) "-I$(CONFIG)/inc" "-I$(WIND_BASE)/target/h" "-I$(WIND_BASE)/target/h/wrn/coreip" src/sqlite.c
 
 #
 #   sqlite3.o
 #
-DEPS_5 += $(CONFIG)/inc/bit.h
+DEPS_5 += $(CONFIG)/inc/me.h
 DEPS_5 += $(CONFIG)/inc/sqlite3.h
 
 $(CONFIG)/obj/sqlite3.o: \
     src/sqlite3.c $(DEPS_5)
 	@echo '   [Compile] $(CONFIG)/obj/sqlite3.o'
-	$(CC) -c -o $(CONFIG)/obj/sqlite3.o $(CFLAGS) $(DFLAGS) "-I$(CONFIG)/inc" "-I$(WIND_BASE)/target/h" "-I$(WIND_BASE)/target/h/wrn/coreip" src/sqlite3.c
+	 -c -o $(CONFIG)/obj/sqlite3.o $(CFLAGS) $(DFLAGS) "-I$(CONFIG)/inc" "-I$(WIND_BASE)/target/h" "-I$(WIND_BASE)/target/h/wrn/coreip" src/sqlite3.c
 
 #
 #   libsql
 #
 DEPS_6 += $(CONFIG)/inc/sqlite3.h
-DEPS_6 += $(CONFIG)/inc/bit.h
+DEPS_6 += $(CONFIG)/inc/me.h
 DEPS_6 += $(CONFIG)/obj/sqlite.o
 DEPS_6 += $(CONFIG)/obj/sqlite3.o
 
 $(CONFIG)/bin/libsql.out: $(DEPS_6)
 	@echo '      [Link] $(CONFIG)/bin/libsql.out'
-	$(CC) -r -o $(CONFIG)/bin/libsql.out $(LDFLAGS) $(LIBPATHS) "$(CONFIG)/obj/sqlite.o" "$(CONFIG)/obj/sqlite3.o" $(LIBS) 
+	 -r -o $(CONFIG)/bin/libsql.out $(LDFLAGS) $(LIBPATHS) "$(CONFIG)/obj/sqlite.o" "$(CONFIG)/obj/sqlite3.o" $(LIBS) 
 
 #
 #   stop
