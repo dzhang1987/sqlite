@@ -60,3 +60,4 @@ src/new
 *.dmp
 src/old/
 start.me
+macosx-x64*
