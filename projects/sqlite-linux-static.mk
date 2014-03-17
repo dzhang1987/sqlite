@@ -9,7 +9,7 @@ ARCH                  ?= $(shell uname -m | sed 's/i.86/x86/;s/x86_64/x64/;s/arm
 CC_ARCH               ?= $(shell echo $(ARCH) | sed 's/x86/i686/;s/x64/x86_64/')
 OS                    ?= linux
 CC                    ?= gcc
-LD                    ?= link
+LD                    ?= ld
 CONFIG                ?= $(OS)-$(ARCH)-$(PROFILE)
 LBIN                  ?= $(CONFIG)/bin
 PATH                  := $(LBIN):$(PATH)
@@ -17,9 +17,8 @@ PATH                  := $(LBIN):$(PATH)
 
 ME_EXT_COMPILER_PATH  ?= gcc
 ME_EXT_LIB_PATH       ?= ar
-ME_EXT_LINK_PATH      ?= link
+ME_EXT_LINK_PATH      ?= ld
 ME_EXT_VXWORKS_PATH   ?= $(WIND_BASE)
-ME_EXT_WINSDK_PATH    ?= winsdk
 
 export WIND_HOME      ?= $(WIND_BASE)/..
 

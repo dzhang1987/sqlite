@@ -9,7 +9,7 @@ ARCH                  ?= $(shell echo $(WIND_HOST_TYPE) | sed 's/-.*//')
 CPU                   ?= $(subst X86,PENTIUM,$(shell echo $(ARCH) | tr a-z A-Z))
 OS                    ?= vxworks
 CC                    ?= cc$(subst x86,pentium,$(ARCH))
-LD                    ?= link
+LD                    ?= ld
 CONFIG                ?= $(OS)-$(ARCH)-$(PROFILE)
 LBIN                  ?= $(CONFIG)/bin
 PATH                  := $(LBIN):$(PATH)
@@ -17,9 +17,8 @@ PATH                  := $(LBIN):$(PATH)
 
 ME_EXT_COMPILER_PATH  ?= cc$(subst x86,pentium,$(ARCH))
 ME_EXT_LIB_PATH       ?= ar
-ME_EXT_LINK_PATH      ?= link
+ME_EXT_LINK_PATH      ?= ld
 ME_EXT_VXWORKS_PATH   ?= $(WIND_BASE)
-ME_EXT_WINSDK_PATH    ?= winsdk
 
 export WIND_HOME      ?= $(WIND_BASE)/..
 export PATH           := $(WIND_GNU_PATH)/$(WIND_HOST_TYPE)/bin:$(PATH)

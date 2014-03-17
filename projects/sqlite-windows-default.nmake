@@ -29,10 +29,9 @@ LBIN                  = $(CONFIG)\bin
 
 ME_EXT_COMPILER_PATH  = cl
 ME_EXT_LIB_PATH       = lib.exe
-ME_EXT_LINK_PATH      = link
-ME_EXT_RC_PATH        = rc
+ME_EXT_LINK_PATH      = link.exe
+ME_EXT_RC_PATH        = rc.exe
 ME_EXT_VXWORKS_PATH   = $(WIND_BASE)
-ME_EXT_WINSDK_PATH    = winsdk
 
 CC                    = cl
 LD                    = link
