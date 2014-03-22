@@ -8,7 +8,7 @@
 #   cross-compile, you should use MakeMe.
 #
 #	See projects/$(OS)-$(ARCH)-$(PROFILE)-me.h for configuration default settings. Can override 
-#	via make environment variables. For example: make ME_EXT_SQLITE=0. These are converted to 
+#	via make environment variables. For example: make ME_COM_SQLITE=0. These are converted to 
 #	DFLAGS and will then override the me.h default values. Use "make help" for a list of available 
 #	make variable options.
 #

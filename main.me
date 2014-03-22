@@ -16,6 +16,9 @@ Me.load({
     },
 
     targets: {
+        sqlite: {
+            configurable: true,
+        },
         libsql: {
             type: 'lib',
             headers: [ 'src/*.h' ],
@@ -25,6 +28,7 @@ Me.load({
                 '-Wshorten-64-to-32',
                 '-Wunreachable-code',
             ],
+            ifdef: [ 'sqlite' ],
         },
     },
     manifest: {     
