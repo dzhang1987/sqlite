@@ -28,6 +28,6 @@
         "paks": "src/paks"
     },
     "dependencies": {
-        "me-dev": "~0.8",
+        "me-dev": "~0.8"
     }
 }
