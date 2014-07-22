@@ -63,8 +63,8 @@
 
 /* Begin PBXFileReference section */
 		B55AF456B55B05C00000000C /* sqlite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite.c; path = src/sqlite.c; sourceTree = "<group>"; };
-		B55AF456B55B05C000000013 /* me.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = me.h; path = macosx-x64-default/inc/me.h; sourceTree = "<group>"; };
-		B55AF456B55B05C000000014 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = macosx-x64-default/inc/sqlite3.h; sourceTree = "<group>"; };
+		B55AF456B55B05C000000013 /* me.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = me.h; path = build/macosx-x64-default/inc/me.h; sourceTree = "<group>"; };
+		B55AF456B55B05C000000014 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = build/macosx-x64-default/inc/sqlite3.h; sourceTree = "<group>"; };
 		B55AF456B55B05C00000000E /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = src/sqlite3.c; sourceTree = "<group>"; };
 		B55AF456B55B05C000000015 /* libsql */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsql.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -148,10 +148,17 @@
 			shellPath = /bin/bash;
 			shellScript = "PATH=$PATH:/usr/local/bin
 [ ! -x ${INC_DIR} ] && mkdir -p ${INC_DIR} ${OBJ_DIR} ${LIB_DIR} ${BIN_DIR}
-[ ! -f ${INC_DIR}/me.h ] && cp sqlite-macosx-default-me.h ${INC_DIR}/me.h
-[ ! -f ${INC_DIR}/osdep.h ] && cp ${SRC_DIR}/src/paks/osdep/osdep.h ${INC_DIR}/osdep.h
-if ! diff ${INC_DIR}/me.h sqlite-macosx-default-me.h >/dev/null ; then
+[ ! -f ${INC_DIR}/me.h -a -f cp sqlite-macosx-default-me.h ] && cp sqlite-macosx-default-me.h ${INC_DIR}/me.h
+if [ -f sqlite-macosx-default-me.h ] ; then
+if ! diff ${INC_DIR}/me.h sqlite-macosx-default-me.h >/dev/null 2>&1 ; then
 cp sqlite-macosx-default-me.h ${INC_DIR}/me.h
+fi
+fi
+if [ ${OUT_DIR}/inc/me.h -nt ${OUT_DIR}/inc/me.h ] ; then
+cp ${OUT_DIR}/inc/me.h ${OUT_DIR}/inc/me.h
+fi
+if [ ../src/sqlite3.h -nt ${OUT_DIR}/inc/sqlite3.h ] ; then
+cp ../src/sqlite3.h ${OUT_DIR}/inc/sqlite3.h
 fi
 if [ ../src/sqlite3.h -nt ${OUT_DIR}/inc/sqlite3.h ] ; then
 cp ../src/sqlite3.h ${OUT_DIR}/inc/sqlite3.h
@@ -223,7 +230,7 @@ fi";
                 /* Common Settings */
 				ALWAYS_SEARCH_USER_PATHS = NO;
                 ONLY_ACTIVE_ARCH = YES;
-                CURRENT_PROJECT_VERSION = 1.0.2;
+                CURRENT_PROJECT_VERSION = 1.0;
                 DYLIB_COMPATIBILITY_VERSION = "$(CURRENT_PROJECT_VERSION)";
                 DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -233,14 +240,14 @@ fi";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 
-                OUT_DIR = "../macosx-x64-default";
-                BIN_DIR = "../macosx-x64-default/bin";
-                LIB_DIR = "../macosx-x64-default/bin";
-                INC_DIR = "../macosx-x64-default/inc";
-                OBJ_DIR = "../macosx-x64-default/obj";
+                OUT_DIR = "../build/macosx-x64-default";
+                BIN_DIR = "../build/macosx-x64-default/bin";
+                LIB_DIR = "../build/macosx-x64-default/bin";
+                INC_DIR = "../build/macosx-x64-default/inc";
+                OBJ_DIR = "../build/macosx-x64-default/obj";
                 SRC_DIR = "..";
 
-                CONFIGURATION_TEMP_DIR = "$(OBJ_DIR)/tmp/$(CONFIGURATION)";
+                CONFIGURATION_TEMP_DIR = "$(OBJ_DIR)/sqlite-xcode/$(CONFIGURATION)";
                 CONFIGURATION_BUILD_DIR = "$(BIN_DIR)";
                 INSTALL_PATH = "/usr/lib/sqlite";
                 DSTROOT = "/tmp/sqlite.dst";
@@ -262,7 +269,7 @@ fi";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
-					"../macosx-x64-default/inc",
+					"/Users/mob/git/sqlite/build/macosx-x64-default/inc",
 					"$(inherited)"
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -270,7 +277,7 @@ fi";
 					"$(inherited)"
 				);
 				LIBRARY_SEARCH_PATHS = (
-					"../macosx-x64-default/bin",
+					"/Users/mob/git/sqlite/build/macosx-x64-default/bin",
 					"$(inherited)"
 				);
 				OTHER_LDFLAGS = (
@@ -292,7 +299,7 @@ fi";
                 /* Common Settings */
 				ALWAYS_SEARCH_USER_PATHS = NO;
                 ONLY_ACTIVE_ARCH = YES;
-                CURRENT_PROJECT_VERSION = 1.0.2;
+                CURRENT_PROJECT_VERSION = 1.0;
                 DYLIB_COMPATIBILITY_VERSION = "$(CURRENT_PROJECT_VERSION)";
                 DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -302,14 +309,14 @@ fi";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 
-                OUT_DIR = "../macosx-x64-default";
-                BIN_DIR = "../macosx-x64-default/bin";
-                LIB_DIR = "../macosx-x64-default/bin";
-                INC_DIR = "../macosx-x64-default/inc";
-                OBJ_DIR = "../macosx-x64-default/obj";
+                OUT_DIR = "../build/macosx-x64-default";
+                BIN_DIR = "../build/macosx-x64-default/bin";
+                LIB_DIR = "../build/macosx-x64-default/bin";
+                INC_DIR = "../build/macosx-x64-default/inc";
+                OBJ_DIR = "../build/macosx-x64-default/obj";
                 SRC_DIR = "..";
 
-                CONFIGURATION_TEMP_DIR = "$(OBJ_DIR)/tmp/$(CONFIGURATION)";
+                CONFIGURATION_TEMP_DIR = "$(OBJ_DIR)/sqlite-xcode/$(CONFIGURATION)";
                 CONFIGURATION_BUILD_DIR = "$(BIN_DIR)";
                 INSTALL_PATH = "/usr/lib/sqlite";
                 DSTROOT = "/tmp/sqlite.dst";
@@ -332,12 +339,12 @@ fi";
 				GCC_OPTIMIZATION_LEVEL = s;
                 GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				HEADER_SEARCH_PATHS = (
-					"../macosx-x64-default/inc",
+					"/Users/mob/git/sqlite/build/macosx-x64-default/inc",
 					"$(inherited)"
 				);
 
 				LIBRARY_SEARCH_PATHS = (
-					"../macosx-x64-default/bin",
+					"/Users/mob/git/sqlite/build/macosx-x64-default/bin",
 					"$(inherited)"
 				);
 				OTHER_LDFLAGS = (

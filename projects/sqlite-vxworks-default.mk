@@ -11,10 +11,12 @@ OS                    ?= vxworks
 CC                    ?= cc$(subst x86,pentium,$(ARCH))
 LD                    ?= ld
 CONFIG                ?= $(OS)-$(ARCH)-$(PROFILE)
-LBIN                  ?= $(CONFIG)/bin
+BUILD                 ?= build/$(CONFIG)
+LBIN                  ?= $(BUILD)/bin
 PATH                  := $(LBIN):$(PATH)
 
-ME_COM_WINSDK         ?= 0
+ME_COM_SQLITE         ?= 1
+ME_COM_WINSDK         ?= 1
 
 
 ME_COM_COMPILER_PATH  ?= cc$(subst x86,pentium,$(ARCH))
@@ -26,10 +28,10 @@ export WIND_HOME      ?= $(WIND_BASE)/..
 export PATH           := $(WIND_GNU_PATH)/$(WIND_HOST_TYPE)/bin:$(PATH)
 
 CFLAGS                += -fno-builtin -fno-defer-pop -fvolatile -w
-DFLAGS                += -DVXWORKS -DRW_MULTI_THREAD -D_GNU_TOOL -DCPU=PENTIUM $(patsubst %,-D%,$(filter ME_%,$(MAKEFLAGS))) -DME_COM_WINSDK=$(ME_COM_WINSDK) 
-IFLAGS                += "-I$(CONFIG)/inc -I$(WIND_BASE)/target/h -I$(WIND_BASE)/target/h/wrn/coreip"
+DFLAGS                += -DVXWORKS -DRW_MULTI_THREAD -D_GNU_TOOL -DCPU=PENTIUM $(patsubst %,-D%,$(filter ME_%,$(MAKEFLAGS))) -DME_COM_SQLITE=$(ME_COM_SQLITE) -DME_COM_WINSDK=$(ME_COM_WINSDK) 
+IFLAGS                += "-Ibuild/$(CONFIG)/inc -I$(WIND_BASE)/target/h -I$(WIND_BASE)/target/h/wrn/coreip"
 LDFLAGS               += '-Wl,-r'
-LIBPATHS              += -L$(CONFIG)/bin
+LIBPATHS              += -Lbuild/$(CONFIG)/bin
 LIBS                  += -lgcc
 
 DEBUG                 ?= debug
@@ -62,7 +64,9 @@ ME_VAPP_PREFIX        ?= $(ME_APP_PREFIX)
 ME_SRC_PREFIX         ?= $(ME_ROOT_PREFIX)/usr/src/$(NAME)-$(VERSION)
 
 
-TARGETS               += $(CONFIG)/bin/libsql.out
+ifeq ($(ME_COM_SQLITE),1)
+    TARGETS           += build/$(CONFIG)/bin/libsql.out
+endif
 
 unexport CDPATH
 
@@ -81,97 +85,114 @@ prep:
 	@if [ "$(WIND_BASE)" = "" ] ; then echo WARNING: WIND_BASE not set. Run wrenv.sh. ; exit 255 ; fi
 	@if [ "$(WIND_HOST_TYPE)" = "" ] ; then echo WARNING: WIND_HOST_TYPE not set. Run wrenv.sh. ; exit 255 ; fi
 	@if [ "$(WIND_GNU_PATH)" = "" ] ; then echo WARNING: WIND_GNU_PATH not set. Run wrenv.sh. ; exit 255 ; fi
-	@[ ! -x $(CONFIG)/bin ] && mkdir -p $(CONFIG)/bin; true
-	@[ ! -x $(CONFIG)/inc ] && mkdir -p $(CONFIG)/inc; true
-	@[ ! -x $(CONFIG)/obj ] && mkdir -p $(CONFIG)/obj; true
-	@[ ! -f $(CONFIG)/inc/me.h ] && cp projects/sqlite-vxworks-default-me.h $(CONFIG)/inc/me.h ; true
-	@if ! diff $(CONFIG)/inc/me.h projects/sqlite-vxworks-default-me.h >/dev/null ; then\
-		cp projects/sqlite-vxworks-default-me.h $(CONFIG)/inc/me.h  ; \
+	@[ ! -x $(BUILD)/bin ] && mkdir -p $(BUILD)/bin; true
+	@[ ! -x $(BUILD)/inc ] && mkdir -p $(BUILD)/inc; true
+	@[ ! -x $(BUILD)/obj ] && mkdir -p $(BUILD)/obj; true
+	@[ ! -f $(BUILD)/inc/me.h ] && cp projects/sqlite-vxworks-default-me.h $(BUILD)/inc/me.h ; true
+	@if ! diff $(BUILD)/inc/me.h projects/sqlite-vxworks-default-me.h >/dev/null ; then\
+		cp projects/sqlite-vxworks-default-me.h $(BUILD)/inc/me.h  ; \
 	fi; true
-	@if [ -f "$(CONFIG)/.makeflags" ] ; then \
-		if [ "$(MAKEFLAGS)" != " ` cat $(CONFIG)/.makeflags`" ] ; then \
-			echo "   [Warning] Make flags have changed since the last build: "`cat $(CONFIG)/.makeflags`"" ; \
+	@if [ -f "$(BUILD)/.makeflags" ] ; then \
+		if [ "$(MAKEFLAGS)" != "`cat $(BUILD)/.makeflags`" ] ; then \
+			echo "   [Warning] Make flags have changed since the last build: "`cat $(BUILD)/.makeflags`"" ; \
 		fi ; \
 	fi
-	@echo $(MAKEFLAGS) >$(CONFIG)/.makeflags
+	@echo $(MAKEFLAGS) >$(BUILD)/.makeflags
 
 clean:
-	rm -f "$(CONFIG)/obj/sqlite.o"
-	rm -f "$(CONFIG)/obj/sqlite3.o"
-	rm -f "$(CONFIG)/bin/libsql.out"
+	rm -f "build/$(CONFIG)/obj/sqlite.o"
+	rm -f "build/$(CONFIG)/obj/sqlite3.o"
+	rm -f "build/$(CONFIG)/bin/libsql.out"
 
 clobber: clean
-	rm -fr ./$(CONFIG)
+	rm -fr ./$(BUILD)
 
 
 
 #
 #   sqlite3.h
 #
-$(CONFIG)/inc/sqlite3.h: $(DEPS_1)
-	@echo '      [Copy] $(CONFIG)/inc/sqlite3.h'
-	mkdir -p "$(CONFIG)/inc"
-	cp src/sqlite3.h $(CONFIG)/inc/sqlite3.h
+build/$(CONFIG)/inc/sqlite3.h: $(DEPS_1)
+	@echo '      [Copy] build/$(CONFIG)/inc/sqlite3.h'
+	mkdir -p "build/$(CONFIG)/inc"
+	cp src/sqlite3.h build/$(CONFIG)/inc/sqlite3.h
 
 #
 #   me.h
 #
-$(CONFIG)/inc/me.h: $(DEPS_2)
-	@echo '      [Copy] $(CONFIG)/inc/me.h'
+build/$(CONFIG)/inc/me.h: $(DEPS_2)
+	@echo '      [Copy] build/$(CONFIG)/inc/me.h'
 
 #
 #   sqlite.o
 #
-DEPS_3 += $(CONFIG)/inc/me.h
-DEPS_3 += $(CONFIG)/inc/sqlite3.h
+DEPS_3 += build/$(CONFIG)/inc/me.h
+DEPS_3 += build/$(CONFIG)/inc/sqlite3.h
 
-$(CONFIG)/obj/sqlite.o: \
+build/$(CONFIG)/obj/sqlite.o: \
     src/sqlite.c $(DEPS_3)
-	@echo '   [Compile] $(CONFIG)/obj/sqlite.o'
-	$(CC) -c -o $(CONFIG)/obj/sqlite.o $(CFLAGS) $(DFLAGS) "-I$(CONFIG)/inc" "-I$(WIND_BASE)/target/h" "-I$(WIND_BASE)/target/h/wrn/coreip" src/sqlite.c
+	@echo '   [Compile] build/$(CONFIG)/obj/sqlite.o'
+	$(CC) -c -o build/$(CONFIG)/obj/sqlite.o $(CFLAGS) $(DFLAGS) "-Ibuild/$(CONFIG)/inc" "-I$(WIND_BASE)/target/h" "-I$(WIND_BASE)/target/h/wrn/coreip" src/sqlite.c
 
 #
 #   sqlite3.o
 #
-DEPS_4 += $(CONFIG)/inc/me.h
-DEPS_4 += $(CONFIG)/inc/sqlite3.h
+DEPS_4 += build/$(CONFIG)/inc/me.h
+DEPS_4 += build/$(CONFIG)/inc/sqlite3.h
 
-$(CONFIG)/obj/sqlite3.o: \
+build/$(CONFIG)/obj/sqlite3.o: \
     src/sqlite3.c $(DEPS_4)
-	@echo '   [Compile] $(CONFIG)/obj/sqlite3.o'
-	$(CC) -c -o $(CONFIG)/obj/sqlite3.o $(CFLAGS) $(DFLAGS) "-I$(CONFIG)/inc" "-I$(WIND_BASE)/target/h" "-I$(WIND_BASE)/target/h/wrn/coreip" src/sqlite3.c
+	@echo '   [Compile] build/$(CONFIG)/obj/sqlite3.o'
+	$(CC) -c -o build/$(CONFIG)/obj/sqlite3.o $(CFLAGS) $(DFLAGS) "-Ibuild/$(CONFIG)/inc" "-I$(WIND_BASE)/target/h" "-I$(WIND_BASE)/target/h/wrn/coreip" src/sqlite3.c
 
+ifeq ($(ME_COM_SQLITE),1)
 #
 #   libsql
 #
-DEPS_5 += $(CONFIG)/inc/sqlite3.h
-DEPS_5 += $(CONFIG)/inc/me.h
-DEPS_5 += $(CONFIG)/obj/sqlite.o
-DEPS_5 += $(CONFIG)/obj/sqlite3.o
+DEPS_5 += build/$(CONFIG)/inc/sqlite3.h
+DEPS_5 += build/$(CONFIG)/inc/me.h
+DEPS_5 += build/$(CONFIG)/obj/sqlite.o
+DEPS_5 += build/$(CONFIG)/obj/sqlite3.o
 
-$(CONFIG)/bin/libsql.out: $(DEPS_5)
-	@echo '      [Link] $(CONFIG)/bin/libsql.out'
-	$(CC) -r -o $(CONFIG)/bin/libsql.out $(LDFLAGS) $(LIBPATHS) "$(CONFIG)/obj/sqlite.o" "$(CONFIG)/obj/sqlite3.o" $(LIBS) 
-
-#
-#   installBinary
-#
-installBinary: $(DEPS_6)
-
-#
-#   start
-#
-start: $(DEPS_7)
+build/$(CONFIG)/bin/libsql.out: $(DEPS_5)
+	@echo '      [Link] build/$(CONFIG)/bin/libsql.out'
+	$(CC) -r -o build/$(CONFIG)/bin/libsql.out $(LDFLAGS) $(LIBPATHS) "build/$(CONFIG)/obj/sqlite.o" "build/$(CONFIG)/obj/sqlite3.o" $(LIBS) 
+endif
 
 #
 #   stop
 #
-stop: $(DEPS_8)
+stop: $(DEPS_6)
+
+#
+#   installBinary
+#
+installBinary: $(DEPS_7)
+
+#
+#   start
+#
+start: $(DEPS_8)
+
+#
+#   install
+#
+DEPS_9 += stop
+DEPS_9 += installBinary
+DEPS_9 += start
+
+install: $(DEPS_9)
 
 #
 #   uninstall
 #
-DEPS_9 += stop
+DEPS_10 += stop
 
-uninstall: $(DEPS_9)
+uninstall: $(DEPS_10)
+
+#
+#   version
+#
+version: $(DEPS_11)
+	echo 1.0.2
 

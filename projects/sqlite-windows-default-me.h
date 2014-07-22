@@ -13,7 +13,7 @@
     #define ME_COMPANY "embedthis"
 #endif
 #ifndef ME_COMPATIBLE
-    #define ME_COMPATIBLE "1.0.2"
+    #define ME_COMPATIBLE "1.0"
 #endif
 #ifndef ME_COMPILER_HAS_ATOMIC
     #define ME_COMPILER_HAS_ATOMIC 0
@@ -58,7 +58,7 @@
     #define ME_DESCRIPTION "SQLite Library"
 #endif
 #ifndef ME_ME
-    #define ME_ME "0.8.0"
+    #define ME_ME "~0.8"
 #endif
 #ifndef ME_NAME
     #define ME_NAME "sqlite"
@@ -185,11 +185,14 @@
     #define ME_COM_LINK 1
 #endif
 #ifndef ME_COM_RC
-    #define ME_COM_RC 0
+    #define ME_COM_RC 1
+#endif
+#ifndef ME_COM_SQLITE
+    #define ME_COM_SQLITE 1
 #endif
 #ifndef ME_COM_VXWORKS
     #define ME_COM_VXWORKS 0
 #endif
 #ifndef ME_COM_WINSDK
-    #define ME_COM_WINSDK 0
+    #define ME_COM_WINSDK 1
 #endif
