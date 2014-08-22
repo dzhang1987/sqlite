@@ -25,7 +25,7 @@ lib/*.so
 *.exe
 *.lib
 *.dll
-*.exp
+bin/*.exp
 bin/*.def
 releases
 staging
