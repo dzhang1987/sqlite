@@ -39,15 +39,21 @@ Me.load({
                 sets:       [ 'pak' ],
             },
         },
-        files: [
-            {   from:   'package/sqlite.me',
-                to:     '${src}/sqlite.me',                                                   
-                set:    'pak',
-            },{ 
-                from:   ['src/sqlite3.h', 'src/sqlite3.c', 'src/sqlite.c'],
-                to:     '${src}/',
-                set:    'pak',
-            },
-        ],                                                                                                 
+        sets: {
+            pak: [
+                {   
+                    from:       'package/sqlite.me',
+                    to:         '${src}/sqlite.me',                                                   
+
+                }, { 
+                    from: [
+                                'src/sqlite3.h', 
+                                'src/sqlite3.c', 
+                                'src/sqlite.c'
+                    ],
+                    to:         '${src}/',
+                },
+            ],                                                                                                 
+        }
     }, 
 })
