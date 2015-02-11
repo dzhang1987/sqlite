@@ -3,11 +3,11 @@
  */
 
 Me.load({
-    plugins: [ 'configuration', 'package' ],
+    plugins: [ 'configuration', 'installs' ],
 
     settings: {
         me: '=>0.8.4',
-        prefixes: 'package-prefixes',
+        prefixes: 'install-prefixes',
     },
 
     usage: {
@@ -41,8 +41,8 @@ Me.load({
         sets: {
             pak: [
                 {   
-                    from:       'package/sqlite.me',
-                    to:         '${src}/sqlite.me',                                                   
+                    from:       'installs/sqlite.me',
+                    to:         '${src}/dist/sqlite.me',                                                   
 
                 }, { 
                     from: [
@@ -50,7 +50,7 @@ Me.load({
                                 'src/sqlite3.c', 
                                 'src/sqlite.c'
                     ],
-                    to:         '${src}/',
+                    to:         '${src}/dist/',
                 },
             ],                                                                                                 
         }
