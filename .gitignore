@@ -59,9 +59,7 @@ start.bit
 src/new
 *.dmp
 src/old/
-start.me
+/start.me
 macosx-x64*
-start.me
-start.me
 macosx-*.me
 /build/
